@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{61074899-1B6E-468F-8381-1BBAA09ACE95}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IRMS.BusinessLogic</RootNamespace>
+    <AssemblyName>IRMS.BusinessLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BLToolkit.4">
+      <HintPath>..\..\..\Marketing Department\IntegratedResourceManagementSystem\IRMS.Entities\bin\Debug\BLToolkit.4.dll</HintPath>
+    </Reference>
+    <Reference Include="IRMS.Components">
+      <HintPath>..\..\..\updated-irms\Marketing\IntegratedResourceManagementSystem\IntegratedResourceManagementSystem\Components\bin\Debug\IRMS.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="IRMS.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\updated-irms\Marketing\IntegratedResourceManagementSystem\IntegratedResourceManagementSystem\IRMS.Entities\bin\Debug\IRMS.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\AccessorBase.cs" />
+    <Compile Include="DataAccess\AccountAccessor.cs" />
+    <Compile Include="DataAccess\AdjustmentAccessor.cs" />
+    <Compile Include="DataAccess\AdjustmentMemoAccessor.cs" />
+    <Compile Include="DataAccess\AuditTrailAccessor.cs" />
+    <Compile Include="DataAccess\BookAdjustmentAccessor.cs" />
+    <Compile Include="DataAccess\BookAdjustmentMemoAccessor.cs" />
+    <Compile Include="DataAccess\BranchAccessor.cs" />
+    <Compile Include="DataAccess\BrandAccessor.cs" />
+    <Compile Include="DataAccess\CustomerAccessor.cs" />
+    <Compile Include="DataAccess\CustomerReturnSlipAccessor.cs" />
+    <Compile Include="DataAccess\DeliveryReceiptAccessor.cs" />
+    <Compile Include="DataAccess\DeliveryReceiptDetailAccessor.cs" />
+    <Compile Include="DataAccess\DepartmentAccessor.cs" />
+    <Compile Include="DataAccess\ForwarderAccessor.cs" />
+    <Compile Include="DataAccess\InventoryGroupAccessor.cs" />
+    <Compile Include="DataAccess\MemoAccessor.cs" />
+    <Compile Include="DataAccess\MemoParticularAccessor.cs" />
+    <Compile Include="DataAccess\MessageAccessor.cs" />
+    <Compile Include="DataAccess\MonthlyStoreOutStandingInventoryAccessor.cs" />
+    <Compile Include="DataAccess\ProductAccessor.cs" />
+    <Compile Include="DataAccess\StockCardReportAccessor.cs" />
+    <Compile Include="DataAccess\StoreOutStandingInventoryAccessor.cs" />
+    <Compile Include="DataAccess\UserBrandAccessor.cs" />
+    <Compile Include="DataAccess\UserClassAccessor.cs" />
+    <Compile Include="DataAccess\UserLevelAccessor.cs" />
+    <Compile Include="DataAccess\UserRoleAccessor.cs" />
+    <Compile Include="Manager\AccountsManager.cs" />
+    <Compile Include="Manager\AdjustmentManager.cs" />
+    <Compile Include="Manager\AdjustmentMemoManager.cs" />
+    <Compile Include="Manager\AuditTrailManager.cs" />
+    <Compile Include="Manager\BookAdjustmentManager.cs" />
+    <Compile Include="Manager\BookAdjustmentMemoManager.cs" />
+    <Compile Include="Manager\BranchManager.cs" />
+    <Compile Include="Manager\BrandManager.cs" />
+    <Compile Include="Manager\CacheManager\DeliveryReceiptsCache.cs" />
+    <Compile Include="Manager\CustomerInventoryGroupManager.cs" />
+    <Compile Include="Manager\CustomerManager.cs" />
+    <Compile Include="Manager\CustomerReturnSlipManager.cs" />
+    <Compile Include="Manager\DeliveryReceiptDetailManager.cs" />
+    <Compile Include="Manager\DeliveryReceiptManager.cs" />
+    <Compile Include="Manager\DepartmentManager.cs" />
+    <Compile Include="Manager\ForwarderManager.cs" />
+    <Compile Include="Manager\IBaseManager.cs" />
+    <Compile Include="Manager\InventoryGroupManager.cs" />
+    <Compile Include="Manager\LogManager.cs" />
+    <Compile Include="Manager\MemoManager.cs" />
+    <Compile Include="Manager\MemoParticularManager.cs" />
+    <Compile Include="Manager\MessageManager.cs" />
+    <Compile Include="Manager\MonthlySOIAdjustmentManager.cs" />
+    <Compile Include="Manager\MonthlyStoreOutStandingInventoryManager.cs" />
+    <Compile Include="Manager\ProductManager.cs" />
+    <Compile Include="Manager\StockCardReportManager.cs" />
+    <Compile Include="Manager\StoreOutStandingInventoryManager.cs" />
+    <Compile Include="Manager\UserBrandManager.cs" />
+    <Compile Include="Manager\UserLevelManager.cs" />
+    <Compile Include="Manager\UserManager.cs" />
+    <Compile Include="Manager\UserRoleManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IRMS.ObjectModel\IRMS.ObjectModel.csproj">
+      <Project>{C733A9C1-25EF-4B67-834B-932CC63D4D35}</Project>
+      <Name>IRMS.ObjectModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

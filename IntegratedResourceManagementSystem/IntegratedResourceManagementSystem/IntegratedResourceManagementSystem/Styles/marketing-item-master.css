@@ -1,0 +1,279 @@
+﻿  .btnGenerate 
+    {
+         font-family:Verdana ;
+        font-weight :bold;
+        font-size: 12px;
+        height : 25px;
+        text-align :right;
+        background:url('../Resources/panels.png');
+        background-repeat:no-repeat;
+        background-position:left;
+        background-color: #C9C9C9;
+        color:#FCFCFC;
+        width: 100px;
+         cursor:pointer;
+    }
+     .btnGenerate:hover
+    {
+         background:url('../Resources/panels.png');
+        background-repeat:no-repeat;
+        background-position:left;
+        background-color: #C9C9C9;
+    }
+ .btnNew 
+    {
+        font-family:Verdana ;
+        font-weight :bold;
+        font-size: 11px;
+        height : 25px;
+        text-align :right;
+       background-image:url('../Resources/new_gray.png'), -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image : url('../Resources/new_gray.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+        color:#FCFCFC;
+        padding-left: 18px;      
+        cursor:pointer;
+    }
+    .btnNew:hover
+    {
+          margin-top:1px;
+          background-image:url('../Resources/new.png'), -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+          background-image :url('../Resources/new.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+          background-repeat :no-repeat;
+          background-position:left;
+          background-color: #C9C9C9;
+          color:#FFFFCC;
+    }
+    .btnUpdate
+    {
+        font-family:Verdana ;
+        font-weight :bold;
+        font-size: 11px;
+        height : 25px;
+        text-align :right;
+        background-image:url('../Resources/edit_gray.png'), -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image :url('../Resources/edit_gray.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+        color:#FCFCFC;
+        cursor:pointer;
+        padding-left: 18px;
+    }
+    .btnUpdate:hover
+     {
+         margin-top:1px;
+        background-image:url('../Resources/edit_normal.png'), -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image :url('../Resources/edit_normal.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+        color:#FFFFCC;
+     }
+    .btnDelete
+    {
+        font-family:Verdana;
+        font-weight :bold;
+        font-size: 11px;
+        height : 25px;
+        text-align :right;
+        background-color: #C9C9C9;
+        background-image: url('../Resources/delete_gray.png'), -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image : url('../Resources/delete_gray.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+        color:#FCFCFC;       
+        cursor:pointer;
+        padding-left: 18px;
+    }
+    .btnDelete:hover
+     {
+        margin-top:1px;
+        background-image : url('../Resources/delete_normal.png'), -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image :  url('../Resources/delete_normal.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+          color:#FFFFCC;
+     }
+    .btnPrint
+    {
+        font-family:Verdana ;
+        font-weight :bold;
+        font-size: 11px;
+        height : 25px;
+        text-align :right;
+        background:url('../Resources/print_gray.png'), -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image :  url('../Resources/print_gray.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+        color:#FCFCFC;
+        padding-left:20px;
+        cursor:pointer;
+    }
+    .btnPrint:hover
+     {
+         margin-top:1px;
+        background:url('../Resources/print_normal.png'), -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image :  url('../Resources/print_normal.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+          color:#FFFFCC;
+     }
+     
+     .btnPreview
+    {
+        font-family:Verdana ;
+        font-weight :bold;
+        font-size: 11px;
+        height : 25px;
+        text-align :right;
+        background:url('../Resources/view.png');
+        background-repeat:no-repeat;
+        background-position:left;
+        background-color: #C9C9C9;
+        color:#FCFCFC;
+        width: 80px;
+        cursor:pointer;
+    }
+    .btnPreview:hover
+     {
+         margin-top:1px;
+          background:url('../Resources/view.png');
+          background-repeat :no-repeat;
+          background-position:left;
+          background-color: #C9C9C9;
+          color:#FFFFCC;
+     }
+     
+    .watermark
+     {
+         color: #CCCCCC;
+         font-style:italic;
+     }
+    .listContent
+     {
+         width :560px;
+         margin-right: 5px;
+     }
+    .modal
+    {
+        background-color: #999999;
+        cursor: :default;
+    }
+    .modalDrag 
+    {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image : -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        cursor :move;
+        height : 22px;
+        border:thin Solid gray;
+        -webkit-text-shadow: 1px 1px 1px  gray;
+         -moz-text-shadow:  1px 1px 1px  gray;
+        text-shadow:  1px 1px 1px  gray;
+        -moz-border-radius: 4px; 
+        -webkit-border-radius: 4px;
+         padding: 2px 5px;
+         font-family:Verdana;
+    
+    }
+    .bgModal
+    {
+        background-image: url('../Resources/bkModal.png');
+    }
+    .deleteModal
+    {
+        height : 100px;
+        width : 300px;
+        background-color: #999999;
+    }
+    .modalWarningText
+    {
+        color : Maroon;
+        padding-left: 5px;
+        margin-top: 10px;
+        font-family :Verdana;
+        font-size: 13px;
+    }
+    .modalWarningButtonYes
+    {
+        font-family:Verdana ;
+        font-weight :bold;
+        font-size: 11px;
+        height : 30px;
+        text-align :right;
+        background-image:url('../Resources/yes.png'),-webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+         background-image :url('../Resources/yes.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+        color:#FCFCFC;
+        cursor:pointer;
+        padding-left: 26px;
+    }
+    .modalWarningButtonYes:hover
+    {
+        color:#FFFFCC;
+        font-style: italic;
+        padding-left: 27px;
+    }
+     .modalWarningButtonNo
+    {
+        font-family:Verdana ;
+        font-weight :bold;
+        font-size: 11px;
+        height : 30px;
+        text-align :right;
+        background-image:url('../Resources/no.png'),-webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+         background-image :url('../Resources/no.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+        color:#FCFCFC;
+        padding-left: 28px;         
+        cursor:pointer;
+    }
+    .modalWarningButtonNo:hover
+    {
+        color:#FFFFCC;
+            font-style: italic;
+        padding-left: 29px;       
+    }
+    .close_btn
+    {
+        float : right;
+    }
+   .sizeLogo
+   {
+       margin-top :5px;
+       float:left;
+       color:White;
+       font-size: 11px;
+       font-weight :bold;
+   }
+   .modalLabel
+   {
+       font-family :Verdana;
+       font-size: 11px;
+       text-align :right;
+       color: #FFFFCC;
+   }
+   .btnSave 
+   {
+         font-family:Verdana ;
+        font-weight :bold;
+        font-size: 11px;
+        height : 25px;
+        text-align :right;
+        background-image:url('../Resources/save.png'),-webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+         background-image :url('../Resources/save.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+        color:#FCFCFC;
+        width: 63px;
+        cursor:pointer;
+   }
+   .btnSave:hover
+     {
+        background-image:url('../Resources/save_normal.png'),-webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+         background-image :url('../Resources/save_normal.png'), -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        background-repeat:no-repeat;
+        background-position:left;
+         color:#FFFFCC;
+     }

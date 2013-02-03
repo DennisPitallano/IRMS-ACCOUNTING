@@ -1,0 +1,38 @@
+﻿/* File Created: May 18, 2012 */
+  .table_grid
+    {
+    font-family: Verdana;
+    color: #031e21;
+    font-size: 10px;
+    text-shadow: 1px 0px 1px #C6BE8B;
+    -webkit-box-shadow: 0 8px 6px -6px #95A63F;-moz-box-shadow: 0 8px 6px -6px #95A63F; box-shadow: 0 8px 6px -6px #95A63F;
+    border:1px Solid #C6BE8B;
+    }
+    .desc_cell_style
+    {
+    background-color:#D4DFE1;
+    color: #333333;
+    }
+    .asc_cell_style
+    {
+        background-color:#F8FAFA;
+        color:#333333;
+    }
+     .asc_cell_style_h
+    {
+        background-color: #246B61;
+        background-image: url(../Resources/group_closed.png);
+	   padding-right: 16px;
+	   background-position: right;
+	background-repeat: no-repeat;
+	
+    }
+  .desc_cell_style_h
+    {
+        background-color: #15524A;
+        background-image: url(../Resources/group_open.png);
+	   padding-right: 16px;
+	   background-position: right;
+	background-repeat: no-repeat;
+	
+    }

@@ -1,0 +1,55 @@
+﻿/* File Created: May 6, 2012 */
+  .PrintOptionBtn
+     {
+         /*09301212163*/
+        background-color: #C9C9C9;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image : -moz-linear-gradient(top, #C9C9C9, #848484, #a1a1a1 90%);
+        color : White;
+        cursor :pointer;
+        text-align: center;
+        line-height:23px;
+        text-decoration:none;
+     }
+     
+     .titleList
+     {
+        background-color: #C9C9C9;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+        background-image : -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+        height : 20px;
+        width : 400px;
+        color : White;
+     }
+     
+   .titleListDetails
+    {
+            /*09301212163*/
+            background-color: #C9C9C9;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#848484), color-stop(0.6, #a1a1a1));
+            background-image: -moz-linear-gradient(top, #c9c9c9, #848484, #a1a1a1 90%);
+            height: 20px;
+            width: 500px;
+            color: White;
+            font-family: Verdana;
+            font-size: 11px;
+    }
+    
+     .hLinkPrintAdjustmentDetails
+        {
+            text-decoration: none;
+            cursor: pointer;
+            color: #FFFFCC;
+            background: url('../Resources/print_gray.png');
+            background-repeat: no-repeat;
+            background-position: left;
+            font-weight: bold;
+            width: 60px;
+            padding-left: 20px;
+        }
+        .hLinkPrintAdjustmentDetails:hover
+        {
+            text-decoration: none;
+            border-bottom: 1px Solid Gray;
+            color: #E6E6E6;
+        }

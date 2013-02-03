@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Marketing.master.cs" Inherits="IntegratedResourceManagementSystem.Marketing.Marketing" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>IRMS-Marketing Department</title>
+      <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+<asp:ToolkitScriptManager ID="MarketingToolkitScriptManager" runat="server">
+        </asp:ToolkitScriptManager>
+    <div class="page">
+        
+        <div class="header">
+            <div class="title">
+                <div style ="margin-top: 50px; text-shadow: 2px 2px 2px #000;">
+                 <h1>
+                    Marketing Department
+                </h1>
+                </div> 
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Marketing/DashBoardPanel.aspx" Text="MARKETING DASHBOARD"/>
+                        <asp:MenuItem NavigateUrl="~/Marketing/StylePanel.aspx" Text="ITEM MASTER"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+         Developed by: <a href ="http://www.iserve.biz" target="_blank" >iServe Customer Management Solution Inc.</a>
+        <br />
+        iServe Customer Management Solution Inc. © 2011. All rights reserved. 
+    </div>
+    </form>
+</body>
+</html>

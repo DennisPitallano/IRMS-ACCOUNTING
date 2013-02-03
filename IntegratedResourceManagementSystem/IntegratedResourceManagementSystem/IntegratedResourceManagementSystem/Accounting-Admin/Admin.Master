@@ -1,0 +1,38 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="IntegratedResourceManagementSystem.Accounting_Admin.Admin" %>
+<%@ Register Src="~/Accounting-Admin/Controls/MainMenu.ascx" TagName="admin_menu" TagPrefix="irms" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">   
+    <title>Accounting Administrator</title>
+    <link href="Styles/login.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/admin.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<div class="header">
+   ACCOUNTING ADMINISTRATOR
+   <div style="float:right;">
+    
+   </div>
+</div>
+<div class="container clearfix" >
+ <form id="admin_form" runat="server">
+<div class="admin-menu">
+    <irms:admin_menu ID="menu" runat="server" />
+</div>
+<div class="body-main">
+        <asp:ContentPlaceHolder ID="FormContentPlaceHolder" runat="server">
+        
+        </asp:ContentPlaceHolder>
+   
+        </div>
+ </form>
+ 
+</div>
+<div class="footer">
+ Developed and Manage by iServe Customer Management Solution Inc.
+ </div>
+</body>
+</html>

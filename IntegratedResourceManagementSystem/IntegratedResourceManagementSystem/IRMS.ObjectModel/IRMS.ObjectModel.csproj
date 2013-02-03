@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C733A9C1-25EF-4B67-834B-932CC63D4D35}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IRMS.ObjectModel</RootNamespace>
+    <AssemblyName>IRMS.ObjectModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BLToolkit.4">
+      <HintPath>..\..\..\Marketing Department\IntegratedResourceManagementSystem\IRMS.Entities\bin\Debug\BLToolkit.4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="Adjustment.cs" />
+    <Compile Include="AdjustmentMemo.cs" />
+    <Compile Include="BookAdjustment.cs" />
+    <Compile Include="BookAdjustmentMemo.cs" />
+    <Compile Include="Branch.cs" />
+    <Compile Include="Brand.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="Color.cs" />
+    <Compile Include="CustomerContract.cs" />
+    <Compile Include="CustomerGroup.cs" />
+    <Compile Include="CustomerInfo.cs" />
+    <Compile Include="CustomerInventoryGroup.cs" />
+    <Compile Include="CustomerReturnSlip.cs" />
+    <Compile Include="CustomerReturnSlipConfirmation.cs" />
+    <Compile Include="CustomerReturnSlipDetail.cs" />
+    <Compile Include="DeliveryReceipt.cs" />
+    <Compile Include="DeliveryReceiptDetail.cs" />
+    <Compile Include="Fabric.cs" />
+    <Compile Include="Forwarder.cs" />
+    <Compile Include="Garment.cs" />
+    <Compile Include="GrossSales.cs" />
+    <Compile Include="InventoryGroup.cs" />
+    <Compile Include="Memo.cs" />
+    <Compile Include="MemoParticular.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="MonthlySOIAdjustment.cs" />
+    <Compile Include="MonthlyStoreOutStandingInventory.cs" />
+    <Compile Include="OutletClass.cs" />
+    <Compile Include="PhysicalCount.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Size.cs" />
+    <Compile Include="StockCardReport.cs" />
+    <Compile Include="StoreOutStandingInventory.cs" />
+    <Compile Include="UserBrand.cs" />
+    <Compile Include="UserRole.cs" />
+    <Compile Include="Users.cs" />
+    <Compile Include="Wholesaler.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

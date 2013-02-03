@@ -1,0 +1,80 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Accounting.master.cs" Inherits="IntegratedResourceManagementSystem.Accounting.Accounting" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Src="~/Accounting/controls/UserAccount.ascx" TagName="account" TagPrefix ="IRMS" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>IRMS-Accounting Department</title>
+      <link rel="icon" type="image/x-icon" href="../Resources/favicon.ico">
+      <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+<asp:ToolkitScriptManager ID="MarketingToolkitScriptManager" runat="server">
+        </asp:ToolkitScriptManager>
+    <div class="page">
+        
+        <div class="header">
+             <div class="title">
+             <a href="DashBoardPanel.aspx" >
+            <span>
+                IRMS
+            </span>
+            <br />
+            <span id ="irms_text">Integrated Resource Management System</span>
+               <%-- <div style =" text-shadow: 1px 1px 1px #d0e076;">
+                 <h1 style ="color:#414912;">
+                    Marketing Department
+                </h1>
+                </div> --%>
+                 </a>
+            </div>
+             <div style="float:left; margin:20px 50px 5px 20px;
+                  font-variant:small-caps; height:30px; font-size:18px; color:#4e5913; letter-spacing:2px; font-weight:bold; text-shadow: 1px 1px 0px #A0B051;">
+                  Accounting Department</div>
+           <div class="loginDisplay">
+            <IRMS:account ID="account" runat="server" />
+           <%-- <p>
+            [Version <asp:Label ID="lblVersion" runat="server" Text=""></asp:Label>]
+            <br />
+            Current User : &nbsp;<B><asp:Label ID="lblUser" runat="server" Text="NONE"></asp:Label></B>&nbsp;
+                <asp:LinkButton ID="lnkbtnLogin" runat="server"  onclick="lnkbtnLogin_Click">[Login]</asp:LinkButton>
+                </p>--%>
+            </div>
+            <div class="clear hideSkiplink">
+            <asp:ContentPlaceHolder ID="MenuPlaceHolder" runat="server" />
+          
+                <%--<asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Accounting/DashBoardPanel.aspx" 
+                            Text="ACCOUNTING DASHBOARD"/>
+                        <asp:MenuItem NavigateUrl="~/Accounting/StoreOutStandingInventoryMenu.aspx" 
+                            Text="STORE OUTSTANDING INVENTORY" ToolTip="Manage Store OutStanding Inventory" 
+                            Value="STORE OUTSTANDING INVENTORY"/>
+                        <asp:MenuItem NavigateUrl="~/Accounting/DeliveryReceiptMenu.aspx" 
+                            Text="DELIVERY RECEIPT" Value="DELIVERY RECEIPT"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Accounting/CustomerReturnSlipMenu.aspx" 
+                            Text="CUSTOMER RETURN SLIP" Value="CUSTOMER RETURN SLIP"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Accounting/ReportsPanel.aspx" Text="REPORTS" 
+                            ToolTip="Reports" Value="REPORTS"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>--%>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+         Developed by: <a href ="http://www.iserve.biz" target="_blank" >iServe Customer Management Solution Inc.</a>
+        <br />
+        iServe Customer Management Solution Inc. © 2011. All rights reserved. 
+    </div>
+    </form>
+</body>
+</html>
