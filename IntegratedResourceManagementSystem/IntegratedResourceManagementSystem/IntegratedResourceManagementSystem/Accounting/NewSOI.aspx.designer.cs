@@ -643,6 +643,15 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.Panel pnlConfirmSavingDrag;
         
         /// <summary>
+        /// Image7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image7;
+        
+        /// <summary>
         /// btnOKSaveSOI control.
         /// </summary>
         /// <remarks>
@@ -742,6 +751,24 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.Button btnSelectOutlet;
         
         /// <summary>
+        /// pnlOutlets_DropShadowExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.DropShadowExtender pnlOutlets_DropShadowExtender;
+        
+        /// <summary>
+        /// pnlOutlets_RoundedCornersExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender pnlOutlets_RoundedCornersExtender;
+        
+        /// <summary>
         /// pnlDeliveryReceiptsDetails control.
         /// </summary>
         /// <remarks>
@@ -767,6 +794,15 @@ namespace IntegratedResourceManagementSystem.Accounting {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton ibtnClosepnlDeliveryReceiptsDetails;
+        
+        /// <summary>
+        /// Image2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image2;
         
         /// <summary>
         /// pnlDeliveryReceiptsDetailsContainer control.
@@ -841,6 +877,15 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.ImageButton imgBtnCloseGrosssalesbreakDownModal;
         
         /// <summary>
+        /// Image1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+        
+        /// <summary>
         /// gvGrossSalesBreakDown control.
         /// </summary>
         /// <remarks>
@@ -886,6 +931,15 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.Panel pnlSavedDrag;
         
         /// <summary>
+        /// Image4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image4;
+        
+        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -902,6 +956,33 @@ namespace IntegratedResourceManagementSystem.Accounting {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnOk;
+        
+        /// <summary>
+        /// btnOk_RoundedCornersExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender btnOk_RoundedCornersExtender;
+        
+        /// <summary>
+        /// pnlSaved_DropShadowExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.DropShadowExtender pnlSaved_DropShadowExtender;
+        
+        /// <summary>
+        /// pnlSaved_RoundedCornersExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender pnlSaved_RoundedCornersExtender;
         
         /// <summary>
         /// pnlBIBreakDown control.
@@ -929,6 +1010,15 @@ namespace IntegratedResourceManagementSystem.Accounting {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton imgBtnBIBreakDownClose;
+        
+        /// <summary>
+        /// Image5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image5;
         
         /// <summary>
         /// lblBIFrom control.
@@ -967,6 +1057,15 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.Panel pnlIsAlreadyHasSOIMessagePanelDrag;
         
         /// <summary>
+        /// Image6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image6;
+        
+        /// <summary>
         /// imgWarningDelete control.
         /// </summary>
         /// <remarks>
@@ -1001,5 +1100,32 @@ namespace IntegratedResourceManagementSystem.Accounting {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNo;
+        
+        /// <summary>
+        /// btnNo_RoundedCornersExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender btnNo_RoundedCornersExtender;
+        
+        /// <summary>
+        /// pnlDeleteModal_DropShadowExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.DropShadowExtender pnlDeleteModal_DropShadowExtender;
+        
+        /// <summary>
+        /// pnlDeleteModal_RoundedCornersExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender pnlDeleteModal_RoundedCornersExtender;
     }
 }

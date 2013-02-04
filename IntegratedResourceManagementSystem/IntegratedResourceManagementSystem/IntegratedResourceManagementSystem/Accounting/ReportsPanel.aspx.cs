@@ -16,15 +16,15 @@ namespace IntegratedResourceManagementSystem.Accounting
         protected void Page_Init(object sender, EventArgs e)
         {
             dlBrandName.Items.Clear();
-            dlBrandName.Items.Add(new ListItem("--select--", ""));
+            dlBrandName.Items.Add(new ListItem("- SELECT -", ""));
             foreach (var brand in BrandManager.Brands())
             {
-                dlBrandName.Items.Add( new ListItem(brand.BrandDescription, brand.BrandDescription));
+                dlBrandName.Items.Add(new ListItem(brand.BrandDescription, brand.BrandDescription));
             }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
             // VERSION 1.01 (s) CTS
             if (System.Configuration.ConfigurationManager.AppSettings["Integration"] == "YES")
             {
@@ -49,8 +49,40 @@ namespace IntegratedResourceManagementSystem.Accounting
                 }
                 else
                 {
-                    pnlError.Visible = false;
-                    Response.Redirect("~/Reports/ReportForms/TransactionReport.aspx?dept=Accounting&custno=" + txtCustno.Text + "&datefrom=" + DateFrom.Text + "&dateto=" + DateTo.Text + "&rptnameCust=" + rblist.SelectedValue + "&rptNameSOI=" + rblist2.SelectedValue + "&customertype=" + dlCustomerType.SelectedValue + "&brand=" + dlBrandName.SelectedValue);
+
+                    if (rblist2.SelectedValue == "rptSummMonthlyInvPerBrand")
+                    {
+
+                        int Stat = 0;
+
+                        if (dlCustomerType.SelectedValue == "PROVINCIAL")
+                        {
+                            Stat = 1;
+                        }
+                        else if (dlCustomerType.SelectedValue == "DEPT. STORE")
+                        {
+                            Stat = 2;
+                        }
+                        else if (dlCustomerType.SelectedValue == "BOUTIQUE")
+                        {
+                            Stat = 3;
+                        }
+
+                        pnlError.Visible = false;
+                        Response.Redirect("~/Reports/ReportForms/SummaryOfMonthlyInventoryPerBrand.aspx?DateFrom=" +
+                                                                                                                     DateFrom.Text +
+                                                                                                        "&DateTo=" +
+                                                                                                                     DateTo.Text +
+                                                                                                        "&BrandName=" +
+                                                                                                                     dlBrandName.SelectedValue +
+                                                                                                        "&Stat=" +
+                                                                                                                     Stat);
+                    }
+                    else
+                    {
+                        pnlError.Visible = false;
+                        Response.Redirect("~/Reports/ReportForms/TransactionReport.aspx?dept=Accounting&custno=" + txtCustno.Text + "&datefrom=" + DateFrom.Text + "&dateto=" + DateTo.Text + "&rptnameCust=" + rblist.SelectedValue + "&rptNameSOI=" + rblist2.SelectedValue + "&customertype=" + dlCustomerType.SelectedValue + "&brand=" + dlBrandName.SelectedValue);
+                    }
                 }
             }
             else
@@ -97,8 +129,11 @@ namespace IntegratedResourceManagementSystem.Accounting
                 }
                 else
                 {
+
+
                     pnlError.Visible = false;
                     Response.Redirect("~/Reports/ReportForms/TransactionReport.aspx?dept=Accounting&custno=" + txtCustno.Text + "&datefrom=" + DateFrom.Text + "&dateto=" + DateTo.Text + "&rptnameCust=" + rblist.SelectedValue + "&rptNameSOI=" + rblist2.SelectedValue + "&customertype=" + dlCustomerType.SelectedValue + "&brand=" + dlBrandName.SelectedValue);
+
                 }
             }
             else
@@ -135,7 +170,7 @@ namespace IntegratedResourceManagementSystem.Accounting
             {
                 //if (HF_BRAND.Value != "ALL")
                 //{
-                    CustomerManager.SearchOutletDataSource(SqlDataSourceCustomers, txtSearchOutlet.Text, HF_BRAND.Value);
+                CustomerManager.SearchOutletDataSource(SqlDataSourceCustomers, txtSearchOutlet.Text, HF_BRAND.Value);
                 //}
                 //else
                 //{
@@ -164,7 +199,7 @@ namespace IntegratedResourceManagementSystem.Accounting
             {
                 //if (HF_BRAND.Value != "ALL")
                 //{
-                    CustomerManager.SearchOutletDataSource(SqlDataSourceCustomers, txtSearchOutlet.Text, HF_BRAND.Value);
+                CustomerManager.SearchOutletDataSource(SqlDataSourceCustomers, txtSearchOutlet.Text, HF_BRAND.Value);
                 //}
                 //else
                 //{
@@ -185,7 +220,7 @@ namespace IntegratedResourceManagementSystem.Accounting
             {
                 //if (HF_BRAND.Value != "ALL")
                 //{
-                    CustomerManager.SearchOutletDataSource(SqlDataSourceCustomers, txtSearchOutlet.Text, HF_BRAND.Value);
+                CustomerManager.SearchOutletDataSource(SqlDataSourceCustomers, txtSearchOutlet.Text, HF_BRAND.Value);
                 //}
                 //else
                 //{
@@ -199,6 +234,14 @@ namespace IntegratedResourceManagementSystem.Accounting
             }
             btnBrowse_ModalPopupExtender.Show();
         }
-        
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Write("<script language='javascript'> window.open('~/Reports/ReportForms/WebForm1.aspx','_newtab','window','HEIGHT=600,WIDTH=820,top=50,left=50,toolbar=yes,scrollbars=yes,resizable=yes');</script>");
+
+            //string url = "~/Reports/ReportForms/WebForm1.aspx";
+            //ClientScript.RegisterStartUpScript(Page.GetType(), null, "window.open('page.html', '_newtab')", true);
+        }
+
     }
 }

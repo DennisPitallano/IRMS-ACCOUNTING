@@ -6,7 +6,6 @@
 <%@ Register Src="~/Accounting/controls/MainMenu.ascx" TagName="MAIN_MENU" TagPrefix="irms" %>
 <asp:Content ID="HeadContent" ContentPlaceHolderID="head" runat="server">
     <link href="../Styles/soi-form.css" rel="stylesheet" type="text/css" />
-    <link href="../Styles/grid.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="IRMS_MENU" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
     <irms:MAIN_MENU ID="main_menu" runat="server" />
@@ -15,13 +14,12 @@
     <div class="titlePanel">
         <img src="../Resources/invoice.png" height="24px" alt="" align="top" />
         SOI Form
+        <hr />
     </div>
     <asp:UpdatePanel ID="upnlSOI" runat="server">
         <ContentTemplate>
             <asp:HiddenField ID="HF_BRAND" runat="server" />
-            <div class="titleForm" style="margin-top: 10px; height: 8px; width:750px;">
-            </div>
-            <div class="form" style="font-family: Verdana; width:749px;">
+            <div style="font-family: Verdana; margin-top: 10px;">
                 <asp:Panel ID="pnlSOI" runat="server" DefaultButton="btnSaveSOI">
                     <table>
                         <tr>
@@ -154,20 +152,20 @@
                                     </asp:ModalPopupExtender>
                                 </td>
                                 <td>
-                                    <asp:TextBox class="modalText txt" ID="txtBeginningInventoryVolume" runat="server" 
-                                         AutoPostBack="True" ReadOnly="True">0</asp:TextBox>
+                                    <asp:TextBox ID="txtBeginningInventoryVolume" runat="server" Font-Names="Verdana"
+                                        Style="text-align: right" Font-Size="12px" AutoPostBack="True" ReadOnly="True">0</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox class="modalText txt" ID="txtBeginningInventoryValue" runat="server" 
-                                        ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtBeginningInventoryValue" runat="server" Font-Names="Verdana"
+                                        Font-Size="12px" Style="text-align: right" AutoPostBack="True" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtBeginningInventoryTotalCost" runat="server" 
-                                   class="modalText txt" ReadOnly="True" AutoPostBack="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtBeginningInventoryTotalCost" runat="server" Font-Names="Verdana"
+                                        Font-Size="12px" Style="text-align: right" ReadOnly="True" AutoPostBack="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtBeginningInventoryAvgCost" runat="server"
-                                        ReadOnly="True" class="modalText txt">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtBeginningInventoryAvgCost" runat="server" Font-Names="Verdana"
+                                        Font-Size="12px" ReadOnly="True" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -201,18 +199,20 @@
                                     </asp:ModalPopupExtender>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDeliveryVolume" runat="server" class="modalText txt"
-                                         AutoPostBack="True" ReadOnly="true">0</asp:TextBox>
+                                    <asp:TextBox ID="txtDeliveryVolume" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="true">0</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDeliveryValue" runat="server" class="modalText txt"
-                                       AutoPostBack="True" ReadOnly="true">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtDeliveryValue" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="true">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtdeliveryTotalCost" runat="server" AutoPostBack="True"  ReadOnly="true" class="modalText txt">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtdeliveryTotalCost" runat="server" AutoPostBack="True" Font-Names="Verdana"
+                                        Font-Size="12px" ReadOnly="true" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDeliveryAvgCost" runat="server" class="modalText txt" ReadOnly="true">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtDeliveryAvgCost" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="true">0.00</asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -236,16 +236,20 @@
                                     &nbsp;&nbsp; &nbsp;&nbsp;PullOuts/Returns
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtPullOutVolume" runat="server" AutoPostBack="True" class="modalText txt" ReadOnly="True">0</asp:TextBox>
+                                    <asp:TextBox ID="txtPullOutVolume" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        AutoPostBack="True" Style="text-align: right" ReadOnly="True">0</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtPullOutValue" runat="server" class="modalText txt" AutoPostBack="True" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtPullOutValue" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtPullOutTotalCost" runat="server" AutoPostBack="True" ReadOnly="True" class="modalText txt">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtPullOutTotalCost" runat="server" AutoPostBack="True" Font-Names="Verdana"
+                                        Font-Size="12px" ReadOnly="True" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtPullOutAvgCost" runat="server" class="modalText txt" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtPullOutAvgCost" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -263,16 +267,20 @@
                                     </asp:ModalPopupExtender>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtGrossSalesVolume" runat="server" class="modalText txt" AutoPostBack="True" ReadOnly="True">0</asp:TextBox>
+                                    <asp:TextBox ID="txtGrossSalesVolume" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="True">0</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtGrossSalesValue" runat="server" class="modalText txt" AutoPostBack="True" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtGrossSalesValue" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtGrossSalesTotalCost" runat="server" AutoPostBack="True" ReadOnly="True" class="modalText txt">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtGrossSalesTotalCost" runat="server" AutoPostBack="True" Font-Names="Verdana"
+                                        Font-Size="12px" ReadOnly="True" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtGrossSalesAvgCost" runat="server" class="modalText txt" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtGrossSalesAvgCost" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -299,18 +307,20 @@
                                     &nbsp;&nbsp; &nbsp;&nbsp;Debit(+)
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDebitVolume" runat="server" class="modalText txt" AutoPostBack="True" ReadOnly="true">0</asp:TextBox>
+                                    <asp:TextBox ID="txtDebitVolume" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="true">0</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDebitValue" runat="server" class="modalText txt" AutoPostBack="True" ReadOnly="true">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtDebitValue" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="true">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDebitTotalCost" runat="server" ReadOnly="true"
-                                        class="modalText txt" AutoPostBack="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtDebitTotalCost" runat="server" Font-Names="Verdana" ReadOnly="true"
+                                        Style="text-align: right" Font-Size="12px" AutoPostBack="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDebitAvgCost" runat="server"
-                                        ReadOnly="true" class="modalText txt">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtDebitAvgCost" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        ReadOnly="true" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -318,17 +328,20 @@
                                     &nbsp;&nbsp; &nbsp;&nbsp;Credit(-)
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtCreditVolume" runat="server" class="modalText txt" AutoPostBack="True" ReadOnly="true" Height="20px">0</asp:TextBox>
+                                    <asp:TextBox ID="txtCreditVolume" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="true" Height="20px">0</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtCreditValue" runat="server" class="modalText txt" AutoPostBack="True" ReadOnly="true">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtCreditValue" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="true">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtCreditTotalCost" runat="server" AutoPostBack="True" ReadOnly="true" class="modalText txt">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtCreditTotalCost" runat="server" AutoPostBack="True" Font-Names="Verdana"
+                                        Font-Size="12px" ReadOnly="true" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtCreditAvgCost" runat="server" ReadOnly="true"
-                                        class="modalText txt">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtCreditAvgCost" runat="server" Font-Names="Verdana" ReadOnly="true"
+                                        Font-Size="12px" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -336,16 +349,20 @@
                                     Ending Inventory
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtEndingInvventoryVolume" runat="server" class="modalText txt" ReadOnly="True">0</asp:TextBox>
+                                    <asp:TextBox ID="txtEndingInvventoryVolume" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" ReadOnly="True">0</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtEndingInvventoryValue" runat="server" class="modalText txt" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtEndingInvventoryValue" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtEndingInvventoryTotalCost" runat="server" class="modalText txt" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtEndingInvventoryTotalCost" runat="server" Font-Names="Verdana"
+                                        Font-Size="12px" Style="text-align: right" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtEndingInvventoryAvgCost" runat="server" class="modalText txt" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtEndingInvventoryAvgCost" runat="server" Font-Names="Verdana"
+                                        Font-Size="12px" ReadOnly="True" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -356,17 +373,20 @@
                                         OnClick="ibtnGetPhysicalCountAdjustment_Click" />
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtActualAccountVolume" runat="server" class="modalText txt"
-                                        AutoPostBack="True" ReadOnly="True">0</asp:TextBox>
+                                    <asp:TextBox ID="txtActualAccountVolume" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="True">0</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtActualAccountValue" runat="server" class="modalText txt" AutoPostBack="True" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtActualAccountValue" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtActualAccountTotalCost" runat="server" AutoPostBack="True" ReadOnly="True" class="modalText txt">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtActualAccountTotalCost" runat="server" AutoPostBack="True" Font-Names="Verdana"
+                                        Font-Size="12px" ReadOnly="True" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtActualAccountAvgCost" runat="server" class="modalText txt" AutoPostBack="True" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtActualAccountAvgCost" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        Style="text-align: right" AutoPostBack="True" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -374,17 +394,20 @@
                                     Discrepancy
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDiscrepancyVolume" runat="server" class="modalText txt" ReadOnly="True">0</asp:TextBox>
+                                    <asp:TextBox ID="txtDiscrepancyVolume" runat="server" Font-Names="Verdana" Style="text-align: right"
+                                        Font-Size="12px" ReadOnly="True">0</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDiscrepancyValue" runat="server" class="modalText txt" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtDiscrepancyValue" runat="server" Font-Names="Verdana" Style="text-align: right"
+                                        Font-Size="12px" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDiscrepancyTotalCost" runat="server" class="modalText txt" ReadOnly="True">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtDiscrepancyTotalCost" runat="server" Font-Names="Verdana" Style="text-align: right"
+                                        Font-Size="12px" ReadOnly="True">0.00</asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtDiscrepancyAvgCost" runat="server" 
-                                        ReadOnly="True" class="modalText txt">0.00</asp:TextBox>
+                                    <asp:TextBox ID="txtDiscrepancyAvgCost" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                        ReadOnly="True" Style="text-align: right">0.00</asp:TextBox>
                                 </td>
                             </tr>
                         </table>
@@ -406,7 +429,7 @@
             <asp:Panel ID="pnlConfirmSaving" runat="server" CssClass="modal">
                 <asp:Panel ID="pnlConfirmSavingDrag" runat="server" CssClass="modalDrag">
                     <div class="sizeLogo">
-                         <img src="../Resources/usermode.png" height="16px" alt="" align="top" />
+                        <asp:Image ID="Image7" runat="server" Height="16px" ImageAlign="AbsBottom" ImageUrl="~/Resources/usermode.png" />
                         CONFIRMATION
                     </div>
                 </asp:Panel>
@@ -498,6 +521,12 @@
                         OnClick="btnSelectOutlet_Click" />
                 </div>
             </asp:Panel>
+            <asp:DropShadowExtender ID="pnlOutlets_DropShadowExtender" runat="server" Enabled="True"
+                TargetControlID="pnlOutlets" Opacity=".75">
+            </asp:DropShadowExtender>
+            <asp:RoundedCornersExtender ID="pnlOutlets_RoundedCornersExtender" runat="server"
+                Enabled="True" TargetControlID="pnlOutlets" BorderColor="DarkGray">
+            </asp:RoundedCornersExtender>
             <%--Delivery Receipts Details By Period and Customer.--%>
             <asp:Panel ID="pnlDeliveryReceiptsDetails" runat="server" CssClass="modal">
                 <asp:Panel ID="pnlDeliveryReceiptsDetailsDrag" runat="server" CssClass="modalDrag">
@@ -506,18 +535,18 @@
                             ImageUrl="~/Resources/cancel_gray.png" ToolTip="CLOSE" />
                     </div>
                     <div class="sizeLogo">
-                         <img src="../Resources/panels.png" alt="" align="left" height="16px" />
+                        <asp:Image ID="Image2" runat="server" Height="16px" ImageAlign="AbsBottom" ImageUrl="~/Resources/panels.png" />
                         DELIVERY RECEIPTS DETAILS
                     </div>
                 </asp:Panel>
                 <div style="margin: 5px 5px;">
                     <asp:Panel ID="pnlDeliveryReceiptsDetailsContainer" runat="server" Height="250px"
                         ScrollBars="Auto">
-                        <div style="font-family: Verdana; font-size: 11px; text-align: center;
+                        <div style="font-family: Verdana; font-size: 11px; color: White; text-align: center;
                             padding: 2px 0px; font-weight: bold;">
                             DR BREAKDOWN DETAILS
                         </div>
-                        <asp:GridView ID="gvDeliveryReceiptDetails" CssClass="table_grid" runat="server" Font-Names="Verdana" Font-Size="10px"
+                        <asp:GridView ID="gvDeliveryReceiptDetails" runat="server" Font-Names="Verdana" Font-Size="10px"
                             AutoGenerateColumns="False" DataSourceID="SqlDataSourceDRDetailsBreakDown" ForeColor="#FFFFCC"
                             EnableViewState="False">
                             <Columns>
@@ -568,38 +597,21 @@
                             ImageUrl="~/Resources/cancel_gray.png" ToolTip="CLOSE" />
                     </div>
                     <div class="sizeLogo">
-                        <img src="../Resources/panels.png" alt="" align="left" height="16px" />
+                        <asp:Image ID="Image1" runat="server" Height="16px" ImageAlign="AbsBottom" ImageUrl="~/Resources/panels.png" />
                         GROSS SALES BREAK DOWN
                     </div>
                 </asp:Panel>
                 <div style="margin: 10px 10px; font-family: Verdana; font-size: 11px;">
                     FORM BRIGE TABLE
-                    <asp:GridView ID="gvGrossSalesBreakDown" CssClass="table_grid" runat="server" 
-                        Font-Names="Verdana" Font-Size="11px"
-                        ForeColor="#333333" AutoGenerateColumns="False" EnableViewState="False" 
-                        CellPadding="4" GridLines="None">
-                        <AlternatingRowStyle BackColor="White" />
+                    <asp:GridView ID="gvGrossSalesBreakDown" runat="server" Font-Names="Verdana" Font-Size="11px"
+                        ForeColor="#FFFFCC" AutoGenerateColumns="False" EnableViewState="False">
                         <Columns>
                             <asp:BoundField DataField="GROSS_AMOUNT" DataFormatString="{0:###,###.00}" HeaderText="GROSS AMOUNT" />
                             <asp:BoundField DataField="GROSS_QUANTITY" HeaderText="QUANTITY" />
                             <asp:BoundField DataField="GROSS_MONTH" HeaderText="MONTH" />
                             <asp:BoundField DataField="GROSS_YEAR" HeaderText="YEAR" />
                         </Columns>
-                        <EditRowStyle BackColor="#7C6F57" />
-                        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                        <RowStyle BackColor="#E3EAEB" />
-                        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                        <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                        <SortedAscendingHeaderStyle BackColor="#246B61" />
-                        <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                        <SortedDescendingHeaderStyle BackColor="#15524A" />
                     </asp:GridView>
-                </div>
-                  <div style="text-align:center; margin:5px;">
-                    <a href="../Reports/ReportForms/SOIGrossSalesPrintPreview.aspx" target="_blank" >
-                    <input id="btnPrint" type="button" class="btnPrint" value="PRINT" /></a>
                 </div>
             </asp:Panel>
             <asp:Label ID="lblSaved" runat="server" Text=""></asp:Label>
@@ -609,21 +621,29 @@
             </asp:ModalPopupExtender>
             <asp:Panel ID="pnlSaved" runat="server" CssClass="modal">
                 <asp:Panel ID="pnlSavedDrag" runat="server" CssClass="modalDrag">
-                    <div class="sizeLogo" style="line-height:16px;">
-                        <img src="../Resources/product.png" alt="" height="16px" align="left" />
+                    <div class="sizeLogo">
+                        <asp:Image ID="Image4" runat="server" Height="16px" ImageAlign="AbsBottom" ImageUrl="~/Resources/product.png" />
                         New SOI
                     </div>
                 </asp:Panel>
                 <div style="text-align: center; padding: 5px 30px;">
-                    <asp:Label ID="Label2" CssClass="modalLabel" runat="server" Text="Item Successfully Saved!" Font-Names="Verdana"
-                        Font-Size="12px"></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text="Item Successfully Saved!" Font-Names="Verdana"
+                        Font-Size="12px" ForeColor="#FFFFCC"></asp:Label>
                 </div>
                 <div style="text-align: center; margin: 5px 0px;">
                     <asp:Button ID="btnOk" runat="server" Text="OK" CssClass="modalWarningButtonYes"
                         OnClick="btnOk_Click" />
-                  
+                    <asp:RoundedCornersExtender ID="btnOk_RoundedCornersExtender" runat="server" Enabled="True"
+                        TargetControlID="btnOk" BorderColor="LightGray">
+                    </asp:RoundedCornersExtender>
                 </div>
             </asp:Panel>
+            <asp:DropShadowExtender ID="pnlSaved_DropShadowExtender" runat="server" Enabled="True"
+                Opacity="0.75" Rounded="True" TargetControlID="pnlSaved" TrackPosition="True">
+            </asp:DropShadowExtender>
+            <asp:RoundedCornersExtender ID="pnlSaved_RoundedCornersExtender" runat="server" Enabled="True"
+                TargetControlID="pnlSaved">
+            </asp:RoundedCornersExtender>
             <asp:Panel ID="pnlBIBreakDown" runat="server" CssClass="modal">
                 <asp:Panel ID="pnlBIBreakDownDrag" runat="server" CssClass="modalDrag">
                     <div class="close_btn">
@@ -631,23 +651,22 @@
                             ToolTip="CLOSE" />
                     </div>
                     <div class="sizeLogo">
-                           <img src="../Resources/panels.png" alt="" align="left" height="16px" />
+                        <asp:Image ID="Image5" runat="server" Height="16px" ImageAlign="AbsBottom" ImageUrl="~/Resources/panels.png" />
                         GROSS SALES BREAK DOWN
                     </div>
                 </asp:Panel>
                 <div style="text-align: center;">
-                    <asp:Label ID="lblBIFrom" runat="server" CssClass="modalLabel" ></asp:Label>
+                    <asp:Label ID="lblBIFrom" runat="server" ForeColor="#FFFFCC"></asp:Label>
                 </div>
                 <div style="margin: 5px 5px;">
-                    <asp:GridView ID="gvSOIBI" CssClass="table_grid" runat="server" Font-Names="Verdana" Font-Size="11px" ForeColor="#FFFFCC">
+                    <asp:GridView ID="gvSOIBI" runat="server" Font-Names="Verdana" Font-Size="11px" ForeColor="#FFFFCC">
                     </asp:GridView>
                 </div>
-              
             </asp:Panel>
             <asp:Panel ID="pnlIsAlreadyHasSOIMessagePanel" runat="server" CssClass="modal">
                 <asp:Panel ID="pnlIsAlreadyHasSOIMessagePanelDrag" runat="server" CssClass="modalDrag">
                     <div class="sizeLogo">
-                        <img src="../Resources/product.png" alt="" height="16px" align="left" />
+                        <asp:Image ID="Image6" runat="server" Height="16px" ImageAlign="AbsBottom" ImageUrl="~/Resources/product.png" />
                         CONFIRMATION!!!
                     </div>
                 </asp:Panel>
@@ -661,7 +680,7 @@
                             Font-Size="10px"></asp:Label>
                     </div>
                     <div style="margin: 2px 2px; text-align: center;">
-                        <asp:Label ID="lblCustomerNameToDelete" runat="server"  Font-Size="11px"
+                        <asp:Label ID="lblCustomerNameToDelete" runat="server" ForeColor="#FFDF9D" Font-Size="11px"
                             Text="Please check input data and try again."></asp:Label>
                         <br />
                     </div>
@@ -669,9 +688,17 @@
                 <div style="text-align: center; margin-top: 12px; margin-bottom: 5px;">
                     <asp:Button ID="btnNo" runat="server" Text="OK" CssClass="modalWarningButtonYes"
                         ToolTip="Cancel" />
-                   
+                    <asp:RoundedCornersExtender ID="btnNo_RoundedCornersExtender" runat="server" Enabled="True"
+                        TargetControlID="btnNo" BorderColor="LightGray">
+                    </asp:RoundedCornersExtender>
                 </div>
             </asp:Panel>
+            <asp:DropShadowExtender ID="pnlDeleteModal_DropShadowExtender" runat="server" Enabled="True"
+                Opacity="0.5" Rounded="True" TargetControlID="pnlIsAlreadyHasSOIMessagePanel">
+            </asp:DropShadowExtender>
+            <asp:RoundedCornersExtender ID="pnlDeleteModal_RoundedCornersExtender" runat="server"
+                Enabled="True" TargetControlID="pnlIsAlreadyHasSOIMessagePanel">
+            </asp:RoundedCornersExtender>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

@@ -81,6 +81,7 @@
     <Compile Include="UserBrand.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="Users.cs" />
+    <Compile Include="Views\ViewSummaryOfMonthlyInventoryPerBrand.cs" />
     <Compile Include="Wholesaler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

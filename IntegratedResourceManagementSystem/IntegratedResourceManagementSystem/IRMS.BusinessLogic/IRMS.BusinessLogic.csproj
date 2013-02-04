@@ -104,6 +104,7 @@
     <Compile Include="Manager\MonthlyStoreOutStandingInventoryManager.cs" />
     <Compile Include="Manager\ProductManager.cs" />
     <Compile Include="Manager\StockCardReportManager.cs" />
+    <Compile Include="Manager\StoredProcedureManager.cs" />
     <Compile Include="Manager\StoreOutStandingInventoryManager.cs" />
     <Compile Include="Manager\UserBrandManager.cs" />
     <Compile Include="Manager\UserLevelManager.cs" />

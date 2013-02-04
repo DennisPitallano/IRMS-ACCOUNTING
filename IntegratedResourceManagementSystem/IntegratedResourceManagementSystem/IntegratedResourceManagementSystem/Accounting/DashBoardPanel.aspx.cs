@@ -16,8 +16,8 @@ namespace IntegratedResourceManagementSystem.Accounting
             {
                 if (Session.Count == 0)
                 {
-                    Response.Redirect("~/Accounting/Login.aspx");
-                    return;
+                    //Response.Redirect("~/Accounting/Login.aspx");
+                   // return;
                 }
                 else
                 {

@@ -12,8 +12,7 @@ using System.Data;
 using IRMS.Components;
 using IntegratedResourceManagementSystem.Accounting.App_Code;
 using IntegratedResourceManagementSystem.Common;
-//sm fairview hot kiss 1140
-//j 1 2012 -dec 31 2012
+
 namespace IntegratedResourceManagementSystem.Accounting
 {
     public partial class NewSOI : System.Web.UI.Page
@@ -36,6 +35,7 @@ namespace IntegratedResourceManagementSystem.Accounting
                 txtTransactionDate.Text = DateTime.Now.ToString("MMMM dd, yyyy");
                 btnSaveSOI.Enabled = false ;
                 hfAdjustmentRecordNumber.Value = "0";
+                
             }
         }
 
@@ -439,7 +439,6 @@ namespace IntegratedResourceManagementSystem.Accounting
                         DateTime.Parse(txtPeriodFrom.Text).Year, DateTime.Parse(txtPeriodTo.Text).Year);
                 gvGrossSalesBreakDown.DataSource = gross_sales_breakdown;
                 gvGrossSalesBreakDown.DataBind();
-                Session["GROSS_SALES_BREAKDOWN"] = gross_sales_breakdown;
             }
             catch (Exception)
             {
@@ -455,7 +454,7 @@ namespace IntegratedResourceManagementSystem.Accounting
             {
                 Image image_outlet = new Image();
                 image_outlet = (Image)gvOutlets.SelectedRow.FindControl("imgOutlet");
-                long customerNumber = long.Parse(image_outlet.AlternateText);
+
                 // 20120315 CTS
                 DateTime dtPeriodFrom = new DateTime(DateTime.Parse(txtPeriodTo.Text).Year, DateTime.Parse(txtPeriodTo.Text).Month, 1);
                 DateTime dtPeriodToTemp = DateTime.Parse(txtPeriodTo.Text);
@@ -468,7 +467,7 @@ namespace IntegratedResourceManagementSystem.Accounting
                 }
 
                 DataTable physical_count = SOIManager.GetDataTableStoreOutStandingInventoryPhysiclCountSummary(
-                        customerNumber, dtPeriodFrom, dtPeriodTo);
+                        long.Parse(image_outlet.AlternateText), dtPeriodFrom, dtPeriodTo);
                 // 20120315 CTS
 
                 foreach (DataRow row  in physical_count.Rows)
@@ -496,7 +495,6 @@ namespace IntegratedResourceManagementSystem.Accounting
                 List<SOI_BeginningInventory> SOI_BI;
                 Image image_outlet = new Image();
                 image_outlet = (Image)gvOutlets.SelectedRow.FindControl("imgOutlet");
-                long customerNumber = long.Parse(image_outlet.AlternateText);
                 StoreOutStandingInventory SOI = SOIManager.IsHasSOIRecord(long.Parse(image_outlet.AlternateText));
                 if (SOI != null)
                 {
@@ -533,22 +531,8 @@ namespace IntegratedResourceManagementSystem.Accounting
                         dtPeriodTo = new DateTime(dtPeriodToTemp.Year + 1, 1, DateTime.DaysInMonth(dtPeriodToTemp.Year, 1));
                     }
 
-                    //DataTable physical_count = SOIManager.GetDataTableStoreOutStandingInventoryPhysiclCountSummary1(
-                    //                     long.Parse(image_outlet.AlternateText), dtPeriodFrom, dtPeriodTo); year to year pick up change
-                    DataTable physical_count = new DataTable();
-                    if ((DateTime.Parse(txtPeriodTo.Text).Month - DateTime.Parse(txtPeriodFrom.Text).Month)==11)
-                    {
-                        dtPeriodFrom = new DateTime(DateTime.Parse(txtPeriodFrom.Text).Year -1,12,31);
-                         physical_count = SOIManager.GetDataTableStoreOutStandingInventoryPhysiclCountSummary1(
-                                        customerNumber, dtPeriodFrom, dtPeriodTo);
-                    }
-                    else
-                    {
-
-                         physical_count = SOIManager.GetDataTableStoreOutStandingInventoryPhysiclCountSummary1(
-                                             customerNumber, dtPeriodFrom, dtPeriodTo);
-                    }
-                   
+                    DataTable physical_count = SOIManager.GetDataTableStoreOutStandingInventoryPhysiclCountSummary1(
+                                          long.Parse(image_outlet.AlternateText), dtPeriodFrom, dtPeriodTo);
                    
                     if (physical_count.Rows.Count >0)
                     {
@@ -558,7 +542,7 @@ namespace IntegratedResourceManagementSystem.Accounting
                     {
                         dtPeriodFrom = new DateTime(dtPeriodFrom.Year - 1, 12, 1);
                         p_count_result = SOIManager.GetDataTableStoreOutStandingInventoryPhysiclCountSummary1(
-                                          customerNumber, dtPeriodFrom, dtPeriodTo);
+                                          long.Parse(image_outlet.AlternateText), dtPeriodFrom, dtPeriodTo);
                     }
                     foreach (DataRow row in p_count_result.Rows)
                     {
@@ -609,8 +593,7 @@ namespace IntegratedResourceManagementSystem.Accounting
             {
                 Image image_outlet = new Image();
                 image_outlet = (Image)gvOutlets.SelectedRow.FindControl("imgOutlet");
-                long customerNumber = long.Parse(image_outlet.AlternateText);
-                StoreOutStandingInventory SOI = SOIManager.IsHasSOIRecord(customerNumber);
+                StoreOutStandingInventory SOI = SOIManager.IsHasSOIRecord(long.Parse(image_outlet.AlternateText));
                 if (SOI.RecordNumber != 0)
                 {
                     txtBeginningInventoryValue.Text = SOI.BeginningInventoryValue.ToString("###,###.00");
@@ -668,6 +651,10 @@ namespace IntegratedResourceManagementSystem.Accounting
             try
             {
                 var results = AdjustmentManager.GetAdjustmentByOutletAndDateRange(OUTLET_NAME, DATE_FROM, DATE_TO);
+                //var results = (from book_adj in this.AdjustmentManager.Adjustments()
+                // where book_adj.OutletName == OUTLET_NAME && book_adj.InventoryDate == DATE_FROM
+                // && book_adj.CutOffDate == DATE_TO
+                // select book_adj).FirstOrDefault();
 
                 if (results.RecordNo != 0)
                 {

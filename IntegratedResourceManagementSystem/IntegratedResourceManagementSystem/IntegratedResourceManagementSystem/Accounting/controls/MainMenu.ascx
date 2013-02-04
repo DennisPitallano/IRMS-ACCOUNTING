@@ -9,5 +9,7 @@
             Value="DELIVERY RECEIPT"></asp:MenuItem>
         <asp:MenuItem NavigateUrl="~/Accounting/ReportsPanel.aspx" Text="REPORTS" ToolTip="Reports"
             Value="REPORTS"></asp:MenuItem>
+<asp:MenuItem NavigateUrl="~/Accounting/ReportPanel.aspx" Text="REPORTS NEW" ToolTip="Reports"
+            Value="REPORTS"></asp:MenuItem>
     </Items>
 </asp:Menu>

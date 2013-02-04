@@ -26,7 +26,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             //else
             //{
             if (Request.QueryString["dept"] == "Accounting")
-            {
+            {//rptNameSOI
                 if (Request.QueryString["rptnameSOI"] != "" & Request.QueryString["rptnameCust"] == "")
                 {
                     if (Request.QueryString["rptnameSOI"] == "rptStockCard")
@@ -108,6 +108,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                     rpt = new CustSI();
                     Cache.Insert(rptDocCachedKey, rpt);
                 }
+                
             }
             else if (Request.QueryString["rptnameCust"] == "rptCustSIIten")
             {

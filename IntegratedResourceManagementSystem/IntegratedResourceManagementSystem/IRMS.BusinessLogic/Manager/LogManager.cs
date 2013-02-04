@@ -74,7 +74,7 @@ namespace IRMS.BusinessLogic.Manager
             }
             catch (Exception ex)
             {
-              //  throw ex;
+               throw ex;
             }
         }
     }

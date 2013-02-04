@@ -103,6 +103,15 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.RadioButtonList rblist2;
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>
@@ -130,13 +139,13 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::AjaxControlToolkit.CalendarExtender DateFrom_CalendarExtender;
         
         /// <summary>
-        /// Label2 control.
+        /// Label8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
         /// DateTo control.
@@ -157,13 +166,22 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::AjaxControlToolkit.CalendarExtender DateTo_CalendarExtender;
         
         /// <summary>
-        /// Label10 control.
+        /// PanelCustomerBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Panel PanelCustomerBrand;
+        
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// dlCustomerType control.
@@ -175,13 +193,13 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.DropDownList dlCustomerType;
         
         /// <summary>
-        /// Label11 control.
+        /// Label12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
+        protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
         /// dlBrandName control.
@@ -247,6 +265,15 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::AjaxControlToolkit.ModalPopupExtender btnBrowse_ModalPopupExtender;
         
         /// <summary>
+        /// Panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel Panel;
+        
+        /// <summary>
         /// btnPrint control.
         /// </summary>
         /// <remarks>
@@ -254,6 +281,42 @@ namespace IntegratedResourceManagementSystem.Accounting {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPrint;
+        
+        /// <summary>
+        /// PageUpdateProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress PageUpdateProgress;
+        
+        /// <summary>
+        /// pnlError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlError;
+        
+        /// <summary>
+        /// Image2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image2;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// pnlOutlets control.
@@ -344,32 +407,5 @@ namespace IntegratedResourceManagementSystem.Accounting {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSelectOutlet;
-        
-        /// <summary>
-        /// pnlError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlError;
-        
-        /// <summary>
-        /// Image2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
-        
-        /// <summary>
-        /// lblError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }
