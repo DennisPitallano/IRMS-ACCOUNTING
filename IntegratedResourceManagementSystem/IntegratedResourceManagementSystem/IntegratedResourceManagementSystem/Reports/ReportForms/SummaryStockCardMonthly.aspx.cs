@@ -37,17 +37,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["IRMSConnectionString"].ConnectionString);
                 ReportDocument rpt;
 
-                string rptDocCachedKey = null;
-                rptDocCachedKey = "StockCardRpt";
-                if (Cache[rptDocCachedKey] != null)
-                {
-                    rpt = (StockCardRpt)Cache[rptDocCachedKey];
-                }
-                else
-                {
-                    rpt = new StockCardRpt();
-                    Cache.Insert(rptDocCachedKey, rpt);
-                }
+                
 
                 //long CustNo = long.Parse(Request.QueryString["custno"]);
                 //DateTime PrevDate = DateTime.Parse(Request.QueryString["datefrom"]).AddDays(-1);
@@ -162,7 +152,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                     }
                 }
 
-                DataBaseLogIn(rpt);
+              
 
                 ParameterField prmDatefrom = new ParameterField();
                 ParameterField prmDateTo = new ParameterField();
@@ -189,8 +179,24 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 prmList.Add(prmDateTo);
                 prmList.Add(prmCustno);
 
-                CrystalReportViewer1.ParameterFieldInfo = prmList;
-                CrystalReportViewer1.ReportSource = rpt;
+                string rptDocCachedKey = null;
+                rptDocCachedKey = "StockCardRpt";
+                if (Cache[rptDocCachedKey] != null)
+                {
+                    rpt = (StockCardRpt)Cache[rptDocCachedKey];
+                    DataBaseLogIn(rpt);
+                    CrystalReportViewer1.ReportSource = rpt;
+                }
+                else
+                {
+                    rpt = new StockCardRpt();
+                    Cache.Insert(rptDocCachedKey, rpt);
+
+                    DataBaseLogIn(rpt);
+                    CrystalReportViewer1.ParameterFieldInfo = prmList;
+                    CrystalReportViewer1.ReportSource = rpt;
+                }
+               
             }
             catch
             {

@@ -31,25 +31,13 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
         {
             try
             {
-                ReportDocument rpt;
-                string rptDocCachedKey = null;
-                rptDocCachedKey = "rptCustDRIten";
-                if (Cache[rptDocCachedKey] != null)
-                {
-                    rpt = (CustDRIten)Cache[rptDocCachedKey];
-                }
-                else
-                {
-                    rpt = new CustDRIten();
-                    Cache.Insert(rptDocCachedKey, rpt);
-                }
 
                 long CustNo = long.Parse(Session["CustomerNo"].ToString());
                 DateTime DateFrom = DateTime.Parse(Session["From"].ToString());
                 DateTime DateTo = DateTime.Parse(Session["To"].ToString());
 
-
-                DataBaseLogIn(rpt);
+                ReportDocument REPORT_DOC = new ReportDocument();
+                string reportCacheCustomerDeliveryItinerary = string.Concat("CustomerDeliveryItinerary", CustNo, DateFrom, DateTo);
 
                 ParameterField prmCustomer = new ParameterField();
                 ParameterField prmDateFrom = new ParameterField();
@@ -64,6 +52,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 ParameterDiscreteValue prmDateFromValue = new ParameterDiscreteValue();
                 ParameterDiscreteValue prmDateToValue = new ParameterDiscreteValue();
 
+
                 prmCustNoValue.Value = CustNo;
                 prmDateFromValue.Value = DateFrom;
                 prmDateToValue.Value = DateTo;
@@ -76,8 +65,22 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 prmList.Add(prmDateFrom);
                 prmList.Add(prmDateTo);
 
-                CrystalReportViewer1.ParameterFieldInfo = prmList;
-                CrystalReportViewer1.ReportSource = rpt;
+                if (Cache[reportCacheCustomerDeliveryItinerary] != null)
+                {
+                    REPORT_DOC = (CustomerDeliveryItinerary)Cache[reportCacheCustomerDeliveryItinerary];
+                    DataBaseLogIn(REPORT_DOC);
+                    CrystalReportViewer1.ReportSource = REPORT_DOC;
+                }
+                else
+                {
+                    REPORT_DOC = new CustomerDeliveryItinerary();
+                    Cache.Insert(reportCacheCustomerDeliveryItinerary, REPORT_DOC);
+
+                    DataBaseLogIn(REPORT_DOC);
+                    this.CrystalReportViewer1.ParameterFieldInfo = prmList;
+                    CrystalReportViewer1.ReportSource = REPORT_DOC;
+                }
+
             }
             catch
             {

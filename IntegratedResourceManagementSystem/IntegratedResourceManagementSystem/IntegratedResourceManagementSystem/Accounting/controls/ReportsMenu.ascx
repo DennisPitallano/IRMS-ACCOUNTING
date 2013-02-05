@@ -43,7 +43,7 @@
 <div class="OneCol">
     <div style="width: 120px; margin-right: 5px;">
         <div class="MenuIcon">
-            <asp:ImageButton ID="imgBtnGarmets" runat="server" ImageUrl="~/Resources/customerreturn.png"
+            <asp:ImageButton ID="imgBtnGarmets" runat="server" ImageUrl="~/Resources/adjustment.png"
                 Height="42px" ToolTip="MANAGE CUSTOMER GROUP" PostBackUrl="~/Accounting/CustomerReportPage.aspx" />
             <br />
             <asp:LinkButton ID="lnkDeliveries" runat="server" CssClass="lblMenu" Font-Names="Verdana"
@@ -60,7 +60,7 @@
 <div class="woCol">
     <div style="width: 120px; margin-right: 5px;">
         <div class="MenuIcon">
-            <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/Resources/accounting.png"
+            <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/Resources/invoice.png"
                 Height="42px" ToolTip="MANAGE STORE OUTSTANDING INVENTORIES" PostBackUrl="~/Accounting/SoiReportPage.aspx" />
             <br />
             <asp:LinkButton ID="LinkButton4" runat="server" CssClass="lblMenu" Font-Names="Verdana"

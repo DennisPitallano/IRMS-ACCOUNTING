@@ -4,20 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CrystalDecisions.Shared;
-using IntegratedResourceManagementSystem.Reports.ReportDocuments;
-using CrystalDecisions.CrystalReports.Engine;
-using System.Configuration;
-using System.Data;
-using IRMS.Components;
 using System.Data.SqlClient;
-using IRMS.ObjectModel;
-using IRMS.BusinessLogic.Manager;
+using System.Configuration;
+using CrystalDecisions.Shared;
+using CrystalDecisions.CrystalReports.Engine;
+using IntegratedResourceManagementSystem.Reports.ReportDocuments;
+
+
 namespace IntegratedResourceManagementSystem.Reports.ReportForms
 {
     public partial class CustomerDeliveryDetailedReport : System.Web.UI.Page
     {
-        public UsersClass USER { get { return (UsersClass)Session["USER_ACCOUNT"]; } }
+       
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,33 +24,22 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            InitializeReport();
-            
+             InitializeReport();
+
         }
 
         protected void InitializeReport()
         {
             try
             {
-                ReportDocument rpt;
-                string rptDocCachedKey = null;
-                rptDocCachedKey = "rptCustDRDtl";
-                if (Cache[rptDocCachedKey] != null)
-                {
-                    rpt = (CustDR)Cache[rptDocCachedKey];
-                }
-                else
-                {
-                    rpt = new CustDR();
-                    Cache.Insert(rptDocCachedKey, rpt);
-                }
+              
 
                 long CustNo = long.Parse(Session["CustomerNo"].ToString());
                 DateTime DateFrom = DateTime.Parse(Session["From"].ToString());
                 DateTime DateTo = DateTime.Parse(Session["To"].ToString());
 
-
-                DataBaseLogIn(rpt);
+                ReportDocument REPORT_DOC = new ReportDocument();
+                string reportCacheCustomerDeliveryDetailed = string.Concat("CustomerDeliveryDetailed", CustNo,DateFrom,DateTo);
 
                 ParameterField prmCustomer = new ParameterField();
                 ParameterField prmDateFrom = new ParameterField();
@@ -67,6 +54,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 ParameterDiscreteValue prmDateFromValue = new ParameterDiscreteValue();
                 ParameterDiscreteValue prmDateToValue = new ParameterDiscreteValue();
 
+
                 prmCustNoValue.Value = CustNo;
                 prmDateFromValue.Value = DateFrom;
                 prmDateToValue.Value = DateTo;
@@ -79,8 +67,22 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 prmList.Add(prmDateFrom);
                 prmList.Add(prmDateTo);
 
-                CrystalReportViewer1.ParameterFieldInfo = prmList;
-                CrystalReportViewer1.ReportSource = rpt;
+                if (Cache[reportCacheCustomerDeliveryDetailed] != null)
+                {
+                    REPORT_DOC = (CustomerDeliveryDetailed)Cache[reportCacheCustomerDeliveryDetailed];
+                    DataBaseLogIn(REPORT_DOC);
+                    CrystalReportViewer1.ReportSource = REPORT_DOC;
+                }
+                else
+                {
+                    REPORT_DOC = new CustomerDeliveryDetailed();
+                    Cache.Insert(reportCacheCustomerDeliveryDetailed, REPORT_DOC);
+
+                    DataBaseLogIn(REPORT_DOC);
+                    this.CrystalReportViewer1.ParameterFieldInfo = prmList;
+                    CrystalReportViewer1.ReportSource = REPORT_DOC;
+                }
+
             }
             catch
             {

@@ -19,17 +19,17 @@ namespace IntegratedResourceManagementSystem.Accounting.controls
         }
 
         public DateTime GetDateFrom
-        {
+        {           
             get
             {             
-                return DateTime.Parse(txtDateFrom.Text);
+               return DateTime.Parse(txtDateFrom.Text);                
             }
             set
             {
                 From = value;
             }
+      
         }
-
         public DateTime GetDateTo
         {
             get

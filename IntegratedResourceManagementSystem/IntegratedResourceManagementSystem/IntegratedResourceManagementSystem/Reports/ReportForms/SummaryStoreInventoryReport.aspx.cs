@@ -65,15 +65,26 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 prmList.Add(prmbrand);
                 prmList.Add(prmType);
 
-                //if (Status == 0)
-                //{
-                REPORT_DOC = new RptSummStoreInventory();
-                Cache.Insert(reportCacheSummaryStoreInventory, REPORT_DOC);
-                //}
 
-                DataBaseLogIn(REPORT_DOC);
-                this.CrystalReportViewer1.ParameterFieldInfo = prmList;
-                CrystalReportViewer1.ReportSource = REPORT_DOC;
+                //if (reportCacheSummaryStoreInventory != null)
+                //{
+
+                //    REPORT_DOC = (RptSummStoreInventory)Cache[reportCacheSummaryStoreInventory];
+                //    DataBaseLogIn(REPORT_DOC);
+                //    CrystalReportViewer1.ReportSource = REPORT_DOC;
+                //}
+                //else
+                //{
+                    REPORT_DOC = new RptSummStoreInventory();
+                    Cache.Insert(reportCacheSummaryStoreInventory, REPORT_DOC);
+
+                    DataBaseLogIn(REPORT_DOC);
+                    this.CrystalReportViewer1.ParameterFieldInfo = prmList;
+                    CrystalReportViewer1.ReportSource = REPORT_DOC;
+              //  }
+                 
+
+                
 
             }
             catch

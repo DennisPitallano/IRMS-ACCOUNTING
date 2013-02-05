@@ -20,8 +20,8 @@ namespace IntegratedResourceManagementSystem.Accounting
         }
 
         protected void cmdView_Click(object sender, EventArgs e)
-        {
-            CheckParameters();
+        {       
+           CheckParameters();            
         }
 
         protected void CheckParameters()
