@@ -17,7 +17,7 @@
         }
     </style>
     <style type="text/css" media="print">
-        #btnPrint
+        #btnPrint,#btnClose
         {
             visibility:hidden;
         }
@@ -25,7 +25,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="font-weight: bold;">
+    <div style="font-weight: bold; margin-bottom:10px; text-align:center;">
         GROSS SALES BREAK DOWN
     </div>
     <div >
@@ -47,7 +47,7 @@
     </div>
     <div style="text-align: center; margin: 5px;">
             <input id="btnPrint" type="button" class="btnPrint" onclick="window.print()" value="PRINT" />
-             <input id="Button1" type="button" class="btnDelete" onclick="window.close()" value="CLOSE" />
+             <input id="btnClose" type="button" class="btnDelete" onclick="window.close()" value="CLOSE" />
     </div>
     </form>
 </body>

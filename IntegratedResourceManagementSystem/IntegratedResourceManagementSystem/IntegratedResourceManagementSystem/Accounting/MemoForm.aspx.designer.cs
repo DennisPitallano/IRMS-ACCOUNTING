@@ -670,6 +670,24 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.TextBox txtCutOffDate;
         
         /// <summary>
+        /// lblPCountModalHandler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPCountModalHandler;
+        
+        /// <summary>
+        /// lblPCountModalHandler_ModalPopupExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender lblPCountModalHandler_ModalPopupExtender;
+        
+        /// <summary>
         /// txtActualPhysicalCountQuantity control.
         /// </summary>
         /// <remarks>
@@ -1109,6 +1127,60 @@ namespace IntegratedResourceManagementSystem.Accounting {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnOk;
+        
+        /// <summary>
+        /// pnlInventoryModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlInventoryModal;
+        
+        /// <summary>
+        /// pnlInventoryModalDrag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlInventoryModalDrag;
+        
+        /// <summary>
+        /// gvInventories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvInventories;
+        
+        /// <summary>
+        /// SqlDataSourceInventories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceInventories;
+        
+        /// <summary>
+        /// btnSelectInventory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSelectInventory;
+        
+        /// <summary>
+        /// btncancelPcountSelect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btncancelPcountSelect;
         
         /// <summary>
         /// PreviousPage property.
