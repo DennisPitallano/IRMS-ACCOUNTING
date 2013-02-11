@@ -256,22 +256,13 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.TextBox txtBeginningInventoryAvgCost;
         
         /// <summary>
-        /// lblDelivery control.
+        /// hpLinkDeliveryDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDelivery;
-        
-        /// <summary>
-        /// lblDelivery_ModalPopupExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender lblDelivery_ModalPopupExtender;
+        protected global::System.Web.UI.WebControls.HyperLink hpLinkDeliveryDetails;
         
         /// <summary>
         /// txtDeliveryVolume control.
@@ -751,6 +742,7 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.Button btnSelectOutlet;
         
         /// <summary>
+<<<<<<< HEAD
         /// pnlOutlets_DropShadowExtender control.
         /// </summary>
         /// <remarks>
@@ -832,6 +824,8 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceDRDetailsBreakDown;
         
         /// <summary>
+=======
+>>>>>>> origin/br-dennis
         /// hfAdjustmentRecordNumber control.
         /// </summary>
         /// <remarks>

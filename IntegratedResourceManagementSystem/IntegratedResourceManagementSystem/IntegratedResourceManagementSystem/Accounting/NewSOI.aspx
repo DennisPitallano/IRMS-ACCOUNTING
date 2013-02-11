@@ -186,17 +186,9 @@
                             </tr>
                             <tr>
                                 <td>
-                                    &nbsp;&nbsp; &nbsp;&nbsp;<asp:Label ID="lblDelivery" runat="server" Text="Delivery"
-                                        CssClass="adjustment_label" ToolTip="View Delivery Receipts BreakDown"></asp:Label>
-                                    <asp:ModalPopupExtender ID="lblDelivery_ModalPopupExtender" runat="server" DynamicServicePath=""
-                                        Enabled="True" PopupControlID="pnlDeliveryReceiptsDetails" PopupDragHandleControlID="pnlDeliveryReceiptsDetailsDrag"
-                                        TargetControlID="lblDelivery" CancelControlID="ibtnClosepnlDeliveryReceiptsDetails">
-                                        <Animations>
-											<OnShown>
-												<FadeIn Duration=".2" />
-											</OnShown>
-                                        </Animations>
-                                    </asp:ModalPopupExtender>
+                                    &nbsp;&nbsp; &nbsp;&nbsp;
+                                    <asp:HyperLink ID="hpLinkDeliveryDetails" CssClass="adjustment_label" Target="_blank" ToolTip="View Delivery Receipts BreakDown" runat="server">Delivery</asp:HyperLink>
+                                   
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtDeliveryVolume" runat="server" Font-Names="Verdana" Font-Size="12px"
@@ -521,6 +513,7 @@
                         OnClick="btnSelectOutlet_Click" />
                 </div>
             </asp:Panel>
+<<<<<<< HEAD
             <asp:DropShadowExtender ID="pnlOutlets_DropShadowExtender" runat="server" Enabled="True"
                 TargetControlID="pnlOutlets" Opacity=".75">
             </asp:DropShadowExtender>
@@ -588,6 +581,8 @@
                     </asp:Panel>
                 </div>
             </asp:Panel>
+=======
+>>>>>>> origin/br-dennis
             <asp:HiddenField ID="hfAdjustmentRecordNumber" runat="server" />
             <asp:HiddenField ID="hfCustomerRecordNumber" runat="server" />
             <asp:Panel ID="pnlGrosssalesbreakDownModal" runat="server" CssClass="modal">
@@ -651,8 +646,13 @@
                             ToolTip="CLOSE" />
                     </div>
                     <div class="sizeLogo">
+<<<<<<< HEAD
                         <asp:Image ID="Image5" runat="server" Height="16px" ImageAlign="AbsBottom" ImageUrl="~/Resources/panels.png" />
                         GROSS SALES BREAK DOWN
+=======
+                           <img src="../Resources/panels.png" alt="" align="left" height="16px" />
+                           INVENTORY BREAK DOWN
+>>>>>>> origin/br-dennis
                     </div>
                 </asp:Panel>
                 <div style="text-align: center;">

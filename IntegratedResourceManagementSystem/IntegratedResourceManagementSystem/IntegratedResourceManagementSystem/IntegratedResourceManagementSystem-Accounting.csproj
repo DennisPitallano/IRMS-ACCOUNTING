@@ -100,6 +100,7 @@
     <Content Include="Accounting\DashBoardPanel.aspx" />
     <Content Include="Accounting\Debit-CreditMemoPanel.aspx" />
     <Content Include="Accounting\DeliveryDetails.aspx" />
+    <Content Include="Accounting\DeliveryDetailsForSOI.aspx" />
     <Content Include="Accounting\DeliveryDetailsPreview.aspx" />
     <Content Include="Accounting\DeliveryReceiptConfirmationPanel.aspx" />
     <Content Include="Accounting\DeliveryReceiptMenu.aspx" />
@@ -482,6 +483,13 @@
     </Compile>
     <Compile Include="Accounting\DeliveryDetails.aspx.designer.cs">
       <DependentUpon>DeliveryDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\DeliveryDetailsForSOI.aspx.cs">
+      <DependentUpon>DeliveryDetailsForSOI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounting\DeliveryDetailsForSOI.aspx.designer.cs">
+      <DependentUpon>DeliveryDetailsForSOI.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounting\DeliveryDetailsPreview.aspx.cs">
       <DependentUpon>DeliveryDetailsPreview.aspx</DependentUpon>
