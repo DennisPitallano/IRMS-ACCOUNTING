@@ -4,20 +4,12 @@
 body   
 {
    background :url('../Resources/texture.JPG');
+	background-repeat: repeat;
 	font-size: .80em;
 	font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
 	margin: 0px;
 	padding: 0px;
 	color: #696969;
-	text-align: left;
-}
-
-.dates
-{
-	  background-image:url('../Resources/calendar-icon.png');
-	  background-repeat:no-repeat;
-	  background-position:right;
-    font-size: xx-small;
 }
 
 a:link, a:visited

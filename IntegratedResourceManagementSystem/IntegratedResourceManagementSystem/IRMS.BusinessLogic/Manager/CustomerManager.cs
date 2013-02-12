@@ -32,15 +32,6 @@ namespace IRMS.BusinessLogic.Manager
             return Accessor.Query.SelectAll<Customer>();
         }
 
-        public List<Customer> FilterByCompanyName(string Comp)
-        {
-            var Objects = (from Cust in Customers()
-                           where Cust.CompanyName.StartsWith(Comp)
-                           select Cust).ToList();
-
-            return Objects;
-        }
-
         #region Adjustment Panel
         public SqlDataSource SearchOutletDataSource(SqlDataSource sql_data_source, string search_parameter, string Brand)
         {

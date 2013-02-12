@@ -79,7 +79,6 @@ namespace IntegratedResourceManagementSystem.Accounting
                 Session["USER_ACCOUNT"] = user;
                 Session["USER_ID"] = user.ID;
                 Session["USER_NAME"] = user.Username;
-              
                 UM.UpdateOnlineStatus(user.ID, true);
                 Session.Timeout = 30;
                 Session["USER_ROLES"] = UserRoleManager.GetUserRolesByUserId((int)user.ID);

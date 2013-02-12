@@ -68,7 +68,7 @@ namespace IRMS.BusinessLogic.Manager
 
         public UsersClass CheckUserAccount(string UserName, string Password)
         {
-            UsersClass user = new UsersClass();
+            UsersClass user;
             string EncryptPassword = Security.EncryptStringAES(Password, Security.SECURITY_PASSWORD);
             try
             {
@@ -78,7 +78,7 @@ namespace IRMS.BusinessLogic.Manager
             }
             catch (Exception)
             {
-               // user = new UsersClass();
+                user = new UsersClass();
             }
             return user;
         }
