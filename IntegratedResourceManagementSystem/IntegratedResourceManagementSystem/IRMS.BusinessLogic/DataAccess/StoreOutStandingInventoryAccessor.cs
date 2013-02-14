@@ -86,11 +86,8 @@ namespace IRMS.BusinessLogic.DataAccess
         /// <param name="periodFrom">period from</param>
         /// <param name="periodTo">period to</param>
         /// <returns>Total Amount</returns>
-        /// 
-        [SqlQuery(@"select sum(CRSSummTemp.Amount) as TOTAL_AMOUNT from CRSSummTemp
-            where CRSSummTemp.CRSID in (select CRS.ID from CRS where custno=@customerNumber and CRSDate between @periodFrom and @periodTo)"), DataSetTable("CRSTotalAmount")]
-       // [SqlQuery(@"select sum(TotalAmt) as TOTAL_AMOUNT from CRSSummTemp
-        //    where custno=@customerNumber and CRSDate between @periodFrom and @periodTo "),DataSetTable("CRSTotalAmount")]
+        [SqlQuery(@"select sum(TotalAmt) as TOTAL_AMOUNT from crs 
+            where custno=@customerNumber and CRSDate between @periodFrom and @periodTo "),DataSetTable("CRSTotalAmount")]
         public abstract DataTable CustomerReturnSlipForSOIByCustomerNumberAndByPeriod(long customerNumber, DateTime periodFrom, DateTime periodTo);
 
         /// <summary>

@@ -7,6 +7,8 @@
             ToolTip="Manage Store OutStanding Inventory" Value="STORE OUTSTANDING INVENTORY" />
         <asp:MenuItem NavigateUrl="~/Accounting/DeliveryReceiptMenu.aspx" Text="DELIVERY RECEIPT"
             Value="DELIVERY RECEIPT"></asp:MenuItem>
+        <asp:MenuItem NavigateUrl="~/Accounting/SalesInvoice.aspx" Text="SALES INVOICE"
+            Value="SALES INVOICE"></asp:MenuItem>
         <asp:MenuItem NavigateUrl="~/Accounting/ReportsPanel.aspx" Text="REPORTS" ToolTip="Reports"
             Value="REPORTS"></asp:MenuItem>
     </Items>

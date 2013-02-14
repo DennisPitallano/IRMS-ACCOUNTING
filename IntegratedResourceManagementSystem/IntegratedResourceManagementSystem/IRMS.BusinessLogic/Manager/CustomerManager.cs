@@ -63,5 +63,18 @@ namespace IRMS.BusinessLogic.Manager
             return sql_data_source;
         }
         #endregion
+        public SqlDataSource SearchCustomerDataSource(SqlDataSource sql_data_source, string search_parameter)
+            {          
+            if (search_parameter != string.Empty)
+                {
+                sql_data_source.SelectCommand = "Select [CustNo],a.[CompName],[Brand],[Addr1],[TIN],b.CompName from [CustInfo] a inner join [Company] b on b.CompNo = a.CompNo where ynLiquidation = 1 and a.[CompName] like '%" + search_parameter +"%'" ;
+                }
+            else
+                {
+                sql_data_source.SelectCommand = "Select [CustNo],a.[CompName],[Brand],[Addr1],[TIN],b.CompName from [CustInfo] a inner join [Company] b on b.CompNo = a.CompNo where ynLiquidation = 1";
+                }
+            sql_data_source.DataBind();
+            return sql_data_source;
+            }
     }
 }

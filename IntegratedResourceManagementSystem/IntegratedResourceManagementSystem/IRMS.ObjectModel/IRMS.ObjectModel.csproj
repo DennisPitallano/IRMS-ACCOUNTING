@@ -75,6 +75,7 @@
     <Compile Include="PhysicalCount.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesInvoice.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="StockCardReport.cs" />
     <Compile Include="StoreOutStandingInventory.cs" />

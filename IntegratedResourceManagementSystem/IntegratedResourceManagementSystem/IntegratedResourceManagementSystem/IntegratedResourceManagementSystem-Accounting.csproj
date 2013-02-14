@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\..\..\..\..\..\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
+    <Reference Include="AjaxControlToolkit, Version=4.1.50508.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -106,8 +107,11 @@
     <Content Include="Accounting\NewBookAdjustment.aspx" />
     <Content Include="Accounting\NewInventoryGroup.aspx" />
     <Content Include="Accounting\NewMonthlySOI.aspx" />
+    <Content Include="Accounting\NewSalesInvoiceLiq.aspx" />
     <Content Include="Accounting\NewSOI.aspx" />
     <Content Include="Accounting\ReportsPanel.aspx" />
+    <Content Include="Accounting\SalesInvoice.aspx" />
+    <Content Include="Accounting\SalesInvoiceLiqUpdate.aspx" />
     <Content Include="Accounting\SessionExpired.aspx" />
     <Content Include="Accounting\SOIPanel.aspx" />
     <Content Include="Accounting\StoreOutStandingInventoryMenu.aspx" />
@@ -184,8 +188,8 @@
     <Content Include="Reports\ReportForms\PrintBookAdjustmentSummary.aspx" />
     <Content Include="Reports\ReportForms\PrintPCountAdjustmentSelectedDetails.aspx" />
     <Content Include="Reports\ReportForms\PrintPCountSummary.aspx" />
+    <Content Include="Reports\ReportForms\PrintSILiquidation.aspx" />
     <Content Include="Reports\ReportForms\PrintSOI.aspx" />
-    <Content Include="Reports\ReportForms\SOIGrossSalesPrintPreview.aspx" />
     <Content Include="Reports\ReportForms\StoreOuStandingInventoryReport.aspx" />
     <None Include="Resources\reply.png" />
     <None Include="Resources\accounting.png" />
@@ -257,13 +261,14 @@
     <Content Include="Styles\permission-note.css" />
     <Content Include="Styles\quarterly-soi.css" />
     <Content Include="Styles\panel.css" />
+    <Content Include="Styles\sales-invoice-from.css" />
     <Content Include="Styles\Site.css" />
+    <Content Include="Styles\soi-form.css" />
     <Content Include="Styles\marketing-item-master.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="Styles\soi-form.css" />
     <Content Include="Styles\toolbar-controls.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -495,6 +500,13 @@
     <Compile Include="Accounting\NewMonthlySOI.aspx.designer.cs">
       <DependentUpon>NewMonthlySOI.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\NewSalesInvoiceLiq.aspx.cs">
+      <DependentUpon>NewSalesInvoiceLiq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounting\NewSalesInvoiceLiq.aspx.designer.cs">
+      <DependentUpon>NewSalesInvoiceLiq.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\NewSOI.aspx.cs">
       <DependentUpon>NewSOI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -508,6 +520,20 @@
     </Compile>
     <Compile Include="Accounting\ReportsPanel.aspx.designer.cs">
       <DependentUpon>ReportsPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\SalesInvoice.aspx.cs">
+      <DependentUpon>SalesInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounting\SalesInvoice.aspx.designer.cs">
+      <DependentUpon>SalesInvoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\SalesInvoiceLiqUpdate.aspx.cs">
+      <DependentUpon>SalesInvoiceLiqUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounting\SalesInvoiceLiqUpdate.aspx.designer.cs">
+      <DependentUpon>SalesInvoiceLiqUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounting\SessionExpired.aspx.cs">
       <DependentUpon>SessionExpired.aspx</DependentUpon>
@@ -931,19 +957,19 @@
     <Compile Include="Reports\ReportForms\PrintPCountSummary.aspx.designer.cs">
       <DependentUpon>PrintPCountSummary.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ReportForms\PrintSILiquidation.aspx.cs">
+      <DependentUpon>PrintSILiquidation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportForms\PrintSILiquidation.aspx.designer.cs">
+      <DependentUpon>PrintSILiquidation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ReportForms\PrintSOI.aspx.cs">
       <DependentUpon>PrintSOI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Reports\ReportForms\PrintSOI.aspx.designer.cs">
       <DependentUpon>PrintSOI.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\ReportForms\SOIGrossSalesPrintPreview.aspx.cs">
-      <DependentUpon>SOIGrossSalesPrintPreview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\ReportForms\SOIGrossSalesPrintPreview.aspx.designer.cs">
-      <DependentUpon>SOIGrossSalesPrintPreview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportForms\StoreOuStandingInventoryReport.aspx.cs">
       <DependentUpon>StoreOuStandingInventoryReport.aspx</DependentUpon>
@@ -1149,7 +1175,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>64347</DevelopmentServerPort>
+          <DevelopmentServerPort>33513</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
