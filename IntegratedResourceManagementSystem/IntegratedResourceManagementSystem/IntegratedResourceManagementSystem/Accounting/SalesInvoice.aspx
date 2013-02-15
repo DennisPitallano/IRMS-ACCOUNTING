@@ -75,9 +75,8 @@
                         <br />
                            <table>
                             <tr>
-                                <td>
-                                Filters : 
-                                                Filters : 
+                                 <td style="font-size: medium; font-weight: bold; color: #008000">
+                                FILTERS :
                                 </td>
                                  <td>
                             <asp:Button ID="btnUnposted" runat="server" CssClass="btnSalesInvoice" 
