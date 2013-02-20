@@ -32,12 +32,21 @@ namespace IRMS.BusinessLogic.Manager
             return Accessor.Query.SelectAll<Customer>();
         }
 
+        public List<Customer> FilterByCompanyName(string Comp)
+        {
+            var Objects = (from Cust in Customers()
+                           where Cust.CompanyName.StartsWith(Comp)
+                           select Cust).ToList();
+
+            return Objects;
+        }
+
         #region Adjustment Panel
         public SqlDataSource SearchOutletDataSource(SqlDataSource sql_data_source, string search_parameter, string Brand)
         {
             //if (Brand != "ALL")
             //{
-                //if (search_parameter != string.Empty)
+            //if (search_parameter != string.Empty)
             //    {
             //        sql_data_source.SelectCommand = "SELECT [CustNo], [CompName], [brand] FROM [CustInfo] where brand ='"+ Brand +"' and CompName Like '%" + 
             //            search_parameter + "%'";
@@ -49,32 +58,32 @@ namespace IRMS.BusinessLogic.Manager
             //}
             //else
             //{
-                if (search_parameter != string.Empty)
-                {
-                    sql_data_source.SelectCommand = "SELECT [CustNo], [CompName], [brand] FROM [CustInfo] where CompName Like '%" +
-                        search_parameter + "%'";
-                }
-                else
-                {
-                    sql_data_source.SelectCommand = "SELECT [CustNo], [CompName], [brand] FROM [CustInfo] ";
-                }
+            if (search_parameter != string.Empty)
+            {
+                sql_data_source.SelectCommand = "SELECT [CustNo], [CompName], [brand] FROM [CustInfo] where CompName Like '%" +
+                    search_parameter + "%'";
+            }
+            else
+            {
+                sql_data_source.SelectCommand = "SELECT [CustNo], [CompName], [brand] FROM [CustInfo] ";
+            }
             //}
             sql_data_source.DataBind();
             return sql_data_source;
         }
         #endregion
         public SqlDataSource SearchCustomerDataSource(SqlDataSource sql_data_source, string search_parameter)
-            {          
+        {
             if (search_parameter != string.Empty)
-                {
-                sql_data_source.SelectCommand = "Select [CustNo],a.[CompName],[Brand],[Addr1],[TIN],b.CompName from [CustInfo] a inner join [Company] b on b.CompNo = a.CompNo where ynLiquidation = 1 and a.[CompName] like '%" + search_parameter +"%'" ;
-                }
+            {
+            sql_data_source.SelectCommand = "Select [CustNo],a.[CompName],[Brand],[Addr1],[TIN],b.CompName from [CustInfo] a inner join [Company] b on b.CompNo = a.CompNo where ynLiquidation = 1 and (a.[CompName] like '%" + search_parameter + "%' or " + "a.[CustNo] like '%" + search_parameter + "%')";
+            }
             else
-                {
+            {
                 sql_data_source.SelectCommand = "Select [CustNo],a.[CompName],[Brand],[Addr1],[TIN],b.CompName from [CustInfo] a inner join [Company] b on b.CompNo = a.CompNo where ynLiquidation = 1";
-                }
+            }
             sql_data_source.DataBind();
             return sql_data_source;
-            }
+        }
     }
 }

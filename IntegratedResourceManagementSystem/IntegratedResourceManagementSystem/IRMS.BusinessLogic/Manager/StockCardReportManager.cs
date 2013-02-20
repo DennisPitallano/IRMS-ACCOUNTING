@@ -7,6 +7,7 @@ using IRMS.ObjectModel;
 using System.Data;
 using BLToolkit.Data;
 using System.Web.UI.WebControls;
+using IRMS.ObjectModel.Views;
 
 namespace IRMS.BusinessLogic.Manager
 {
@@ -40,6 +41,30 @@ namespace IRMS.BusinessLogic.Manager
                 dbReader.Close();
             }
             return bResult;
+        }
+
+        public List<ViewSummaryOfMonthlyInventoryPerBrand> GetSummaryOfMonthlyInventoryPerBrand(DateTime Dfrom, DateTime Dto, string Bname, string users, int stat)
+        {
+
+            List<ViewSummaryOfMonthlyInventoryPerBrand> Rec = new List<ViewSummaryOfMonthlyInventoryPerBrand>();
+            Rec.Clear();
+           
+
+            if (stat == 1) //Dept
+            {
+                Rec = Accessor.SummaryOfMonthlyInventoryPerBrandDept(Dfrom, Dto, Bname, users);
+               
+            }
+            else if (stat == 2) // Prov
+            {
+                Rec = Accessor.SummaryOfMonthlyInventoryPerBrandProvincial(Dfrom, Dto, Bname, users);
+            }
+            else if (stat == 3) // Botiq
+            {
+                Rec = Accessor.SummaryOfMonthlyInventoryPerBrandBotique(Dfrom, Dto, Bname, users);
+            }
+            return Rec;
+           
         }
 
         public StockCardReport IsHasRecord(long CustNo, DateTime PeriodDate)
@@ -76,21 +101,6 @@ namespace IRMS.BusinessLogic.Manager
             }
             return SOI;
         }
-
-        //public DataTable IsHasRecordOnPcountBridge(long CustNo, DateTime DateFrom, DateTime DateTo)
-        //{
-        //    DataTable Pcount = new DataTable();
-        //    try
-        //    {
-        //        Pcount = GetBeginningOnPCountBridge(CustNo, DateFrom, DateTo);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Pcount = new DataTable();
-        //        //  ..throw;
-        //    }
-        //    return Pcount;
-        //}
 
         public DataTable GetBeginningOnPCountBridge(long CustNo, DateTime DateFrom, DateTime DateTo)
         {

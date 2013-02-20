@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title>Print Sales Invoice Liquidation</title>
       <script type="text/javascript">
           function close_window() {
@@ -46,16 +46,17 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="padding: 15px 0px 0px 0px">
+    <div style="padding: 50px 0px 0px 0px">
     <table>
    
       <tr>
         <td width="200px" >
         </td>
-            <td width="400px">
+            <td width="500px">
             </td>
             <td align="left">
-            <label style="font-family: 'Times New Roman', Times, serif; font-size: 13px; font-weight: bold" runat="server" id="lblSI_No">
+            <label style="font-family: Verdana; font-size: 15px; font-weight: bold" 
+                    runat="server" id="lblSI_No">
                 2310708
             </label>
             </td>
@@ -83,13 +84,15 @@
         <tr>
         <td width="200px" >
         </td>
-            <td style="padding: 0px 0px 0px 50px" width="400px">
-            <label style="font-family: 'Times New Roman', Times, serif; font-size: 15px; font-weight: bold" runat="server" id="lblCustomer">
+            <td style="padding: 0px 0px 0px 50px" width="500px">
+            <label style="font-family: verdana; font-size: 15px; font-weight: bold" 
+                    runat="server" id="lblCustomer">
              TCL MERCHANDISE BROKERAGE INC.
             </label>               
             </td>
             <td align="left">
-            <label style="font-family: 'Times New Roman', Times, serif; font-size: 13px; font-weight: bold" runat="server" id="lblDate">
+            <label style="font-family: verdana; font-size: 15px; font-weight: bold" 
+                    runat="server" id="lblDate">
                 01/31/2013
             </label>
             </td>
@@ -110,8 +113,8 @@
     <tr>
          <td width="200px" >
         </td>
-         <td style="padding: 0px 0px 0px 50px" width="400px">
-         <label style="font-family: 'Times New Roman', Times, serif; font-size: 12px; font-weight: normal" runat="server" id="lblAddress">
+         <td style="padding: 0px 0px 0px 50px" width="500px">
+         <label style="font-family: verdana; font-size: 13px; font-weight: normal" runat="server" id="lblAddress">
          PORT AREA ZUBITO ST. BRGY. PATING MASBATE CITY
          </label>
                 </td>
@@ -126,20 +129,31 @@
     <tr>
         <td width="200px" >
         </td>
-         <td style="padding: 0px 0px 0px 50px" width="400px">
-         <label style="font-family: 'Times New Roman', Times, serif; font-size: 12px; font-weight: normal" runat="server" id="lblTIN">
+         <td style="padding: 0px 0px 0px 50px" width="500px">
+         <label style="font-family: verdana; font-size: 15px; font-weight: normal" runat="server" id="lblTIN">
          003-975-825-010
          </label>
                 </td>
     </tr>
     <tr>
-        <td style="padding: 560px 20px 0px 0px" align="right">
-        <label id="lblChecked" runat="server">rubby</label>
+        <td style="font-family: verdana; padding: 600px 0px 0px 0px" align="right">
+        <label id="lblPrepared" runat="server">rubby</label>
         </td>
     </tr>
     <tr>
-        <td style="padding: 30px 20px 0px 0px" align="right">
-        <label id="lblPrepared" runat="server">rubby</label>
+        <td style="font-family: verdana; padding: 30px 0px 0px 0px" align="right">
+        <label id="lblChecked" runat="server">rubby</label>
+        </td>
+    </tr>
+     <tr>
+      <td width="200px">
+        
+        </td>
+        <td width="500px">
+        
+        </td>
+        <td style="font-family: verdana; padding: 15px 0px 0px 0px" align="right">
+        <label id="lblAmount" runat="server">amount</label>
         </td>
     </tr>
     </table>

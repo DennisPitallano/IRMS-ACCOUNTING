@@ -24,18 +24,21 @@ namespace IntegratedResourceManagementSystem.Accounting
             {
             SM.FilterSalesInvoice(SqlDataSourceSalesInvoice, "unposted");
             GridViewSalesInvoice.SelectedIndex = -1;
+            divtittle.InnerText = "SALES INVOICE FOR LIQUIDATION - UNPOSTED RECORD(S)";
             }
 
         protected void btnPosted_Click(object sender, EventArgs e)
             {
             SM.FilterSalesInvoice(SqlDataSourceSalesInvoice, "posted");
             GridViewSalesInvoice.SelectedIndex = -1;
+            divtittle.InnerText = "SALES INVOICE FOR LIQUIDATION - POSTED RECORD(S)";
             }
 
         protected void btnCancelled_Click(object sender, EventArgs e)
             {
             SM.FilterSalesInvoice(SqlDataSourceSalesInvoice, "cancelled");
             GridViewSalesInvoice.SelectedIndex = -1;
+            divtittle.InnerText = "SALES INVOICE FOR LIQUIDATION - CANCELLED RECORD(S)";
             }
 
         protected void GridViewSalesInvoice_SelectedIndexChanged(object sender, EventArgs e)

@@ -145,11 +145,10 @@ namespace IntegratedResourceManagementSystem.Accounting
 
         protected void gvAdjustmentMemos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            System.Threading.Thread.Sleep(100);
             Image imgAdjustmentCode = (Image)gvAdjustmentMemos.SelectedRow.FindControl("imgAdjustmentCode");
             hfAdjustmentCode.Value = imgAdjustmentCode.AlternateText;
-            hpLinkPreviewSummary.NavigateUrl = "~/Reports/ReportForms/PrintPCountSummary.aspx?AdjustmentCode=" + imgAdjustmentCode.AlternateText + "&Customer=" + Server.UrlEncode(gvAdjustmentMemos.SelectedRow.Cells[3].Text);
-            hLinkPreviewAdjustment.NavigateUrl = "~/Reports/ReportForms/PrintAdjustmentPCount.aspx?AdjustmentCode=" + imgAdjustmentCode.AlternateText + "&Customer=" + Server.UrlEncode(gvAdjustmentMemos.SelectedRow.Cells[3].Text) + "&Id=" + Server.UrlEncode(gvAdjustmentMemos.SelectedRow.Cells[2].Text);
+            hpLinkPreviewSummary.NavigateUrl = "~/Reports/ReportForms/PrintPCountSummary.aspx?AdjustmentCode=" + imgAdjustmentCode.AlternateText + "&RecordNumber=" + gvAdjustmentMemos.SelectedValue.ToString();
+            hLinkPreviewAdjustment.NavigateUrl = "~/Reports/ReportForms/PrintAdjustmentPCount.aspx?AdjustmentCode=" + imgAdjustmentCode.AlternateText + "&Id=" + gvAdjustmentMemos.SelectedRow.Cells[2].Text + "&RecordNumber=" + gvAdjustmentMemos.SelectedValue.ToString();
             lblCustomerNameToDelete.Text = "ADJUSTMENT FOR: " + gvAdjustmentMemos.SelectedRow.Cells[3].Text;
             lblDateFromToToDelete.Text = "PERIOD FROM: " +
                 gvAdjustmentMemos.SelectedRow.Cells[4].Text + " TO "

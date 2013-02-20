@@ -105,7 +105,7 @@
 							<asp:CommandField ShowSelectButton="True" />
 							<asp:BoundField DataField="INVENTORY_GROUP_ID" HeaderText="GROUP#" InsertVisible="False"
 								ReadOnly="True" SortExpression="INVENTORY_GROUP_ID">
-								<ItemStyle Font-Bold="True" HorizontalAlign="Left" />
+								<ItemStyle Font-Bold="True" HorizontalAlign="Center" />
 							</asp:BoundField>
 							<asp:BoundField DataField="GROUP_NAME" HeaderText="GROUP NAME" SortExpression="GROUP_NAME" />
 						</Columns>

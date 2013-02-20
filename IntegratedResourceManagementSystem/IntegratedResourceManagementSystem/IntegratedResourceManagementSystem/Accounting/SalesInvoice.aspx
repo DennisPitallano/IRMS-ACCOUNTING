@@ -6,7 +6,7 @@
 <%@ Register Src="~/Accounting/controls/MainMenu.ascx" TagName="MAIN_MENU" TagPrefix="irms" %>
 <asp:Content ID="HeadContent" ContentPlaceHolderID="head" runat="server">
     <link href="../Styles/sales-invoice-from.css" rel="stylesheet" type="text/css" />
-  
+
 </asp:Content>
 <asp:Content ID="IRMS_MENU" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
     <irms:MAIN_MENU ID="main_menu" runat="server" />
@@ -65,8 +65,8 @@
                    <asp:HiddenField ID="HiddenField_btnDelete" runat="server" />
 				
     </div>
-     <div class="titleList">
-						<img src="../Resources/panels.png" align="top" />
+     <div class="titleList" runat ="server" id="divtittle">
+						<img src="../Resources/panels.png" align="top"/>
 						SALES INVOICE FOR LIQUIDATION - UNPOSTED RECORD(S)
 					</div>
                     	<div style="float: left; width: 719px;">
@@ -75,7 +75,7 @@
                         <br />
                            <table>
                             <tr>
-                                 <td style="font-size: medium; font-weight: bold; color: #008000">
+                                <td style="font-size: medium; font-weight: bold; color: #008000">
                                 FILTERS :
                                 </td>
                                  <td>
@@ -110,7 +110,6 @@
                         <EditRowStyle BackColor="#7C6F57" />
                         <Columns>
 							<asp:TemplateField>
-                            
 								<EditItemTemplate>
 									<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
 								</EditItemTemplate>
@@ -172,8 +171,4 @@
                         CssClass="modalWarningButtonYes"/>
                 </div>
 			</asp:Panel>
-
 </asp:Content>
-
-
-

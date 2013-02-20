@@ -11,6 +11,13 @@ body
 	padding: 0px;
 	color: #696969;
 }
+.dates
+{
+	  background-image:url('../Resources/calendar-icon.png');
+	  background-repeat:no-repeat;
+	  background-position:right;
+    font-size: xx-small;
+}
 
 a:link, a:visited
 {

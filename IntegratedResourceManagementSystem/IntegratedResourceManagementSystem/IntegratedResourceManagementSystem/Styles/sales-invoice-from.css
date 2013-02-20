@@ -218,3 +218,37 @@
 	color: #259625;
 	cursor:pointer;
 }
+
+.btnSalesInvoice
+{
+    font-family:Verdana ;
+    font-size: 10px;
+    height : 28px;
+    text-align :center;
+    width: 63px;
+    cursor:pointer;
+     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Q1Y2VhNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQwJSIgc3RvcC1jb2xvcj0iI2M5YzE5MCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiN2FkNzAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5cea6', endColorstr='#b7ad70',GradientType=0 ); /* IE6-8 */
+    padding:5px
+    background-repeat:no-repeat;
+    background-position:left;
+    border-radius:5px 5px 0px 0px;
+    text-shadow: 1px 1px 1px #fcffad;
+    color:#696969;
+    border-radius: 5px;
+    border:1px Solid #899A2B;
+     border-radius:5px 3px 5px 3px;
+}
+.btnSalesInvoice:hover
+{
+ background: rgb(164,179,87); /* Old browsers */
+
+    padding:5px
+    background-repeat:no-repeat;
+    background-position:left;
+    text-shadow: 1px 1px 1px #fcffad;
+    color:#4e5913;
+    border-radius: 5px;
+    border:1px Solid #C0B780;    
+    
+}

@@ -23,6 +23,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 lblTIN.InnerText = SIclass.tin;
                 lblPrepared.InnerText = SIclass.prep_by;
                 lblChecked.InnerText = (string)Session["USER_NAME"];
+                lblAmount.InnerText = SIclass.inv_amt.ToString();
                 }
             }
         }

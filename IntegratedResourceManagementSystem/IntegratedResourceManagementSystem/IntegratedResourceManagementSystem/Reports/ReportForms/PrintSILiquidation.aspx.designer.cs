@@ -13,6 +13,15 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms {
     public partial class PrintSILiquidation {
         
         /// <summary>
+        /// Head1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTIN;
         
         /// <summary>
+        /// lblPrepared control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPrepared;
+        
+        /// <summary>
         /// lblChecked control.
         /// </summary>
         /// <remarks>
@@ -76,12 +94,12 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblChecked;
         
         /// <summary>
-        /// lblPrepared control.
+        /// lblAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPrepared;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblAmount;
     }
 }

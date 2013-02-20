@@ -6,6 +6,7 @@ using BLToolkit.DataAccess;
 using IRMS.ObjectModel;
 using BLToolkit.Data;
 using System.Data;
+using IRMS.ObjectModel.Views;
 
 namespace IRMS.BusinessLogic.DataAccess
 {
@@ -36,5 +37,17 @@ namespace IRMS.BusinessLogic.DataAccess
                     from bridge_PCount
                     where CustNo=@CustNo and asofDate between @DateFrom and @DateTo"), DataSetTable("PCount_Bridge")]
         public abstract DataTable GetBeginningOnPCountBridge(long CustNo, DateTime DateFrom, DateTime DateTo);
+
+        [SprocName("GenRptSummaryofMonthlyInvPerBrandProvNew"), DataSetTable("SummaryOfMonthlyInventoryPerBrandDataSet")]
+        public abstract List<ViewSummaryOfMonthlyInventoryPerBrand> SummaryOfMonthlyInventoryPerBrandProvincial(DateTime datefrom, DateTime dateto, string brANDname, string username);
+
+        [SprocName("GenRptSummaryofMonthlyInvPerBrandDeptNew"), DataSetTable("SummaryOfMonthlyInventoryPerBrandDataSet")]
+        public abstract List<ViewSummaryOfMonthlyInventoryPerBrand> SummaryOfMonthlyInventoryPerBrandDept(DateTime datefrom, DateTime dateto, string brANDname, string username);
+
+        [SprocName("GenRptSummaryofMonthlyInvPerBrandBoutiqueNew"), DataSetTable("SummaryOfMonthlyInventoryPerBrandDataSet")]
+        public abstract List<ViewSummaryOfMonthlyInventoryPerBrand> SummaryOfMonthlyInventoryPerBrandBotique(DateTime datefrom, DateTime dateto, string brANDname, string username);
+
+
+
     }
 }
