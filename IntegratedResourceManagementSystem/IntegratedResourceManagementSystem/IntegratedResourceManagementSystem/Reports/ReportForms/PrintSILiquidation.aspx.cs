@@ -21,9 +21,9 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 lblAddress.InnerText = SIclass.cust_addr;
                 lblDate.InnerText = SIclass.si_date.ToString("MM/dd/yyyy");
                 lblTIN.InnerText = SIclass.tin;
-                lblPrepared.InnerText = SIclass.prep_by;
+                //lblPrepared.InnerText = SIclass.prep_by;
                 lblChecked.InnerText = (string)Session["USER_NAME"];
-                lblAmount.InnerText = SIclass.inv_amt.ToString();
+                //lblAmount.InnerText = SIclass.inv_amt.ToString();
                 }
             }
         }

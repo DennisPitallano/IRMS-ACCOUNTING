@@ -13,6 +13,7 @@ using IRMS.ObjectModel;
 using IRMS.BusinessLogic.Manager;
 using System.Data;
 using System.Globalization;
+using IRMS.ObjectModel.Views;
 
 namespace IntegratedResourceManagementSystem.Reports.ReportForms
 {
@@ -76,6 +77,10 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
 
                 ReturnResult = "(" + Result.ToString("0,000") + ")";
             }
+            else
+            {
+                ReturnResult = Result.ToString("0,000");
+            }
 
             return ReturnResult;
         }
@@ -100,7 +105,11 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             {
                 Result = Result * (-1);
 
-                ReturnResult = "(" + Result + ")";
+                ReturnResult = "(" + Result.ToString("###,##0.00") + ")";
+            }
+            else
+            {
+                ReturnResult = Result.ToString("###,##0.00");
             }
 
             return ReturnResult;
@@ -204,7 +213,11 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             {
                 Result = Result * (-1);
 
-                ReturnResult = "(" + Result.ToString("0,000.00") + ")";
+                ReturnResult = "(" + Result.ToString("###,###.###") + ")";
+            }
+            else
+            {
+                ReturnResult = Result.ToString("###,###.###");
             }
 
             return ReturnResult;
@@ -227,7 +240,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
         {
             return GetTotalVarianceCost() / GetTotalEndingInvtCost();
         }
-
+       
         public string GetTotalPercentCostLkgFormatted()
         {
 
@@ -240,7 +253,11 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             {
                 Result = Result * (-1);
 
-                ReturnResult = "(" + Result + ")";
+                ReturnResult = "(" + Result.ToString("###,##0.000") + ")";
+            }
+            else
+            {
+                ReturnResult = Result.ToString("###,##0.000");
             }
 
             return ReturnResult;
@@ -256,91 +273,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
         protected void Page_Init(object sender, EventArgs e)
         {
             LoadGridView();
-            //InitializeReport();
-        }
-
-        private void InitializeReport()
-        {
-            try
-            {
-                DateTime From = Convert.ToDateTime(Session["From"].ToString());
-                DateTime To = Convert.ToDateTime(Session["To"].ToString());
-
-                ReportDocument REPORT_DOC = new ReportDocument();
-                string reportCacheSummaryBrandInventory = string.Concat("SummaryBrandInventory", USER.FullName, From, To);               
-                
-                ParameterField prmUser = new ParameterField();
-                ParameterField prmFrom = new ParameterField();
-                ParameterField prmTo = new ParameterField();
-
-                ParameterFields prmList = new ParameterFields();
-
-                prmUser.ParameterFieldName = "username";
-                prmFrom.ParameterFieldName = "datefrom";
-                prmTo.ParameterFieldName = "dateto";
-
-                ParameterDiscreteValue prmUserValue = new ParameterDiscreteValue();
-                ParameterDiscreteValue prmFromValue = new ParameterDiscreteValue();
-                ParameterDiscreteValue prmToValue = new ParameterDiscreteValue();
-                
-                prmUserValue.Value = USER.FullName;
-                prmFromValue.Value = From;
-                prmToValue.Value = To;
-
-                prmUser.CurrentValues.Add(prmUserValue);
-                prmFrom.CurrentValues.Add(prmFromValue);
-                prmTo.CurrentValues.Add(prmToValue);
-
-              
-                prmList.Add(prmUser);
-                prmList.Add(prmFrom);
-                prmList.Add(prmTo);
-
-                //if (Status == 0)
-                //{
-                    REPORT_DOC = new RptSummBrandInventory();
-                    Cache.Insert(reportCacheSummaryBrandInventory, REPORT_DOC);
-                //}
-              
-                DataBaseLogIn(REPORT_DOC);
-                this.CrystalReportViewer1.ParameterFieldInfo = prmList;
-                CrystalReportViewer1.ReportSource = REPORT_DOC;
-
-            }
-            catch
-            {
-                throw;
-            }
-
-        }
-
-        private static SqlConnectionStringBuilder Connection()
-        {
-            SqlConnectionStringBuilder con = new SqlConnectionStringBuilder();
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["IRMSConnectionString"].ConnectionString;
-            return con;
-        }
-
-        private static void DataBaseLogIn(ReportDocument rpt)
-        {
-            ConnectionInfo con_info = new ConnectionInfo();
-            TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
-            TableLogOnInfo crtableLogoninfo = new TableLogOnInfo();
-            Tables crTables;
-
-            con_info.ServerName = Connection().DataSource;
-            con_info.DatabaseName = Connection().InitialCatalog;
-            con_info.UserID = Connection().UserID;
-            con_info.Password = Connection().Password;
-
-            crTables = rpt.Database.Tables;
-
-            foreach (CrystalDecisions.CrystalReports.Engine.Table crTable in crTables)
-            {
-                crtableLogoninfo = crTable.LogOnInfo;
-                crtableLogoninfo.ConnectionInfo = con_info;
-                crTable.ApplyLogOnInfo(crtableLogoninfo);
-            }
+            
         }
 
         protected void LoadGridView()
@@ -349,19 +282,16 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             string Date = string.Empty;
             DateTime From;
             DateTime To;
-            
-
 
             Date = Session["From"].ToString() + " TO " + Session["To"].ToString();
             From = DateTime.Parse(Session["From"].ToString()).Date;
-            To = DateTime.Parse(Session["To"].ToString()).Date;
-           
-
-
+            To = DateTime.Parse(Session["To"].ToString()).Date;          
             lblDate.Text = Date;
           
-
             StoreOutStandingInventoryManager SOI = new StoreOutStandingInventoryManager();
+           
+
+            #region "MMDS Report"
 
             TotalBookQty = 0;
             TotalPcountQty = 0;
@@ -370,67 +300,338 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             TotalEndingInvtCost = 0;
             TotalActualPcountCost = 0;
 
-            GridView1.DataSource = SOI.GetSoiByBrandMMDS(From, To);
-            GridView1.DataBind();
 
-            TotalBookQty = 0;
-            TotalPcountQty = 0;
-            TotalEndingInvtCost = 0;
-            TotalActualPcountCost = 0;
-
-            GridView2.DataSource = SOI.GetSoiByBrandLuzon(From, To);
-            GridView2.DataBind();
-
-            TotalBookQty = 0;
-            TotalPcountQty = 0;
-            TotalEndingInvtCost = 0;
-            TotalActualPcountCost = 0;
-
-            GridView3.DataSource = SOI.GetSoiByBrandVisayas(From, To);
-            GridView3.DataBind();
-
-            TotalBookQty = 0;
-            TotalPcountQty = 0;
-            TotalEndingInvtCost = 0;
-            TotalActualPcountCost = 0;
-
-            GridView4.DataSource = SOI.GetSoiByBrandMindanao(From, To);
-            GridView4.DataBind();
-
-        }
-
-        protected void GridView_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.DataItem != null)
+            List<ConsolidatedSoiPerArea> MMDSResults = SOI.GetSoiByBrandMMDS(From, To);
+            List<ConsolidatedSoiPerAreaFormatted> MMDSFormatedView = new List<ConsolidatedSoiPerAreaFormatted>();
+            foreach (var item in MMDSResults)
             {
-                Label lblLkgOverQty = (Label)e.Row.FindControl("lblLkgOverQty");
-                Label lblPercentageQty = (Label)e.Row.FindControl("lblPercentageQty");
-                Label lblVarianceCost = (Label)e.Row.FindControl("lblVarianceCost");
-                Label lblCostLkgBook = (Label)e.Row.FindControl("lblCostLkgBook");
-                
-                int Counter = 0;
-                if (Convert.ToDouble(lblLkgOverQty.Text) < Counter || Convert.ToInt16(lblPercentageQty.Text) < Counter || Convert.ToDouble(lblVarianceCost.Text) < Counter || Convert.ToInt16(lblCostLkgBook.Text) < Counter)
+
+                string FormatPercentLkgOvr = string.Empty;
+                string formatLackingOver = string.Empty;
+                string formatVarianceCost = string.Empty;
+                string formatPercentOfCostLacking = string.Empty;
+
+                if (item.LackingOver < 0)
                 {
-                    var OutputLkgOverQty = Convert.ToDouble(lblLkgOverQty.Text) * (-1);
-                    lblLkgOverQty.Text = OutputLkgOverQty.ToString("(0,000)");
-
-                    var OutputPercentageQty = Convert.ToDouble(lblPercentageQty.Text) * (-1);
-                    lblPercentageQty.Text = "(" + OutputPercentageQty + ")";
-
-                    var OutputVarianceCost = Convert.ToDouble(lblVarianceCost.Text) * (-1);
-                    lblVarianceCost.Text = OutputVarianceCost.ToString("(0,000.00)");
-
-                    var OutputCostLkgBook = Convert.ToDouble(lblCostLkgBook.Text) * (-1);
-                    lblCostLkgBook.Text = "(" + OutputCostLkgBook + ")";
+                    item.LackingOver = item.LackingOver * -1;
+                    formatLackingOver = item.LackingOver.ToString("(###,##0)");
                 }
                 else
                 {
-                    lblLkgOverQty.Text = lblLkgOverQty.Text;
-                    lblPercentageQty.Text = lblPercentageQty.Text;
-                    lblVarianceCost.Text = lblVarianceCost.Text;
-                    lblCostLkgBook.Text = lblCostLkgBook.Text;
-                } 
+                    formatLackingOver = item.LackingOver.ToString("###,##0");
+                }
+
+                if (item.PercentOfBookOverQty < 0)
+                {
+                    item.PercentOfBookOverQty = item.PercentOfBookOverQty * -1;
+                    FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("###,##0.00");
+                }
+
+                if (item.VarianceCost < 0)
+                {
+                    item.VarianceCost = item.VarianceCost * -1;
+                    formatVarianceCost = item.VarianceCost.ToString("(###,##0.00)");
+                }
+                else
+	            {
+	                formatVarianceCost = item.VarianceCost.ToString("###,##0.00");
+	            }
+
+                if (item.PercentOfCostLacking < 0)
+                {
+                    item.PercentOfCostLacking = item.PercentOfCostLacking * -1;
+                    formatPercentOfCostLacking = item.PercentOfCostLacking.ToString("(###,##0.00)");
+                }
+                else
+	            {
+                     formatPercentOfCostLacking = item.PercentOfCostLacking.ToString("###,##0.00");
+	            }
+
+                ConsolidatedSoiPerAreaFormatted rvf = new ConsolidatedSoiPerAreaFormatted
+                {                  
+                    Brand = item.Brand,
+                    BookQuantity = item.BookQuantity,
+                    ActualPCount = item.ActualPCount,
+
+                    LackingOver = formatLackingOver,
+                    PercentOfBookOverQty = FormatPercentLkgOvr,
+                    EndingInventory = item.EndingInventory.ToString("###,##0.00"),
+
+                    ActualPCountCost = item.ActualPCountCost.ToString(),
+                    VarianceCost = formatVarianceCost,
+                    AvePerCost = item.AvePerCost.ToString("###,##0.00"),
+                    PercentOfCostLacking = formatPercentOfCostLacking
+
+                };
+                MMDSFormatedView.Add(rvf);
             }
+
+            GridView1.DataSource = MMDSFormatedView;
+            GridView1.DataBind();
+
+            #endregion
+
+
+            #region "Luzon Report"
+
+            TotalBookQty = 0;
+            TotalPcountQty = 0;
+            //TotalEndingInvtPrevailing = 0;
+            //TotalActualPcountPrevailing = 0;
+            TotalEndingInvtCost = 0;
+            TotalActualPcountCost = 0;
+
+
+            List<ConsolidatedSoiPerArea> LuzonResults = SOI.GetSoiByBrandLuzon(From, To);
+            List<ConsolidatedSoiPerAreaFormatted> LuzonFormatedView = new List<ConsolidatedSoiPerAreaFormatted>();
+            foreach (var item in LuzonResults)
+            {
+
+                string FormatPercentLkgOvr = string.Empty;
+                string formatLackingOver = string.Empty;
+                string formatVarianceCost = string.Empty;
+                string formatPercentOfCostLacking = string.Empty;
+
+                if (item.LackingOver < 0)
+                {
+                    item.LackingOver = item.LackingOver * -1;
+                    formatLackingOver = item.LackingOver.ToString("(###,##0)");
+                }
+                else
+                {
+                    formatLackingOver = item.LackingOver.ToString("###,##0");
+                }
+
+                if (item.PercentOfBookOverQty < 0)
+                {
+                    item.PercentOfBookOverQty = item.PercentOfBookOverQty * -1;
+                    FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("###,##0.00");
+                }
+
+                if (item.VarianceCost < 0)
+                {
+                    item.VarianceCost = item.VarianceCost * -1;
+                    formatVarianceCost = item.VarianceCost.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    formatVarianceCost = item.VarianceCost.ToString("###,##0.00");
+                }
+
+                if (item.PercentOfCostLacking < 0)
+                {
+                    item.PercentOfCostLacking = item.PercentOfCostLacking * -1;
+                    formatPercentOfCostLacking = item.PercentOfCostLacking.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    formatPercentOfCostLacking = item.PercentOfCostLacking.ToString("###,##0.00");
+                }
+
+                ConsolidatedSoiPerAreaFormatted rvf = new ConsolidatedSoiPerAreaFormatted
+                {
+                    Brand = item.Brand,
+                    BookQuantity = item.BookQuantity,
+                    ActualPCount = item.ActualPCount,
+
+                    LackingOver = formatLackingOver,
+                    PercentOfBookOverQty = FormatPercentLkgOvr,
+                    EndingInventory = item.EndingInventory.ToString("###,##0.00"),
+
+                    ActualPCountCost = item.ActualPCountCost.ToString(),
+                    VarianceCost = formatVarianceCost,
+                    AvePerCost = item.AvePerCost.ToString("###,##0.00"),
+                    PercentOfCostLacking = formatPercentOfCostLacking
+
+                };
+                LuzonFormatedView.Add(rvf);
+            }
+
+            GridView2.DataSource = LuzonFormatedView;
+            GridView2.DataBind();
+
+            #endregion
+
+
+            #region "Visayas Report"
+
+            TotalBookQty = 0;
+            TotalPcountQty = 0;
+            //TotalEndingInvtPrevailing = 0;
+            //TotalActualPcountPrevailing = 0;
+            TotalEndingInvtCost = 0;
+            TotalActualPcountCost = 0;
+
+
+            List<ConsolidatedSoiPerArea> VisayasResults = SOI.GetSoiByBrandVisayas(From, To);
+            List<ConsolidatedSoiPerAreaFormatted> VisayasFormatedView = new List<ConsolidatedSoiPerAreaFormatted>();
+            foreach (var item in VisayasResults)
+            {
+
+                string FormatPercentLkgOvr = string.Empty;
+                string formatLackingOver = string.Empty;
+                string formatVarianceCost = string.Empty;
+                string formatPercentOfCostLacking = string.Empty;
+
+                if (item.LackingOver < 0)
+                {
+                    item.LackingOver = item.LackingOver * -1;
+                    formatLackingOver = item.LackingOver.ToString("(###,##0)");
+                }
+                else
+                {
+                    formatLackingOver = item.LackingOver.ToString("###,##0");
+                }
+
+                if (item.PercentOfBookOverQty < 0)
+                {
+                    item.PercentOfBookOverQty = item.PercentOfBookOverQty * -1;
+                    FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("###,##0.00");
+                }
+
+                if (item.VarianceCost < 0)
+                {
+                    item.VarianceCost = item.VarianceCost * -1;
+                    formatVarianceCost = item.VarianceCost.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    formatVarianceCost = item.VarianceCost.ToString("###,##0.00");
+                }
+
+                if (item.PercentOfCostLacking < 0)
+                {
+                    item.PercentOfCostLacking = item.PercentOfCostLacking * -1;
+                    formatPercentOfCostLacking = item.PercentOfCostLacking.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    formatPercentOfCostLacking = item.PercentOfCostLacking.ToString("###,##0.00");
+                }
+
+                ConsolidatedSoiPerAreaFormatted rvf = new ConsolidatedSoiPerAreaFormatted
+                {
+                    Brand = item.Brand,
+                    BookQuantity = item.BookQuantity,
+                    ActualPCount = item.ActualPCount,
+
+                    LackingOver = formatLackingOver,
+                    PercentOfBookOverQty = FormatPercentLkgOvr,
+                    EndingInventory = item.EndingInventory.ToString("###,##0.00"),
+
+                    ActualPCountCost = item.ActualPCountCost.ToString(),
+                    VarianceCost = formatVarianceCost,
+                    AvePerCost = item.AvePerCost.ToString("###,##0.00"),
+                    PercentOfCostLacking = formatPercentOfCostLacking
+
+                };
+                VisayasFormatedView.Add(rvf);
+            }
+
+            GridView3.DataSource = VisayasFormatedView;
+            GridView3.DataBind();
+
+            #endregion
+            
+            #region "Mindanao Report"
+
+            TotalBookQty = 0;
+            TotalPcountQty = 0;
+            //TotalEndingInvtPrevailing = 0;
+            //TotalActualPcountPrevailing = 0;
+            TotalEndingInvtCost = 0;
+            TotalActualPcountCost = 0;
+
+
+            List<ConsolidatedSoiPerArea> MindanaoResults = SOI.GetSoiByBrandMindanao(From, To);
+            List<ConsolidatedSoiPerAreaFormatted> MindanaoFormatedView = new List<ConsolidatedSoiPerAreaFormatted>();
+            foreach (var item in MindanaoResults)
+            {
+
+                string FormatPercentLkgOvr = string.Empty;
+                string formatLackingOver = string.Empty;
+                string formatVarianceCost = string.Empty;
+                string formatPercentOfCostLacking = string.Empty;
+
+                if (item.LackingOver < 0)
+                {
+                    item.LackingOver = item.LackingOver * -1;
+                    formatLackingOver = item.LackingOver.ToString("(###,##0)");
+                }
+                else
+                {
+                    formatLackingOver = item.LackingOver.ToString("###,##0");
+                }
+
+                if (item.PercentOfBookOverQty < 0)
+                {
+                    item.PercentOfBookOverQty = item.PercentOfBookOverQty * -1;
+                    FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("###,##0.00");
+                }
+
+                if (item.VarianceCost < 0)
+                {
+                    item.VarianceCost = item.VarianceCost * -1;
+                    formatVarianceCost = item.VarianceCost.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    formatVarianceCost = item.VarianceCost.ToString("###,##0.00");
+                }
+
+                if (item.PercentOfCostLacking < 0)
+                {
+                    item.PercentOfCostLacking = item.PercentOfCostLacking * -1;
+                    formatPercentOfCostLacking = item.PercentOfCostLacking.ToString("(###,##0.00)");
+                }
+                else
+                {
+                    formatPercentOfCostLacking = item.PercentOfCostLacking.ToString("###,##0.00");
+                }
+
+                ConsolidatedSoiPerAreaFormatted rvf = new ConsolidatedSoiPerAreaFormatted
+                {
+                    Brand = item.Brand,
+                    BookQuantity = item.BookQuantity,
+                    ActualPCount = item.ActualPCount,
+
+                    LackingOver = formatLackingOver,
+                    PercentOfBookOverQty = FormatPercentLkgOvr,
+                    EndingInventory = item.EndingInventory.ToString("###,##0.00"),
+
+                    ActualPCountCost = item.ActualPCountCost.ToString(),
+                    VarianceCost = formatVarianceCost,
+                    AvePerCost = item.AvePerCost.ToString("###,##0.00"),
+                    PercentOfCostLacking = formatPercentOfCostLacking
+
+                };
+                MindanaoFormatedView.Add(rvf);
+            }
+
+            GridView4.DataSource = MindanaoFormatedView;
+            GridView4.DataBind();
+
+            #endregion
+
+
+
+
         }
 
       

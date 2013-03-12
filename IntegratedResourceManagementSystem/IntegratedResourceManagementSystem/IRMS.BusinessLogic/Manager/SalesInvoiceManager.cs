@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace IRMS.BusinessLogic.Manager
     {
-    public class SalesInvoiceManager
+    public class SalesInvoiceManager : LogManager<SalesInvoiceClass>
         {
         #region Accessor
         SalesInvoiceAccessor Accessor
@@ -40,7 +40,7 @@ namespace IRMS.BusinessLogic.Manager
                     }
                 else
                     {
-                    Accessor.Query.Insert(db, sales_invoice);
+                    Identity = Accessor.Query.InsertAndGetIdentity(db, sales_invoice);
                     }
                 }
             }

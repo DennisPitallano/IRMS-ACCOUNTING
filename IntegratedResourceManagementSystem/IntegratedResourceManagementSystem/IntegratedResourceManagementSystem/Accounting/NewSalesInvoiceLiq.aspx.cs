@@ -71,7 +71,10 @@ namespace IntegratedResourceManagementSystem.Accounting
                 SI.sold_to = txtSoldTo.Text;
                 SI.cust_addr = txtAddress.Text;
                 SI.prep_by = txtPreparedBy.Text;
-                SI.inv_amt = float.Parse(txtTotalAmount.Text);
+                if (txtTotalAmount.Text != string.Empty)
+                    {
+                    SI.inv_amt = float.Parse(txtTotalAmount.Text);
+                    }
                 SI.si_no = txtInvoiceNo.Text;
                 SI.si_date = DateTime.Parse(txtDate.Text);
                 SI.company = txtCompany.Text;

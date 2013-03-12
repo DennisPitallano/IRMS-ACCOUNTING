@@ -6,19 +6,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>SUMMARY OF BRAND INVENTORY REPORT </title>
-      <link href="../../Styles/toolbar-controls.css" rel="stylesheet" type="text/css" />
+    <title> CONSOLIDATED OF SOI PER AREA </title>
+    <link href="../../Styles/toolbar-controls.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .table
         {
-            font-family: Arial;
-            font-size: 10px;
+             font-size:14px;
+             font-family:Arial;
         }
-        #GridView1 th, #GridView2 th, #GridView3 th, #GridView4 th
+        #GridView1 th, #GridView2 th ,#GridView3 th,#GridView4 th
         {
-            padding: 2px 4px;
-            font-size: 12px;
-            font-weight: bold;
+            padding:2px 4px;
+            font-size:15px;
+            font-weight:bold;
+            font-family:Arial;
         }
         #GridView1 tr td, #GridView2 tr td, #GridView3 tr td, #GridView4 tr td
         {
@@ -36,12 +37,7 @@
     <form id="form1" runat="server">
     <div>
         <center>
-            <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
-        </center>
-    </div>
-    <div>
-        <center>
-            <asp:Label ID="Label1" runat="server" Text="SUMMARY OF STORE INVENTORY REPORT" Style="font-weight: 700;
+            <asp:Label ID="Label1" runat="server" Text="CONSOLIDATED OF SOI PER AREA" Style="font-weight: 700;
                 font-family: Verdana"></asp:Label>
         </center>
     </div>
@@ -59,15 +55,15 @@
     </div>
     <div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table"
-            ShowFooter="True" OnRowDataBound="GridView_RowDataBound">
+            ShowFooter="True">
             <Columns>
-                <asp:BoundField DataField="BrandName" HeaderText="BRAND NAME">
+                <asp:BoundField DataField="Brand" HeaderText="BRAND NAME">
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="BOOK QTY">
                     <ItemTemplate>
-                        <asp:Label ID="Label2" runat="server" Text='<%# GetBookQty(int.Parse(Eval("EndingInventoryVolume").ToString())).ToString("0,000") %>'></asp:Label>
+                        <asp:Label ID="Label2" runat="server" Text='<%# GetBookQty(int.Parse(Eval("BookQuantity").ToString())).ToString("#,##0") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalBookQty().ToString("0,000")%>
@@ -77,7 +73,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="ACTUAL P.COUNT QTY">
                     <ItemTemplate>
-                        <%# GetPcountQty(double.Parse(Eval("ActualCountVolume").ToString()))%>
+                        <%# GetPcountQty(double.Parse(Eval("ActualPCount").ToString())).ToString("#,##0")%>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPcountQty().ToString("0,000")%>
@@ -87,7 +83,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="QTY (LKG / OVER)">
                     <ItemTemplate>
-                        <asp:Label ID="lblLkgOverQty" runat="server" Text='<%# Eval("LkgOverQty") %>'></asp:Label>
+                        <asp:Label ID="lblLkgOverQty" runat="server" Text='<%# Eval("LackingOver") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalQtyLkgOverFormatted().ToString()%>
@@ -95,9 +91,9 @@
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="% OF BOOK QTY (LKG/ OVER)">
+                <asp:TemplateField HeaderText="% OF BOOK QTY (LKG / OVER)">
                     <ItemTemplate>
-                        <asp:Label ID="lblPercentageQty" runat="server" Text='<%# Eval("PercentageQty","{0:0}") %>'></asp:Label>
+                        <asp:Label ID="lblPercentageQty" runat="server" Text='<%# Eval("PercentOfBookOverQty") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPrecentBookQtyFormatted().ToString()%>
@@ -107,7 +103,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="ENDING INVTY">
                     <ItemTemplate>
-                        <asp:Label ID="lblEndingCost" runat="server" Text='<%# GetEndingInvtCost(double.Parse(Eval("EndingInventoryCost").ToString())).ToString("0,000.00") %>'></asp:Label>
+                        <asp:Label ID="lblEndingCost" runat="server" Text='<%# GetEndingInvtCost(double.Parse(Eval("EndingInventory").ToString())).ToString("0,000.00") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalEndingInvtCost().ToString("0,000.00")%>
@@ -115,19 +111,19 @@
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="ACTUAL P.COUNT">
+                <asp:TemplateField HeaderText="ACTUAL P.COUNT COST">
                     <ItemTemplate>
-                        <%# GetActualPcountCost(double.Parse(Eval("ActualCountCost").ToString()))%>
+                        <asp:Label ID="Label22" runat="server" Text='<%# GetActualPcountCost(double.Parse(Eval("ActualPCountCost").ToString())).ToString("0,000.00") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
-                        <%# GetTotalActualPcountCost().ToString()%>
+                        <%# GetTotalActualPcountCost().ToString("0,000.00")%>
                     </FooterTemplate>
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="VARIANCE COST">
                     <ItemTemplate>
-                        <asp:Label ID="lblVarianceCost" runat="server" Text='<%# Eval("VarianceCost") %>'></asp:Label>
+                        <asp:Label ID="lblVarianceCost" runat="server" Text='<%# Eval("VarianceCost","{0:0,000}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalVarianceCostFormatted().ToString()%>
@@ -137,17 +133,18 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="AVE.PER COST">
                     <ItemTemplate>
-                        <asp:Label ID="Label10" runat="server" Text='<%# Bind("AveragePerPc") %>'></asp:Label>
+                        <asp:Label ID="Label10" runat="server" Text='<%# Bind("AvePerCost","{0:0,000.00}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
-                        <%# GetTotalAveragePerPcount().ToString()%>
+                    
+                         <%# GetTotalAveragePerPcount().ToString("#,###.##")%>
                     </FooterTemplate>
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="% OF COST LKG. (LKG / BOOK)">
                     <ItemTemplate>
-                        <asp:Label ID="lblCostLkgBook" runat="server" Text='<%# Eval("PercentCostLkgBook","{0:0}") %>'></asp:Label>
+                        <asp:Label ID="lblCostLkgBook" runat="server" Text='<%# Eval("PercentOfCostLacking","{0:0,000.00}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPercentCostLkgFormatted().ToString()%>
@@ -167,6 +164,9 @@
             <FooterStyle BorderStyle="Solid" Wrap="False" />
             <HeaderStyle Font-Size="Medium" Font-Underline="False" />
         </asp:GridView>
+
+
+
     </div>
     <br />
     <div>
@@ -175,15 +175,16 @@
     </div>
     <div>
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CssClass="table"
-            ShowFooter="True" OnRowDataBound="GridView_RowDataBound">
+            ShowFooter="True">
             <Columns>
-                <asp:BoundField DataField="BrandName" HeaderText="BRAND NAME">
+                <asp:BoundField DataField="Brand" HeaderText="BRAND NAME">
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="BOOK QTY">
                     <ItemTemplate>
-                        <asp:Label ID="Label2" runat="server" Text='<%# GetBookQty(int.Parse(Eval("EndingInventoryVolume").ToString())).ToString("0,000") %>'></asp:Label>
+                        <asp:Label ID="Label23" runat="server" 
+                            Text='<%# GetBookQty(int.Parse(Eval("BookQuantity").ToString())).ToString("0,000") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalBookQty().ToString("0,000")%>
@@ -193,7 +194,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="ACTUAL P.COUNT QTY">
                     <ItemTemplate>
-                        <%# GetPcountQty(double.Parse(Eval("ActualCountVolume").ToString()))%>
+                        <%# GetPcountQty(double.Parse(Eval("ActualPCount").ToString()))%>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPcountQty().ToString("0,000")%>
@@ -203,7 +204,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="QTY (LKG / OVER)">
                     <ItemTemplate>
-                        <asp:Label ID="lblLkgOverQty" runat="server" Text='<%# Eval("LkgOverQty") %>'></asp:Label>
+                        <asp:Label ID="lblLkgOverQty0" runat="server" Text='<%# Eval("LackingOver") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalQtyLkgOverFormatted().ToString()%>
@@ -213,7 +214,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="% OF BOOK QTY (LKG/ OVER)">
                     <ItemTemplate>
-                        <asp:Label ID="lblPercentageQty" runat="server" Text='<%# Eval("PercentageQty","{0:0}") %>'></asp:Label>
+                        <asp:Label ID="lblPercentageQty0" runat="server" 
+                            Text='<%# Eval("PercentOfBookOverQty","{0:0,000}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPrecentBookQtyFormatted().ToString()%>
@@ -223,7 +225,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="ENDING INVTY">
                     <ItemTemplate>
-                        <asp:Label ID="lblEndingCost" runat="server" Text='<%# GetEndingInvtCost(double.Parse(Eval("EndingInventoryCost").ToString())).ToString("0,000.00") %>'></asp:Label>
+                        <asp:Label ID="lblEndingCost0" runat="server" 
+                            Text='<%# GetEndingInvtCost(double.Parse(Eval("EndingInventory").ToString())).ToString("0,000.00") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalEndingInvtCost().ToString("0,000.00")%>
@@ -231,19 +234,21 @@
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="ACTUAL P.COUNT">
+                <asp:TemplateField HeaderText="ACTUAL P.COUNT COST">
                     <ItemTemplate>
-                        <%# GetActualPcountCost(double.Parse(Eval("ActualCountCost").ToString()))%>
+                        <asp:Label ID="Label24" runat="server" 
+                            Text='<%# GetActualPcountCost(double.Parse(Eval("ActualPCountCost").ToString())).ToString("0,000.00") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
-                        <%# GetTotalActualPcountCost().ToString()%>
+                        <%# GetTotalActualPcountCost().ToString("0,000.00")%>
                     </FooterTemplate>
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="VARIANCE COST">
                     <ItemTemplate>
-                        <asp:Label ID="lblVarianceCost" runat="server" Text='<%# Eval("VarianceCost") %>'></asp:Label>
+                        <asp:Label ID="lblVarianceCost0" runat="server" 
+                            Text='<%# Eval("VarianceCost","{0:0,000}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalVarianceCostFormatted().ToString()%>
@@ -253,17 +258,20 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="AVE.PER COST">
                     <ItemTemplate>
-                        <asp:Label ID="Label12" runat="server" Text='<%# Bind("AveragePerPc") %>'></asp:Label>
+                        <asp:Label ID="Label25" runat="server" 
+                            Text='<%# Bind("AvePerCost","{0:0,000.00}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
-                        <%# GetTotalAveragePerPcount().ToString()%>
+                       
+                         <%# GetTotalAveragePerPcount().ToString("#,###.##")%>
                     </FooterTemplate>
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="% OF COST LKG. (LKG / BOOK)">
                     <ItemTemplate>
-                        <asp:Label ID="lblCostLkgBook" runat="server" Text='<%# Eval("PercentCostLkgBook","{0:0}") %>'></asp:Label>
+                        <asp:Label ID="lblCostLkgBook0" runat="server" 
+                            Text='<%# Eval("PercentOfCostLacking","{0:0,000.00}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPercentCostLkgFormatted().ToString()%>
@@ -283,6 +291,9 @@
             <FooterStyle BorderStyle="Solid" Wrap="False" />
             <HeaderStyle Font-Size="Medium" Font-Underline="False" />
         </asp:GridView>
+
+
+
     </div>
     <br />
     <div>
@@ -291,15 +302,16 @@
     </div>
     <div>
         <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" CssClass="table"
-            ShowFooter="True" OnRowDataBound="GridView_RowDataBound">
+            ShowFooter="True">
             <Columns>
-                <asp:BoundField DataField="BrandName" HeaderText="BRAND NAME">
+                <asp:BoundField DataField="Brand" HeaderText="BRAND NAME">
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="BOOK QTY">
                     <ItemTemplate>
-                        <asp:Label ID="Label13" runat="server" Text='<%# GetBookQty(int.Parse(Eval("EndingInventoryVolume").ToString())).ToString("0,000") %>'></asp:Label>
+                        <asp:Label ID="Label26" runat="server" 
+                            Text='<%# GetBookQty(int.Parse(Eval("BookQuantity").ToString())).ToString("0,000") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalBookQty().ToString("0,000")%>
@@ -309,7 +321,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="ACTUAL P.COUNT QTY">
                     <ItemTemplate>
-                        <%# GetPcountQty(double.Parse(Eval("ActualCountVolume").ToString()))%>
+                        <%# GetPcountQty(double.Parse(Eval("ActualPCount").ToString()))%>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPcountQty().ToString("0,000")%>
@@ -319,7 +331,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="QTY (LKG / OVER)">
                     <ItemTemplate>
-                        <asp:Label ID="lblLkgOverQty" runat="server" Text='<%# Eval("LkgOverQty","{0:0,000}") %>'></asp:Label>
+                        <asp:Label ID="lblLkgOverQty1" runat="server" Text='<%# Eval("LackingOver") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalQtyLkgOverFormatted().ToString()%>
@@ -329,7 +341,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="% OF BOOK QTY (LKG/ OVER)">
                     <ItemTemplate>
-                        <asp:Label ID="lblPercentageQty" runat="server" Text='<%# Eval("PercentageQty","{0:0}") %>'></asp:Label>
+                        <asp:Label ID="lblPercentageQty1" runat="server" 
+                            Text='<%# Eval("PercentOfBookOverQty","{0:0,000}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPrecentBookQtyFormatted().ToString()%>
@@ -339,7 +352,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="ENDING INVTY">
                     <ItemTemplate>
-                        <asp:Label ID="lblEndingCost" runat="server" Text='<%# GetEndingInvtCost(double.Parse(Eval("EndingInventoryCost").ToString())).ToString("0,000.00") %>'></asp:Label>
+                        <asp:Label ID="lblEndingCost1" runat="server" 
+                            Text='<%# GetEndingInvtCost(double.Parse(Eval("EndingInventory").ToString())).ToString("0,000.00") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalEndingInvtCost().ToString("0,000.00")%>
@@ -347,19 +361,21 @@
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="ACTUAL P.COUNT">
+                <asp:TemplateField HeaderText="ACTUAL P.COUNT COST">
                     <ItemTemplate>
-                        <%# GetActualPcountCost(double.Parse(Eval("ActualCountCost").ToString()))%>
+                        <asp:Label ID="Label27" runat="server" 
+                            Text='<%# GetActualPcountCost(double.Parse(Eval("ActualPCountCost").ToString())).ToString("0,000.00") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
-                        <%# GetTotalActualPcountCost().ToString()%>
+                        <%# GetTotalActualPcountCost().ToString("0,000.00")%>
                     </FooterTemplate>
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="VARIANCE COST">
                     <ItemTemplate>
-                        <asp:Label ID="lblVarianceCost" runat="server" Text='<%# Eval("VarianceCost","{0:0,000.00}") %>'></asp:Label>
+                        <asp:Label ID="lblVarianceCost1" runat="server" 
+                            Text='<%# Eval("VarianceCost","{0:0,000}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalVarianceCostFormatted().ToString()%>
@@ -369,17 +385,20 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="AVE.PER COST">
                     <ItemTemplate>
-                        <asp:Label ID="Label14" runat="server" Text='<%# Bind("AveragePerPc") %>'></asp:Label>
+                        <asp:Label ID="Label28" runat="server" 
+                            Text='<%# Bind("AvePerCost","{0:0,000.00}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
-                        <%# GetTotalAveragePerPcount().ToString()%>
+                     
+                         <%# GetTotalAveragePerPcount().ToString("#,###.##")%>
                     </FooterTemplate>
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="% OF COST LKG. (LKG / BOOK)">
                     <ItemTemplate>
-                        <asp:Label ID="lblCostLkgBook" runat="server" Text='<%# Eval("PercentCostLkgBook","{0:0}") %>'></asp:Label>
+                        <asp:Label ID="lblCostLkgBook1" runat="server" 
+                            Text='<%# Eval("PercentOfCostLacking","{0:0,000.00}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPercentCostLkgFormatted().ToString()%>
@@ -388,7 +407,7 @@
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
             </Columns>
-            <EditRowStyle />
+            <EditRowStyle Font-Size="XX-Small" />
             <EmptyDataTemplate>
                 <div style="width: 370px; margin-top: 15px; border: 1px solid #FFCC66; height: 55px;
                     line-height: 55px; background-color: #FFFFCC; color: #C46200; text-align: center;">
@@ -399,6 +418,9 @@
             <FooterStyle BorderStyle="Solid" Wrap="False" />
             <HeaderStyle Font-Size="Medium" Font-Underline="False" />
         </asp:GridView>
+
+
+
     </div>
     <br />
     <div>
@@ -407,15 +429,16 @@
     </div>
     <div>
         <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" CssClass="table"
-            ShowFooter="True" OnRowDataBound="GridView_RowDataBound">
+            ShowFooter="True">
             <Columns>
-                <asp:BoundField DataField="BrandName" HeaderText="BRAND NAME">
+                <asp:BoundField DataField="Brand" HeaderText="BRAND NAME">
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="BOOK QTY">
                     <ItemTemplate>
-                        <asp:Label ID="Label15" runat="server" Text='<%# GetBookQty(int.Parse(Eval("EndingInventoryVolume").ToString())).ToString("0,000") %>'></asp:Label>
+                        <asp:Label ID="Label29" runat="server" 
+                            Text='<%# GetBookQty(int.Parse(Eval("BookQuantity").ToString())).ToString("0,000") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalBookQty().ToString("0,000")%>
@@ -425,7 +448,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="ACTUAL P.COUNT QTY">
                     <ItemTemplate>
-                        <%# GetPcountQty(double.Parse(Eval("ActualCountVolume").ToString()))%>
+                        <%# GetPcountQty(double.Parse(Eval("ActualPCount").ToString()))%>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPcountQty().ToString("0,000")%>
@@ -435,7 +458,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="QTY (LKG / OVER)">
                     <ItemTemplate>
-                        <asp:Label ID="lblLkgOverQty" runat="server" Text='<%# Eval("LkgOverQty","{0:0,000}") %>'></asp:Label>
+                        <asp:Label ID="lblLkgOverQty2" runat="server" Text='<%# Eval("LackingOver") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalQtyLkgOverFormatted().ToString()%>
@@ -445,7 +468,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="% OF BOOK QTY (LKG/ OVER)">
                     <ItemTemplate>
-                        <asp:Label ID="lblPercentageQty" runat="server" Text='<%# Eval("PercentageQty","{0:0}") %>'></asp:Label>
+                        <asp:Label ID="lblPercentageQty2" runat="server" 
+                            Text='<%# Eval("PercentOfBookOverQty","{0:0,000}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPrecentBookQtyFormatted().ToString()%>
@@ -455,7 +479,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="ENDING INVTY">
                     <ItemTemplate>
-                        <asp:Label ID="lblEndingCost2" runat="server" Text='<%# GetEndingInvtCost(double.Parse(Eval("EndingInventoryCost").ToString())).ToString("0,000.00") %>'></asp:Label>
+                        <asp:Label ID="lblEndingCost2" runat="server" 
+                            Text='<%# GetEndingInvtCost(double.Parse(Eval("EndingInventory").ToString())).ToString("0,000.00") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalEndingInvtCost().ToString("0,000.00")%>
@@ -463,19 +488,20 @@
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="ACTUAL P.COUNT">
+                <asp:TemplateField HeaderText="ACTUAL P.COUNT COST">
                     <ItemTemplate>
-                        <%# GetActualPcountCost(double.Parse(Eval("ActualCountCost").ToString()))%>
+                        <asp:Label ID="Label30" runat="server" 
+                            Text='<%# GetActualPcountCost(double.Parse(Eval("ActualPCountCost").ToString())).ToString("0,000.00") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
-                        <%# GetTotalActualPcountCost().ToString()%>
+                        <%# GetTotalActualPcountCost().ToString("0,000.00")%>
                     </FooterTemplate>
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="VARIANCE COST">
                     <ItemTemplate>
-                        <asp:Label ID="lblVarianceCost" runat="server" Text='<%# Eval("VarianceCost","{0:0,000.00}") %>'></asp:Label>
+                        <asp:Label ID="lblVarianceCost2" runat="server" Text='<%# Eval("VarianceCost","{0:0,000}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalVarianceCostFormatted().ToString()%>
@@ -485,17 +511,19 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="AVE.PER COST">
                     <ItemTemplate>
-                        <asp:Label ID="Label16" runat="server" Text='<%# Bind("AveragePerPc") %>'></asp:Label>
+                        <asp:Label ID="Label31" runat="server" 
+                            Text='<%# Bind("AvePerCost","{0:0,000.00}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
-                        <%# GetTotalAveragePerPcount().ToString()%>
+                        <%# GetTotalAveragePerPcount().ToString("#,###.##")%>
                     </FooterTemplate>
                     <HeaderStyle Wrap="False" />
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="% OF COST LKG. (LKG / BOOK)">
                     <ItemTemplate>
-                        <asp:Label ID="lblCostLkgBook" runat="server" Text='<%# Eval("PercentCostLkgBook","{0:0}") %>'></asp:Label>
+                        <asp:Label ID="lblCostLkgBook2" runat="server" 
+                            Text='<%# Eval("PercentOfCostLacking","{0:0,000.00}") %>'></asp:Label>
                     </ItemTemplate>
                     <FooterTemplate>
                         <%# GetTotalPercentCostLkgFormatted().ToString()%>
@@ -504,7 +532,7 @@
                     <ItemStyle Wrap="False" />
                 </asp:TemplateField>
             </Columns>
-            <EditRowStyle />
+            <EditRowStyle Font-Size="XX-Small" />
             <EmptyDataTemplate>
                 <div style="width: 370px; margin-top: 15px; border: 1px solid #FFCC66; height: 55px;
                     line-height: 55px; background-color: #FFFFCC; color: #C46200; text-align: center;">
@@ -515,14 +543,14 @@
             <FooterStyle BorderStyle="Solid" Wrap="False" />
             <HeaderStyle Font-Size="Medium" Font-Underline="False" />
         </asp:GridView>
+
+
+
     </div>
-
     <br />
-
-     <div style="text-align:center; margin-top:10px;">
+    <div style="text-align: center; margin-top: 10px;">
         <input id="btnPrint" type="button" class="btnPrint" value="PRINT" onclick="window.print()" />
     </div>
-
     </form>
 </body>
 </html>

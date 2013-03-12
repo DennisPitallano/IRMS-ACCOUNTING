@@ -27,7 +27,7 @@
 						<asp:ImageButton ID="imgBtnSearch" runat="server" ImageAlign="AbsBottom" ImageUrl="~/Resources/search.png"
 							ToolTip="SEARCH" onclick="imgBtnSearch_Click" />
 					</div>
-					<div style="float: left; width: 719px;">
+					<div style="float: left; width: 349px;">
 						<div style="float: left; margin-right: 2px;">
 							<a style="text-decoration: none;" href="NewSalesInvoiceLiq.aspx" title="New Sales Invoice">
 								<input id="btnNewSalesInvoice" class="btnNew" type="button" value="NEW" />
@@ -64,7 +64,7 @@
 					</div>
                    <asp:HiddenField ID="HiddenField_btnDelete" runat="server" />
 				
-    </div>
+                    </div>
      <div class="titleList" runat ="server" id="divtittle">
 						<img src="../Resources/panels.png" align="top"/>
 						SALES INVOICE FOR LIQUIDATION - UNPOSTED RECORD(S)

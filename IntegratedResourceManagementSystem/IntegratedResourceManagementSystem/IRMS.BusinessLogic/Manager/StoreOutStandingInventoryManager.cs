@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using BLToolkit.Data;
 using IRMS.BusinessLogic.DataAccess;
 using IRMS.ObjectModel;
+using IRMS.ObjectModel.Views;
 
 namespace IRMS.BusinessLogic.Manager
 {
@@ -414,11 +415,10 @@ namespace IRMS.BusinessLogic.Manager
 
         #endregion search soi
 
-        #region "SUMMARY OF STORE INVENTORY REPORT"
+        #region "SUMMARY OF SOI PER BRAND REPORT"
 
-        public IEnumerable<object> GetSoiByStoreMMDS(string BrandName, int CustType, DateTime From, DateTime To)
+        public List<SummarySoiPerBrand> GetSummarySoiPerBrandMMDS(string BrandName, int CustType, DateTime From, DateTime To)
         {
-
             CustomerManager CI = new CustomerManager();
             CustomerInventoryGroupManager CIG = new CustomerInventoryGroupManager();
             InventoryGroupManager IGM = new InventoryGroupManager();
@@ -438,28 +438,28 @@ namespace IRMS.BusinessLogic.Manager
                            where InvGrp.InventoryGroupId.Equals(CustType) && Soi.Brand.Equals(BrandName) && Cus.AGNumber.Equals(1)
                            && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
 
-                           select new
+                           select new SummarySoiPerBrand
                            {
                                CustomerNames = Soi.CustomerName,
                                Brand = Soi.Brand,
-                               DateRecorded = Soi.DateRecorded,
-                               EndingInventoryVolume = Soi.EndingInventoryVolume,
-                               ActualCountVolume = Soi.ActualCountVolume,
-                               LkgOverQty = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
-                               PercentageQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
+                               DateRecorded = Soi.DateRecorded.Date,
+                               BookQuantity = (long)Soi.EndingInventoryVolume,
+                               ActualPCount = (long)Soi.ActualCountVolume,
+                               LackingOver = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
+                               PercentOfBookOverQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
                                    //Soi.ActualCountVolume == 0 ? 0 :
                                                (Soi.ActualCountVolume - Soi.EndingInventoryVolume) / Soi.EndingInventoryVolume
                                                ),
                                //EndingInventoryValue = Soi.EndingInventoryValue,
                                //ActualCountValue = Soi.ActualCountValue,
                                //VarianceValue = Soi.ActualCountValue - Soi.EndingInventoryValue,
-                               EndingInventoryCost = Soi.EndingInventoryTotalCost,
-                               ActualCountCost = Soi.ActualCostTotalCost,
+                               EndingInventory = Soi.EndingInventoryTotalCost,
+                               ActualPCountCost = Soi.ActualCostTotalCost,
                                VarianceCost = Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost,
-                               AveragePerPc = (Soi.ActualCostTotalCost == 0 ? 0 :
+                               AvePerCost = (Soi.ActualCostTotalCost == 0 ? 0 :
                                                Soi.ActualCountVolume == 0 ? 0 :
                                                Soi.ActualCostTotalCost / Soi.ActualCountVolume),
-                               PercentCostLkgBook = ( // Soi.ActualCostTotalCost == 0 ? 0 :
+                               PercentOfCostLacking = ( // Soi.ActualCostTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryValue == 0 ? 0 :
                                                        (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
@@ -468,9 +468,8 @@ namespace IRMS.BusinessLogic.Manager
             return Results;
         }
 
-        public IEnumerable<object> GetSoiByStoreLuzon(string BrandName, int CustType, DateTime From, DateTime To)
+        public List<SummarySoiPerBrand> GetSummarySoiPerBrandLuzon(string BrandName, int CustType, DateTime From, DateTime To)
         {
-
             CustomerManager CI = new CustomerManager();
             CustomerInventoryGroupManager CIG = new CustomerInventoryGroupManager();
             InventoryGroupManager IGM = new InventoryGroupManager();
@@ -488,30 +487,30 @@ namespace IRMS.BusinessLogic.Manager
 
 
                            where InvGrp.InventoryGroupId.Equals(CustType) && Soi.Brand.Equals(BrandName) && (Cus.AGNumber.Equals(2) || Cus.AGNumber.Equals(3))
-                           && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
+                            && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
 
-                           select new
+                           select new SummarySoiPerBrand
                            {
                                CustomerNames = Soi.CustomerName,
                                Brand = Soi.Brand,
-                               DateRecorded = Soi.DateRecorded,
-                               EndingInventoryVolume = Soi.EndingInventoryVolume,
-                               ActualCountVolume = Soi.ActualCountVolume,
-                               LkgOverQty = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
-                               PercentageQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
+                               DateRecorded = Soi.DateRecorded.Date,
+                               BookQuantity = (long)Soi.EndingInventoryVolume,
+                               ActualPCount = (long)Soi.ActualCountVolume,
+                               LackingOver = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
+                               PercentOfBookOverQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
                                    //Soi.ActualCountVolume == 0 ? 0 :
                                                (Soi.ActualCountVolume - Soi.EndingInventoryVolume) / Soi.EndingInventoryVolume
                                                ),
                                //EndingInventoryValue = Soi.EndingInventoryValue,
                                //ActualCountValue = Soi.ActualCountValue,
                                //VarianceValue = Soi.ActualCountValue - Soi.EndingInventoryValue,
-                               EndingInventoryCost = Soi.EndingInventoryTotalCost,
-                               ActualCountCost = Soi.ActualCostTotalCost,
+                               EndingInventory = Soi.EndingInventoryTotalCost,
+                               ActualPCountCost = Soi.ActualCostTotalCost,
                                VarianceCost = Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost,
-                               AveragePerPc = (Soi.ActualCostTotalCost == 0 ? 0 :
+                               AvePerCost = (Soi.ActualCostTotalCost == 0 ? 0 :
                                                Soi.ActualCountVolume == 0 ? 0 :
                                                Soi.ActualCostTotalCost / Soi.ActualCountVolume),
-                               PercentCostLkgBook = ( // Soi.ActualCostTotalCost == 0 ? 0 :
+                               PercentOfCostLacking = ( // Soi.ActualCostTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryValue == 0 ? 0 :
                                                        (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
@@ -520,9 +519,8 @@ namespace IRMS.BusinessLogic.Manager
             return Results;
         }
 
-        public IEnumerable<object> GetSoiByStoreVisayas(string BrandName, int CustType, DateTime From, DateTime To)
+        public List<SummarySoiPerBrand> GetSummarySoiPerBrandVisayas(string BrandName, int CustType, DateTime From, DateTime To)
         {
-
             CustomerManager CI = new CustomerManager();
             CustomerInventoryGroupManager CIG = new CustomerInventoryGroupManager();
             InventoryGroupManager IGM = new InventoryGroupManager();
@@ -542,28 +540,28 @@ namespace IRMS.BusinessLogic.Manager
                            where InvGrp.InventoryGroupId.Equals(CustType) && Soi.Brand.Equals(BrandName) && Cus.AGNumber.Equals(4)
                            && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
 
-                           select new
+                           select new SummarySoiPerBrand
                            {
                                CustomerNames = Soi.CustomerName,
                                Brand = Soi.Brand,
-                               DateRecorded = Soi.DateRecorded,
-                               EndingInventoryVolume = Soi.EndingInventoryVolume,
-                               ActualCountVolume = Soi.ActualCountVolume,
-                               LkgOverQty = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
-                               PercentageQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
+                               DateRecorded = Soi.DateRecorded.Date,
+                               BookQuantity = (long)Soi.EndingInventoryVolume,
+                               ActualPCount = (long)Soi.ActualCountVolume,
+                               LackingOver = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
+                               PercentOfBookOverQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
                                    //Soi.ActualCountVolume == 0 ? 0 :
                                                (Soi.ActualCountVolume - Soi.EndingInventoryVolume) / Soi.EndingInventoryVolume
                                                ),
                                //EndingInventoryValue = Soi.EndingInventoryValue,
                                //ActualCountValue = Soi.ActualCountValue,
                                //VarianceValue = Soi.ActualCountValue - Soi.EndingInventoryValue,
-                               EndingInventoryCost = Soi.EndingInventoryTotalCost,
-                               ActualCountCost = Soi.ActualCostTotalCost,
+                               EndingInventory = Soi.EndingInventoryTotalCost,
+                               ActualPCountCost = Soi.ActualCostTotalCost,
                                VarianceCost = Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost,
-                               AveragePerPc = (Soi.ActualCostTotalCost == 0 ? 0 :
+                               AvePerCost = (Soi.ActualCostTotalCost == 0 ? 0 :
                                                Soi.ActualCountVolume == 0 ? 0 :
                                                Soi.ActualCostTotalCost / Soi.ActualCountVolume),
-                               PercentCostLkgBook = ( // Soi.ActualCostTotalCost == 0 ? 0 :
+                               PercentOfCostLacking = ( // Soi.ActualCostTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryValue == 0 ? 0 :
                                                        (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
@@ -572,9 +570,8 @@ namespace IRMS.BusinessLogic.Manager
             return Results;
         }
 
-        public IEnumerable<object> GetSoiByStoreMindanao(string BrandName, int CustType, DateTime From, DateTime To)
+        public List<SummarySoiPerBrand> GetSummarySoiPerBrandMindanao(string BrandName, int CustType, DateTime From, DateTime To)
         {
-
             CustomerManager CI = new CustomerManager();
             CustomerInventoryGroupManager CIG = new CustomerInventoryGroupManager();
             InventoryGroupManager IGM = new InventoryGroupManager();
@@ -594,28 +591,28 @@ namespace IRMS.BusinessLogic.Manager
                            where InvGrp.InventoryGroupId.Equals(CustType) && Soi.Brand.Equals(BrandName) && Cus.AGNumber.Equals(5)
                            && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
 
-                           select new
+                           select new SummarySoiPerBrand
                            {
                                CustomerNames = Soi.CustomerName,
                                Brand = Soi.Brand,
-                               DateRecorded = Soi.DateRecorded,
-                               EndingInventoryVolume = Soi.EndingInventoryVolume,
-                               ActualCountVolume = Soi.ActualCountVolume,
-                               LkgOverQty = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
-                               PercentageQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
+                               DateRecorded = Soi.DateRecorded.Date,
+                               BookQuantity = (long)Soi.EndingInventoryVolume,
+                               ActualPCount = (long)Soi.ActualCountVolume,
+                               LackingOver = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
+                               PercentOfBookOverQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
                                    //Soi.ActualCountVolume == 0 ? 0 :
                                                (Soi.ActualCountVolume - Soi.EndingInventoryVolume) / Soi.EndingInventoryVolume
                                                ),
-                               EndingInventoryValue = Soi.EndingInventoryValue,
-                               ActualCountValue = Soi.ActualCountValue,
-                               VarianceValue = Soi.ActualCountValue - Soi.EndingInventoryValue,
-                               EndingInventoryCost = Soi.EndingInventoryTotalCost,
-                               ActualCountCost = Soi.ActualCostTotalCost,
+                               //EndingInventoryValue = Soi.EndingInventoryValue,
+                               //ActualCountValue = Soi.ActualCountValue,
+                               //VarianceValue = Soi.ActualCountValue - Soi.EndingInventoryValue,
+                               EndingInventory = Soi.EndingInventoryTotalCost,
+                               ActualPCountCost = Soi.ActualCostTotalCost,
                                VarianceCost = Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost,
-                               AveragePerPc = (Soi.ActualCostTotalCost == 0 ? 0 :
+                               AvePerCost = (Soi.ActualCostTotalCost == 0 ? 0 :
                                                Soi.ActualCountVolume == 0 ? 0 :
                                                Soi.ActualCostTotalCost / Soi.ActualCountVolume),
-                               PercentCostLkgBook = ( // Soi.ActualCostTotalCost == 0 ? 0 :
+                               PercentOfCostLacking = ( // Soi.ActualCostTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryValue == 0 ? 0 :
                                                        (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
@@ -624,14 +621,13 @@ namespace IRMS.BusinessLogic.Manager
             return Results;
         }
 
-
         #endregion
 
         #region "CONSOLIDATED OF SOI REPORT"
 
-        public IEnumerable<object> GetSoiByBrandMMDS(DateTime From, DateTime To)
+        public List<ConsolidatedSoiPerArea> GetSoiByBrandMMDS(DateTime From, DateTime To)
         {
-            
+
             BrandManager BM = new BrandManager();
             CustomerManager CI = new CustomerManager();
 
@@ -654,50 +650,57 @@ namespace IRMS.BusinessLogic.Manager
                            }).ToList();
 
 
-             var Results = (from X in BM.Brands()
-                          select new
-                          {
-                              BrandName = X.BrandDescription,
-                              EndingInventoryVolume = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
+            List<ConsolidatedSoiPerArea> Results = (from X in BM.Brands()
+            select new ConsolidatedSoiPerArea
+                           {
+                              Brand = X.BrandDescription,
+                              BookQuantity =(long) Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
 
-                              ActualCountVolume = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume),
-                              LkgOverQty = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
-                                           -
-                                           Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),                                         
-                              PercentageQty = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
-                                               -
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0:
+                              ActualPCount  =(long) Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume),
+                              LackingOver  = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
+                                            -
+                                            Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
+                              PercentOfBookOverQty   =
 
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)) 
-                                               -
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
-                                              /
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
-                              EndingInventoryCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
-                              ActualCountCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost),                                                           
-                              VarianceCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
-                                             -
-                                             Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),                              
-                              AveragePerPc = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(A => A.ActualCountCost)) == 0 ? 0:
-                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(V => V.ActualCountVolume)) == 0 ? 0:
-                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)) 
-                                              /
-                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(O => O.ActualCountVolume)),
-                              PercentCostLkgBook = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                                   -
-                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0:                                                 
-                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)) 
+                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
+                                                -
+                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
+
+                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
+                                                -
+                                               Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
+                                               /
+                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
+                                               
+
+
+                              EndingInventory  = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
+                              ActualPCountCost  = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost),
+                               VarianceCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                              -
+                                              Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
+                              AvePerCost  = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(A => A.ActualCountCost)) == 0 ? 0 :
+                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(V => V.ActualCountVolume)) == 0 ? 0 :
+                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
+                                               /
+                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(O => O.ActualCountVolume)),
+
+                              PercentOfCostLacking  = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
                                                     -
-                                                    (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
-                                                    /
-                                                    (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                                     Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
+                                                    
+                                                    (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                     -
+                                                     Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                                     /
+                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
 
-                          }).ToList();
+                           }).ToList();
 
-            return Results;         
+            return Results;
         }
 
-        public IEnumerable<object> GetSoiByBrandLuzon(DateTime From, DateTime To)
+        public List<ConsolidatedSoiPerArea> GetSoiByBrandLuzon(DateTime From, DateTime To)
         {
             BrandManager BM = new BrandManager();
             CustomerManager CI = new CustomerManager();
@@ -721,50 +724,57 @@ namespace IRMS.BusinessLogic.Manager
                            }).ToList();
 
 
-            var Results = (from X in BM.Brands()
-                           select new
-                           {
-                               BrandName = X.BrandDescription,
-                               EndingInventoryVolume = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
-                               ActualCountVolume = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume),
-                               LkgOverQty = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
-                                            -
-                                            Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
-                               PercentageQty = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
-                                                -
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
+            List<ConsolidatedSoiPerArea> Results = (from X in BM.Brands()
+            select new ConsolidatedSoiPerArea
+                                        {
+                                            Brand = X.BrandDescription,
+                                            BookQuantity = (long)Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
 
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
-                                                -
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
-                                               /
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
-                               EndingInventoryCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
-                               ActualCountCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost),
-                               VarianceCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
-                                              -
-                                              Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
-                               AveragePerPc = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(A => A.ActualCountCost)) == 0 ? 0 :
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(V => V.ActualCountVolume)) == 0 ? 0 :
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                               /
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(O => O.ActualCountVolume)),
-                               PercentCostLkgBook = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                                    -
-                                                    (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
-                                                    (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                                     -
-                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
-                                                     /
-                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                            ActualPCount = (long)Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume),
+                                            LackingOver = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
+                                                          -
+                                                          Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
+                                            PercentOfBookOverQty =
 
-                           }).ToList();
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
+                                                              -
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
 
-            return Results;         
- 
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
+                                                              -
+                                                             Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
+                                                             /
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
+
+
+
+                                            EndingInventory = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
+                                            ActualPCountCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost),
+                                            VarianceCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                           -
+                                                           Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
+                                            AvePerCost = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(A => A.ActualCountCost)) == 0 ? 0 :
+                                                            (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(V => V.ActualCountVolume)) == 0 ? 0 :
+                                                            (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
+                                                             /
+                                                            (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(O => O.ActualCountVolume)),
+
+                                            PercentOfCostLacking = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                                  -
+                                                                   Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
+
+                                                                  (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                                   -
+                                                                   Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                                                   /
+                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+
+                                        }).ToList();
+            return Results;
+
         }
 
-        public IEnumerable<object> GetSoiByBrandVisayas(DateTime From, DateTime To)
+        public List<ConsolidatedSoiPerArea> GetSoiByBrandVisayas(DateTime From, DateTime To)
         {
             BrandManager BM = new BrandManager();
             CustomerManager CI = new CustomerManager();
@@ -788,49 +798,58 @@ namespace IRMS.BusinessLogic.Manager
                            }).ToList();
 
 
-            var Results = (from X in BM.Brands()
-                           select new
-                           {
-                               BrandName = X.BrandDescription,
-                               EndingInventoryVolume = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
-                               ActualCountVolume = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume),
-                               LkgOverQty = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
-                                            -
-                                            Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
-                               PercentageQty = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
-                                                -
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
+            List<ConsolidatedSoiPerArea> Results = (from X in BM.Brands()
+            select new ConsolidatedSoiPerArea
+                                        {
+                                            Brand = X.BrandDescription,
+                                            BookQuantity = (long)Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
 
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
-                                                -
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
-                                               /
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
-                               EndingInventoryCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
-                               ActualCountCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost),
-                               VarianceCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
-                                              -
-                                              Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
-                               AveragePerPc = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(A => A.ActualCountCost)) == 0 ? 0 :
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(V => V.ActualCountVolume)) == 0 ? 0 :
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                               /
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(O => O.ActualCountVolume)),
-                               PercentCostLkgBook = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                                    -
-                                                    (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
-                                                    (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                                     -
-                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
-                                                     /
-                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
-                           }).ToList();
+                                            ActualPCount = (long)Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume),
+                                            LackingOver = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
+                                                          -
+                                                          Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
+                                            PercentOfBookOverQty =
 
-            return Results;     
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
+                                                              -
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
+
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
+                                                              -
+                                                             Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
+                                                             /
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
+
+
+
+                                            EndingInventory = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
+                                            ActualPCountCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost),
+                                            VarianceCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                           -
+                                                           Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
+                                            AvePerCost = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(A => A.ActualCountCost)) == 0 ? 0 :
+                                                            (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(V => V.ActualCountVolume)) == 0 ? 0 :
+                                                            (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
+                                                             /
+                                                            (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(O => O.ActualCountVolume)),
+
+                                            PercentOfCostLacking = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                                  -
+                                                                   Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
+
+                                                                  (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                                   -
+                                                                   Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                                                   /
+                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+
+
+                                        }).ToList();
+            return Results;
 
         }
 
-        public IEnumerable<object> GetSoiByBrandMindanao(DateTime From, DateTime To)
+        public List<ConsolidatedSoiPerArea> GetSoiByBrandMindanao(DateTime From, DateTime To)
         {
             BrandManager BM = new BrandManager();
             CustomerManager CI = new CustomerManager();
@@ -854,47 +873,59 @@ namespace IRMS.BusinessLogic.Manager
                            }).ToList();
 
 
-            var Results = (from X in BM.Brands()
-                           select new
-                           {
-                               BrandName = X.BrandDescription,
-                               EndingInventoryVolume = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
-                               ActualCountVolume = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume),
-                               LkgOverQty = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
-                                            -
-                                            Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
-                               PercentageQty = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
-                                                -
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
+            List<ConsolidatedSoiPerArea> Results = (from X in BM.Brands()
+            select new ConsolidatedSoiPerArea
+                                        {
+                                            Brand = X.BrandDescription,
+                                            BookQuantity = (long)Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
 
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
-                                                -
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
-                                               /
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
-                               EndingInventoryCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
-                               ActualCountCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost),
-                               VarianceCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
-                                              -
-                                              Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
-                               AveragePerPc = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(A => A.ActualCountCost)) == 0 ? 0 :
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(V => V.ActualCountVolume)) == 0 ? 0 :
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                               /
-                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(O => O.ActualCountVolume)),
-                               PercentCostLkgBook = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                                    -
-                                                    (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
-                                                    (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
-                                                     -
-                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
-                                                     /
-                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
-                           }).ToList();
+                                            ActualPCount = (long)Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume),
+                                            LackingOver = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
+                                                          -
+                                                          Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
+                                            PercentOfBookOverQty =
 
-            return Results;     
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
+                                                              -
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
+
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
+                                                              -
+                                                             Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
+                                                             /
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
+
+
+
+                                            EndingInventory = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
+                                            ActualPCountCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost),
+                                            VarianceCost = Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                           -
+                                                           Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost),
+                                            AvePerCost = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(A => A.ActualCountCost)) == 0 ? 0 :
+                                                            (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(V => V.ActualCountVolume)) == 0 ? 0 :
+                                                            (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost))
+                                                             /
+                                                            (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(O => O.ActualCountVolume)),
+
+                                            PercentOfCostLacking = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                                  -
+                                                                   Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
+
+                                                                  (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
+                                                                   -
+                                                                   Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                                                   /
+                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+
+
+                                        }).ToList();
+
+            return Results;
         }
 
         #endregion
+
     }
+  
 }

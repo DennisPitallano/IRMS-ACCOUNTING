@@ -46,13 +46,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="padding: 50px 0px 0px 0px">
+    <div style="padding: 20px 0px 0px 0px">
     <table>
    
       <tr>
         <td width="200px" >
         </td>
-            <td width="500px">
+            <td width="650px">
             </td>
             <td align="left">
             <label style="font-family: Verdana; font-size: 15px; font-weight: bold" 
@@ -77,14 +77,14 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td style="padding: 15px 0px 0px 0px">
         
         </td>
     </tr>
         <tr>
-        <td width="200px" >
+        <td width="250px" >
         </td>
-            <td style="padding: 0px 0px 0px 50px" width="500px">
+            <td style="padding: 0px 0px 0px 50px" width="650px">
             <label style="font-family: verdana; font-size: 15px; font-weight: bold" 
                     runat="server" id="lblCustomer">
              TCL MERCHANDISE BROKERAGE INC.
@@ -111,10 +111,10 @@
     </table>
     <table>
     <tr>
-         <td width="200px" >
+         <td width="250px" >
         </td>
-         <td style="padding: 0px 0px 0px 50px" width="500px">
-         <label style="font-family: verdana; font-size: 13px; font-weight: normal" runat="server" id="lblAddress">
+         <td style="padding: 0px 0px 0px 50px" width="650px">
+         <label style="font-family: verdana; font-size: 11px; font-weight: normal" runat="server" id="lblAddress">
          PORT AREA ZUBITO ST. BRGY. PATING MASBATE CITY
          </label>
                 </td>
@@ -127,17 +127,17 @@
         <td></td>
     </tr>
     <tr>
-        <td width="200px" >
+        <td width="250px" >
         </td>
-         <td style="padding: 0px 0px 0px 50px" width="500px">
-         <label style="font-family: verdana; font-size: 15px; font-weight: normal" runat="server" id="lblTIN">
+         <td style="padding: 0px 0px 0px 50px" width="650px">
+         <label style="font-family: verdana; font-size: 12px; font-weight: normal" runat="server" id="lblTIN">
          003-975-825-010
          </label>
                 </td>
     </tr>
     <tr>
-        <td style="font-family: verdana; padding: 600px 0px 0px 0px" align="right">
-        <label id="lblPrepared" runat="server">rubby</label>
+        <td style="font-family: verdana; padding: 615px 0px 0px 0px" align="right">
+        <label id="lblPrepared" runat="server"></label>
         </td>
     </tr>
     <tr>
@@ -146,14 +146,14 @@
         </td>
     </tr>
      <tr>
-      <td width="200px">
+      <td width="250px">
         
         </td>
-        <td width="500px">
+        <td width="650px">
         
         </td>
         <td style="font-family: verdana; padding: 15px 0px 0px 0px" align="right">
-        <label id="lblAmount" runat="server">amount</label>
+        <label id="lblAmount" runat="server"></label>
         </td>
     </tr>
     </table>
