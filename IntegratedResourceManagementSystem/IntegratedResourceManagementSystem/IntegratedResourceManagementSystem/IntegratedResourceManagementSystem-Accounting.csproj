@@ -81,7 +81,7 @@
     <Content Include="Accounting\AddNewCustomerToGroup.aspx" />
     <Content Include="Accounting\BookAdjustmentPanel.aspx" />
     <Content Include="Accounting\controls\BrandName.ascx" />
-    <Content Include="Accounting\controls\Categories.ascx" />
+    <Content Include="Accounting\controls\CategoryMenu.ascx" />
     <Content Include="Accounting\controls\CRSMenu.ascx" />
     <Content Include="Accounting\controls\Customers.ascx" />
     <Content Include="Accounting\controls\CustomerType.ascx" />
@@ -94,8 +94,9 @@
     <Content Include="Accounting\controls\UCLoader.ascx" />
     <Content Include="Accounting\controls\UserAccount.ascx" />
     <Content Include="Accounting\controls\ValidationMessage.ascx" />
-    <Content Include="Accounting\controls\Years.ascx" />
+    <Content Include="Accounting\controls\YearMenu.ascx" />
     <Content Include="Accounting\CreditMemoForm.aspx" />
+    <Content Include="Accounting\CustomerGroupReport.aspx" />
     <Content Include="Accounting\CustomerReportPage.aspx" />
     <Content Include="Accounting\CustomerReturnSlipConfirmationPanel.aspx" />
     <Content Include="Accounting\CustomerReturnSlipMenu.aspx" />
@@ -137,6 +138,7 @@
     </Content>
     <Content Include="Accounting\Accounting.Master" />
     <Content Include="Accounting-Admin\Admin.Master" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Reports\ReportDataSet\SummaryOfMonthlyInventoryPerBrandDataSet.xsc">
       <DependentUpon>SummaryOfMonthlyInventoryPerBrandDataSet.xsd</DependentUpon>
     </None>
@@ -196,6 +198,9 @@
     <Content Include="Reports\ReportForms\ConsolidatedSummaryMonthlyInventoryPerBrand.aspx" />
     <Content Include="Reports\ReportForms\CustomerDeliveryDetailedReport.aspx" />
     <Content Include="Reports\ReportForms\CustomerDeliveryItineraryReport.aspx" />
+    <Content Include="Reports\ReportForms\CustomerGroupOverall.aspx" />
+    <Content Include="Reports\ReportForms\CustomerGroupPerBrand.aspx" />
+    <Content Include="Reports\ReportForms\CustomerGroupPerCustomer.aspx" />
     <Content Include="Reports\ReportForms\CustomerInvoiceDetailedReport.aspx" />
     <Content Include="Reports\ReportForms\CustomerInvoiceItineraryReport.aspx" />
     <Content Include="Reports\ReportForms\CustomerReturnDetailedReport.aspx" />
@@ -212,6 +217,7 @@
     <Content Include="Reports\ReportForms\MonthlySummaryPilferageReportDepartmentStore.aspx" />
     <Content Include="Reports\ReportForms\MonthlySummaryPilferageReportProvincial.aspx" />
     <Content Include="Reports\ReportForms\PhysicalCountAdjusmentMemoReport.aspx" />
+    <Content Include="Reports\ReportForms\PhysicalInventory.aspx" />
     <Content Include="Reports\ReportForms\PrintAdjustmentPCount.aspx" />
     <Content Include="Reports\ReportForms\PrintBookAdjustment.aspx" />
     <Content Include="Reports\ReportForms\PrintBookAdjustmentSelectedDetails.aspx" />
@@ -300,6 +306,7 @@
     <Content Include="Styles\permission-note.css" />
     <Content Include="Styles\quarterly-soi.css" />
     <Content Include="Styles\panel.css" />
+    <Content Include="Styles\report.css" />
     <Content Include="Styles\reports-form.css" />
     <Content Include="Styles\reports-menu-div.css" />
     <Content Include="Styles\sales-invoice-from.css" />
@@ -367,12 +374,12 @@
     <Compile Include="Accounting\controls\BrandName.ascx.designer.cs">
       <DependentUpon>BrandName.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Accounting\controls\Categories.ascx.cs">
-      <DependentUpon>Categories.ascx</DependentUpon>
+    <Compile Include="Accounting\controls\CategoryMenu.ascx.cs">
+      <DependentUpon>CategoryMenu.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Accounting\controls\Categories.ascx.designer.cs">
-      <DependentUpon>Categories.ascx</DependentUpon>
+    <Compile Include="Accounting\controls\CategoryMenu.ascx.designer.cs">
+      <DependentUpon>CategoryMenu.ascx</DependentUpon>
     </Compile>
     <Compile Include="Accounting\controls\CRSMenu.ascx.cs">
       <DependentUpon>CRSMenu.ascx</DependentUpon>
@@ -458,12 +465,12 @@
     <Compile Include="Accounting\controls\ValidationMessage.ascx.designer.cs">
       <DependentUpon>ValidationMessage.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Accounting\controls\Years.ascx.cs">
-      <DependentUpon>Years.ascx</DependentUpon>
+    <Compile Include="Accounting\controls\YearMenu.ascx.cs">
+      <DependentUpon>YearMenu.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Accounting\controls\Years.ascx.designer.cs">
-      <DependentUpon>Years.ascx</DependentUpon>
+    <Compile Include="Accounting\controls\YearMenu.ascx.designer.cs">
+      <DependentUpon>YearMenu.ascx</DependentUpon>
     </Compile>
     <Compile Include="Accounting\CreditMemoForm.aspx.cs">
       <DependentUpon>CreditMemoForm.aspx</DependentUpon>
@@ -471,6 +478,13 @@
     </Compile>
     <Compile Include="Accounting\CreditMemoForm.aspx.designer.cs">
       <DependentUpon>CreditMemoForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\CustomerGroupReport.aspx.cs">
+      <DependentUpon>CustomerGroupReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounting\CustomerGroupReport.aspx.designer.cs">
+      <DependentUpon>CustomerGroupReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounting\CustomerReportPage.aspx.cs">
       <DependentUpon>CustomerReportPage.aspx</DependentUpon>
@@ -731,6 +745,42 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SummaryOfMonthlyInventoryPerBrandDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportDocuments\CusGrupOvrAll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CusGrupOvrAll.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportDocuments\CusGrupOvrAllWithPrev.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CusGrupOvrAllWithPrev.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportDocuments\CusGrupPerBrand.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CusGrupPerBrand.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportDocuments\CusGrupPerBrandWithPrev.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CusGrupPerBrandWithPrev.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportDocuments\CusGrupPerCustomer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CusGrupPerCustomer.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportDocuments\CusGrupPerCustomerWithPrev.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CusGrupPerCustomerWithPrev.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ReportDocuments\CustCRS.cs">
       <AutoGen>True</AutoGen>
@@ -1002,6 +1052,27 @@
     <Compile Include="Reports\ReportForms\CustomerDeliveryItineraryReport.aspx.designer.cs">
       <DependentUpon>CustomerDeliveryItineraryReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ReportForms\CustomerGroupOverall.aspx.cs">
+      <DependentUpon>CustomerGroupOverall.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportForms\CustomerGroupOverall.aspx.designer.cs">
+      <DependentUpon>CustomerGroupOverall.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportForms\CustomerGroupPerBrand.aspx.cs">
+      <DependentUpon>CustomerGroupPerBrand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportForms\CustomerGroupPerBrand.aspx.designer.cs">
+      <DependentUpon>CustomerGroupPerBrand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportForms\CustomerGroupPerCustomer.aspx.cs">
+      <DependentUpon>CustomerGroupPerCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportForms\CustomerGroupPerCustomer.aspx.designer.cs">
+      <DependentUpon>CustomerGroupPerCustomer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ReportForms\CustomerInvoiceDetailedReport.aspx.cs">
       <DependentUpon>CustomerInvoiceDetailedReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1113,6 +1184,13 @@
     </Compile>
     <Compile Include="Reports\ReportForms\PhysicalCountAdjusmentMemoReport.aspx.designer.cs">
       <DependentUpon>PhysicalCountAdjusmentMemoReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportForms\PhysicalInventory.aspx.cs">
+      <DependentUpon>PhysicalInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportForms\PhysicalInventory.aspx.designer.cs">
+      <DependentUpon>PhysicalInventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportForms\PrintAdjustmentPCount.aspx.cs">
       <DependentUpon>PrintAdjustmentPCount.aspx</DependentUpon>
@@ -1252,6 +1330,30 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportDocuments\CusGrupOvrAll.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CusGrupOvrAll.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportDocuments\CusGrupOvrAllWithPrev.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CusGrupOvrAllWithPrev.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportDocuments\CusGrupPerBrand.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CusGrupPerBrand.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportDocuments\CusGrupPerBrandWithPrev.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CusGrupPerBrandWithPrev.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportDocuments\CusGrupPerCustomer.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CusGrupPerCustomer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportDocuments\CusGrupPerCustomerWithPrev.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CusGrupPerCustomerWithPrev.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportDocuments\CustCRS.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

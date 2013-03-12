@@ -1,4 +1,5 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ReportsMenu.ascx.cs" Inherits="IntegratedResourceManagementSystem.Accounting.controls.ReportsMenu" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ReportsMenu.ascx.cs"
+    Inherits="IntegratedResourceManagementSystem.Accounting.controls.ReportsMenu" %>
 <link href="../Styles/reports-menu-div.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
     .mnuIcon
@@ -39,7 +40,6 @@
     <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Names="Verdana" Font-Size="16px"
         ForeColor="#CC6600" Text="REPORT MENU"></asp:Label>
 </div>
-
 <div class="OneCol">
     <div style="width: 120px; margin-right: 5px;">
         <div class="MenuIcon">
@@ -55,7 +55,22 @@
             </asp:LinkButton>
         </div>
     </div>
-   
+
+     <div style="width: 120px; margin-right: 5px;">
+        <div class="MenuIcon">
+            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/Resources/adjustment.png"
+                Height="42px" ToolTip="MANAGE OTHERS" PostBackUrl="~/Accounting/OtherReportPage.aspx" />
+            <br />
+            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="lblMenu" Font-Names="Verdana"
+                Font-Size="9px" ToolTip="MANAGE OTHERS" Font-Bold="True" PostBackUrl="~/Accounting/OtherReportPage.aspx"
+                ForeColor="#666666">
+	  OTHERS
+      
+     
+            </asp:LinkButton>
+        </div>
+    </div>
+
 </div>
 <div class="woCol">
     <div style="width: 120px; margin-right: 5px;">
@@ -64,8 +79,8 @@
                 Height="42px" ToolTip="MANAGE STORE OUTSTANDING INVENTORIES" PostBackUrl="~/Accounting/SoiReportPage.aspx" />
             <br />
             <asp:LinkButton ID="LinkButton4" runat="server" CssClass="lblMenu" Font-Names="Verdana"
-                Font-Size="9px" ToolTip="MANAGE STORE OUTSTANDING INVENTORIES" Font-Bold="True" PostBackUrl="~/Accounting/SoiReportPage.aspx"
-                ForeColor="#666666">
+                Font-Size="9px" ToolTip="MANAGE STORE OUTSTANDING INVENTORIES" Font-Bold="True"
+                PostBackUrl="~/Accounting/SoiReportPage.aspx" ForeColor="#666666">
 	  
      SOI
        
@@ -74,21 +89,20 @@
         </div>
     </div>
 </div>
-
-<%--<div class="ThreeCol">
+<div class="ThreeCol">
     <div style="width: 120px; margin-right: 5px;">
         <div class="MenuIcon">
-            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Resources/invoice.png"
-                Height="42px" ToolTip="MANAGE OTHERS" PostBackUrl="~/Accounting/OtherReportPage.aspx"/>
+            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Resources/accounting.png"
+                Height="42px" ToolTip="MANAGE OTHERS" PostBackUrl="~/Accounting/CustomerGroupReport.aspx" />
             <br />
             <asp:LinkButton ID="LinkButton5" runat="server" CssClass="lblMenu" Font-Names="Verdana"
-                Font-Size="9px" ToolTip="MANAGE OTHERS" Font-Bold="True" PostBackUrl="~/Accounting/SoiReportPage.aspxOtherReportPage.aspx"
+                Font-Size="9px" ToolTip="MANAGE OTHERS" Font-Bold="True" PostBackUrl="~/Accounting/CustomerGroupReport.aspx"
                 ForeColor="#666666">
 	  
-     OTHERS
+     OUTLET GROUP
        
        
             </asp:LinkButton>
         </div>
     </div>
-</div>--%>
+</div>

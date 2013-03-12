@@ -23,7 +23,7 @@ namespace IRMS.ObjectModel.Views
     {
 
         public string Brand { get; set; }
-        public long BookQuantity { get; set; }
+        public string BookQuantity { get; set; }
         public long ActualPCount { get; set; }
         public string LackingOver { get; set; }
         public string PercentOfBookOverQty { get; set; }

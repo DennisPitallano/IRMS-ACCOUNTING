@@ -35,7 +35,7 @@ namespace IRMS.BusinessLogic.Manager
         public List<Customer> FilterByCompanyName(string Comp)
         {
             var Objects = (from Cust in Customers()
-                           where Cust.CompanyName.StartsWith(Comp)
+                           where Cust.CompanyName.Contains(Comp)
                            select Cust).ToList();
 
             return Objects;

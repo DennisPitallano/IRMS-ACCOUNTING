@@ -61,6 +61,7 @@
     <Compile Include="DataAccess\BranchAccessor.cs" />
     <Compile Include="DataAccess\BrandAccessor.cs" />
     <Compile Include="DataAccess\CustomerAccessor.cs" />
+    <Compile Include="DataAccess\CustomerGroupAccessor.cs" />
     <Compile Include="DataAccess\CustomerReturnSlipAccessor.cs" />
     <Compile Include="DataAccess\DeliveryReceiptAccessor.cs" />
     <Compile Include="DataAccess\DeliveryReceiptDetailAccessor.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Manager\BranchManager.cs" />
     <Compile Include="Manager\BrandManager.cs" />
     <Compile Include="Manager\CacheManager\DeliveryReceiptsCache.cs" />
+    <Compile Include="Manager\CustomerGroupManager.cs" />
     <Compile Include="Manager\CustomerInventoryGroupManager.cs" />
     <Compile Include="Manager\CustomerManager.cs" />
     <Compile Include="Manager\CustomerReturnSlipManager.cs" />
@@ -103,6 +105,8 @@
     <Compile Include="Manager\MessageManager.cs" />
     <Compile Include="Manager\MonthlySOIAdjustmentManager.cs" />
     <Compile Include="Manager\MonthlyStoreOutStandingInventoryManager.cs" />
+    <Compile Include="DataAccess\PhysicalInventoryAccessor.cs" />
+    <Compile Include="Manager\PhysicalInventoryManager.cs" />
     <Compile Include="Manager\ProductManager.cs" />
     <Compile Include="Manager\SalesInvoiceManager.cs" />
     <Compile Include="Manager\StockCardReportManager.cs" />

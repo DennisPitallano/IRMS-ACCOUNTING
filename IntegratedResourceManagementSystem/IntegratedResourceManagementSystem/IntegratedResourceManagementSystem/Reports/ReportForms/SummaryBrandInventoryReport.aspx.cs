@@ -22,9 +22,13 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
 
         public UsersClass USER { get { return (UsersClass)Session["USER_ACCOUNT"]; } }
 
+        
+
         #region "Book Qty"
 
         public double TotalBookQty;
+        
+        public double GrandTotalBookQty;
 
         public double GetBookQty(double Qty)
         {
@@ -37,11 +41,15 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             return TotalBookQty;
         }
 
+        
+
         #endregion
 
         #region "Actual Pcount Qty"
 
         public double TotalPcountQty;
+
+        public double GrandTotalPcountQty;
 
         public double GetPcountQty(double Qty)
         {
@@ -53,6 +61,8 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
         {
             return TotalPcountQty;
         }
+
+         
 
         #endregion
 
@@ -91,7 +101,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
 
         public double GetTotalPrecentBookQty()
         {
-            return GetTotalQtyLkgOver() / GetTotalBookQty();
+            return (GetTotalQtyLkgOver() / GetTotalBookQty()) * 100;
         }
 
         public string GetTotalPrecentBookQtyFormatted()
@@ -99,7 +109,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             double Result = 0;
             string ReturnResult = string.Empty;
 
-            Result = GetTotalQtyLkgOver() / GetTotalBookQty();
+            Result = (GetTotalQtyLkgOver() / GetTotalBookQty()) * 100;
 
             if (Result < 0)
             {
@@ -164,6 +174,8 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
 
         public double TotalEndingInvtCost;
 
+        public double GrandTotalEndingInvCost;
+
         public double GetEndingInvtCost(double Price)
         {
             TotalEndingInvtCost += Price;
@@ -180,6 +192,8 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
         #region "Actual Physical Count Cost"
 
         public double TotalActualPcountCost;
+
+        public double GrandTotalPcountCost;
 
         public double GetActualPcountCost(double Price)
         {
@@ -238,7 +252,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
 
         public double GetTotalPercentCostLkg()
         {
-            return GetTotalVarianceCost() / GetTotalEndingInvtCost();
+            return (GetTotalVarianceCost() / GetTotalEndingInvtCost()) * 100;
         }
        
         public string GetTotalPercentCostLkgFormatted()
@@ -247,7 +261,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             double Result = 0;
             string ReturnResult = string.Empty;
 
-            Result = GetTotalVarianceCost() / GetTotalEndingInvtCost();
+            Result = (GetTotalVarianceCost() / GetTotalEndingInvtCost()) * 100;
 
             if (Result < 0)
             {
@@ -295,8 +309,6 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
 
             TotalBookQty = 0;
             TotalPcountQty = 0;
-            //TotalEndingInvtPrevailing = 0;
-            //TotalActualPcountPrevailing = 0;
             TotalEndingInvtCost = 0;
             TotalActualPcountCost = 0;
 
@@ -305,11 +317,25 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             List<ConsolidatedSoiPerAreaFormatted> MMDSFormatedView = new List<ConsolidatedSoiPerAreaFormatted>();
             foreach (var item in MMDSResults)
             {
-
+                string FormatBookQty = string.Empty;
                 string FormatPercentLkgOvr = string.Empty;
+                string FormatEndingInv = string.Empty;
                 string formatLackingOver = string.Empty;
                 string formatVarianceCost = string.Empty;
                 string formatPercentOfCostLacking = string.Empty;
+
+
+                if (item.BookQuantity < 0)
+                {
+                    item.BookQuantity = item.BookQuantity * -1;
+                    FormatBookQty = item.BookQuantity.ToString("(###,##0)");
+                    GetBookQty(item.BookQuantity);
+                }
+                else
+                {
+                    FormatBookQty = item.BookQuantity.ToString("###,##0");
+                    GetBookQty(item.BookQuantity);
+                }
 
                 if (item.LackingOver < 0)
                 {
@@ -331,6 +357,17 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                     FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("###,##0.00");
                 }
 
+                if (item.EndingInventory < 0)
+                {
+                    item.EndingInventory = item.EndingInventory * -1;
+                    FormatEndingInv = item.EndingInventory.ToString("(###,##0.00)");
+                    GetEndingInvtCost(double.Parse(item.EndingInventory.ToString()));
+                }
+                else
+                {
+                    FormatEndingInv = item.EndingInventory.ToString("###,##0.00");
+                    GetEndingInvtCost(double.Parse(item.EndingInventory.ToString()));
+                }
                 if (item.VarianceCost < 0)
                 {
                     item.VarianceCost = item.VarianceCost * -1;
@@ -354,12 +391,12 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 ConsolidatedSoiPerAreaFormatted rvf = new ConsolidatedSoiPerAreaFormatted
                 {                  
                     Brand = item.Brand,
-                    BookQuantity = item.BookQuantity,
+                    BookQuantity = FormatBookQty,
                     ActualPCount = item.ActualPCount,
 
                     LackingOver = formatLackingOver,
                     PercentOfBookOverQty = FormatPercentLkgOvr,
-                    EndingInventory = item.EndingInventory.ToString("###,##0.00"),
+                    EndingInventory = FormatEndingInv,
 
                     ActualPCountCost = item.ActualPCountCost.ToString(),
                     VarianceCost = formatVarianceCost,
@@ -373,15 +410,20 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             GridView1.DataSource = MMDSFormatedView;
             GridView1.DataBind();
 
+            GrandTotalBookQty = GetTotalBookQty();
+            GrandTotalPcountQty = GetTotalPcountQty();
+            GrandTotalEndingInvCost = GetTotalEndingInvtCost();
+            GrandTotalPcountCost = GetTotalActualPcountCost();
+
             #endregion
 
 
+            
+ 
             #region "Luzon Report"
 
             TotalBookQty = 0;
             TotalPcountQty = 0;
-            //TotalEndingInvtPrevailing = 0;
-            //TotalActualPcountPrevailing = 0;
             TotalEndingInvtCost = 0;
             TotalActualPcountCost = 0;
 
@@ -390,11 +432,24 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             List<ConsolidatedSoiPerAreaFormatted> LuzonFormatedView = new List<ConsolidatedSoiPerAreaFormatted>();
             foreach (var item in LuzonResults)
             {
-
+                string FormatBookQty = string.Empty;
                 string FormatPercentLkgOvr = string.Empty;
+                string FormatEndingInv = string.Empty;
                 string formatLackingOver = string.Empty;
                 string formatVarianceCost = string.Empty;
                 string formatPercentOfCostLacking = string.Empty;
+
+                if (item.BookQuantity < 0)
+                {
+                    item.BookQuantity = item.BookQuantity * -1;
+                    FormatBookQty = item.BookQuantity.ToString("(###,##0)");
+                    GetBookQty(item.BookQuantity);
+                }
+                else
+                {
+                    FormatBookQty = item.BookQuantity.ToString("###,##0");
+                    GetBookQty(item.BookQuantity);
+                }
 
                 if (item.LackingOver < 0)
                 {
@@ -416,6 +471,17 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                     FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("###,##0.00");
                 }
 
+                if (item.EndingInventory < 0)
+                {
+                    item.EndingInventory = item.EndingInventory * -1;
+                    FormatEndingInv = item.EndingInventory.ToString("(###,##0.00)");
+                    GetEndingInvtCost(double.Parse(item.EndingInventory.ToString()));
+                }
+                else
+                {
+                    FormatEndingInv = item.EndingInventory.ToString("###,##0.00");
+                    GetEndingInvtCost(double.Parse(item.EndingInventory.ToString()));
+                }
                 if (item.VarianceCost < 0)
                 {
                     item.VarianceCost = item.VarianceCost * -1;
@@ -439,12 +505,12 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 ConsolidatedSoiPerAreaFormatted rvf = new ConsolidatedSoiPerAreaFormatted
                 {
                     Brand = item.Brand,
-                    BookQuantity = item.BookQuantity,
+                    BookQuantity = FormatBookQty,
                     ActualPCount = item.ActualPCount,
 
                     LackingOver = formatLackingOver,
                     PercentOfBookOverQty = FormatPercentLkgOvr,
-                    EndingInventory = item.EndingInventory.ToString("###,##0.00"),
+                    EndingInventory = FormatEndingInv,
 
                     ActualPCountCost = item.ActualPCountCost.ToString(),
                     VarianceCost = formatVarianceCost,
@@ -458,6 +524,11 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             GridView2.DataSource = LuzonFormatedView;
             GridView2.DataBind();
 
+            GrandTotalBookQty += GetTotalBookQty();
+            GrandTotalPcountQty += GetTotalPcountQty();
+            GrandTotalEndingInvCost += GetTotalEndingInvtCost();
+            GrandTotalPcountCost += GetTotalActualPcountCost();
+
             #endregion
 
 
@@ -465,8 +536,6 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
 
             TotalBookQty = 0;
             TotalPcountQty = 0;
-            //TotalEndingInvtPrevailing = 0;
-            //TotalActualPcountPrevailing = 0;
             TotalEndingInvtCost = 0;
             TotalActualPcountCost = 0;
 
@@ -475,11 +544,24 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             List<ConsolidatedSoiPerAreaFormatted> VisayasFormatedView = new List<ConsolidatedSoiPerAreaFormatted>();
             foreach (var item in VisayasResults)
             {
-
+                string FormatBookQty = string.Empty;
                 string FormatPercentLkgOvr = string.Empty;
                 string formatLackingOver = string.Empty;
+                string FormatEndingInv = string.Empty;
                 string formatVarianceCost = string.Empty;
                 string formatPercentOfCostLacking = string.Empty;
+
+                if (item.BookQuantity < 0)
+                {
+                    item.BookQuantity = item.BookQuantity * -1;
+                    FormatBookQty = item.BookQuantity.ToString("(###,##0)");
+                    GetBookQty(item.BookQuantity);
+                }
+                else
+                {
+                    FormatBookQty = item.BookQuantity.ToString("###,##0");
+                    GetBookQty(item.BookQuantity);
+                }
 
                 if (item.LackingOver < 0)
                 {
@@ -501,6 +583,17 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                     FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("###,##0.00");
                 }
 
+                if (item.EndingInventory < 0)
+                {
+                    item.EndingInventory = item.EndingInventory * -1;
+                    FormatEndingInv = item.EndingInventory.ToString("(###,##0.00)");
+                    GetEndingInvtCost(double.Parse(item.EndingInventory.ToString()));
+                }
+                else
+                {
+                    FormatEndingInv = item.EndingInventory.ToString("###,##0.00");
+                    GetEndingInvtCost(double.Parse(item.EndingInventory.ToString()));
+                }
                 if (item.VarianceCost < 0)
                 {
                     item.VarianceCost = item.VarianceCost * -1;
@@ -524,12 +617,12 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 ConsolidatedSoiPerAreaFormatted rvf = new ConsolidatedSoiPerAreaFormatted
                 {
                     Brand = item.Brand,
-                    BookQuantity = item.BookQuantity,
+                    BookQuantity = FormatBookQty,
                     ActualPCount = item.ActualPCount,
 
                     LackingOver = formatLackingOver,
                     PercentOfBookOverQty = FormatPercentLkgOvr,
-                    EndingInventory = item.EndingInventory.ToString("###,##0.00"),
+                    EndingInventory = FormatEndingInv,
 
                     ActualPCountCost = item.ActualPCountCost.ToString(),
                     VarianceCost = formatVarianceCost,
@@ -543,14 +636,17 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             GridView3.DataSource = VisayasFormatedView;
             GridView3.DataBind();
 
+            GrandTotalBookQty += GetTotalBookQty();
+            GrandTotalPcountQty += GetTotalPcountQty();
+            GrandTotalEndingInvCost += GetTotalEndingInvtCost();
+            GrandTotalPcountCost += GetTotalActualPcountCost();
+
             #endregion
             
             #region "Mindanao Report"
 
             TotalBookQty = 0;
             TotalPcountQty = 0;
-            //TotalEndingInvtPrevailing = 0;
-            //TotalActualPcountPrevailing = 0;
             TotalEndingInvtCost = 0;
             TotalActualPcountCost = 0;
 
@@ -559,11 +655,24 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             List<ConsolidatedSoiPerAreaFormatted> MindanaoFormatedView = new List<ConsolidatedSoiPerAreaFormatted>();
             foreach (var item in MindanaoResults)
             {
-
+                string FormatBookQty = string.Empty;
                 string FormatPercentLkgOvr = string.Empty;
                 string formatLackingOver = string.Empty;
+                string FormatEndingInv = string.Empty;
                 string formatVarianceCost = string.Empty;
                 string formatPercentOfCostLacking = string.Empty;
+
+                if (item.BookQuantity < 0)
+                {
+                    item.BookQuantity = item.BookQuantity * -1;
+                    FormatBookQty = item.BookQuantity.ToString("(###,##0)");
+                    GetBookQty(item.BookQuantity);
+                }
+                else
+                {
+                    FormatBookQty = item.BookQuantity.ToString("###,##0");
+                    GetBookQty(item.BookQuantity);
+                }
 
                 if (item.LackingOver < 0)
                 {
@@ -585,6 +694,17 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                     FormatPercentLkgOvr = item.PercentOfBookOverQty.ToString("###,##0.00");
                 }
 
+                if (item.EndingInventory < 0)
+                {
+                    item.EndingInventory = item.EndingInventory * -1;
+                    FormatEndingInv = item.EndingInventory.ToString("(###,##0.00)");
+                    GetEndingInvtCost(double.Parse(item.EndingInventory.ToString()));
+                }
+                else
+                {
+                    FormatEndingInv = item.EndingInventory.ToString("###,##0.00");
+                    GetEndingInvtCost(double.Parse(item.EndingInventory.ToString()));
+                }
                 if (item.VarianceCost < 0)
                 {
                     item.VarianceCost = item.VarianceCost * -1;
@@ -608,12 +728,12 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 ConsolidatedSoiPerAreaFormatted rvf = new ConsolidatedSoiPerAreaFormatted
                 {
                     Brand = item.Brand,
-                    BookQuantity = item.BookQuantity,
+                    BookQuantity = FormatBookQty,
                     ActualPCount = item.ActualPCount,
 
                     LackingOver = formatLackingOver,
                     PercentOfBookOverQty = FormatPercentLkgOvr,
-                    EndingInventory = item.EndingInventory.ToString("###,##0.00"),
+                    EndingInventory = FormatEndingInv,
 
                     ActualPCountCost = item.ActualPCountCost.ToString(),
                     VarianceCost = formatVarianceCost,
@@ -627,10 +747,81 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             GridView4.DataSource = MindanaoFormatedView;
             GridView4.DataBind();
 
+            GrandTotalBookQty += GetTotalBookQty();
+            GrandTotalPcountQty += GetTotalPcountQty();
+            GrandTotalEndingInvCost += GetTotalEndingInvtCost();
+            GrandTotalPcountCost += GetTotalActualPcountCost();
+
             #endregion
 
+         
+
+            lblQtyGrandtotal.Text = GrandTotalBookQty.ToString("###,###,##0");
+            lblPcountGrandTotal.Text = GrandTotalPcountQty.ToString("###,###,##0");
+            lblEndingInvGrandTotal.Text = GrandTotalEndingInvCost.ToString("###,###,##0.00");
+            lblPcountCostGrandTotal.Text = GrandTotalPcountCost.ToString("###,###,##0.00");
 
 
+
+            double QtyLkgOverGrandTotal = Convert.ToDouble(GrandTotalPcountQty - GrandTotalBookQty);
+            if (QtyLkgOverGrandTotal < 0)
+            {
+                QtyLkgOverGrandTotal = QtyLkgOverGrandTotal * -1;
+                lblQtyLkgOverGrandTotal.Text = "(" + QtyLkgOverGrandTotal.ToString("###,###,##0") + ")";
+            }
+            else
+            {
+                lblQtyLkgOverGrandTotal.Text = QtyLkgOverGrandTotal.ToString("###,###,##0");
+            }
+
+
+            double PercentLkgOverGrandTotal = Convert.ToDouble(QtyLkgOverGrandTotal / GrandTotalBookQty * 100);
+            if (PercentLkgOverGrandTotal < 0)
+            {
+                PercentLkgOverGrandTotal = PercentLkgOverGrandTotal * -1;
+                lblPercentLkgOverGrandTotal.Text = "(" + PercentLkgOverGrandTotal.ToString("###,###,##0.00") + ")";
+            }
+            else
+            {
+                lblPercentLkgOverGrandTotal.Text = PercentLkgOverGrandTotal.ToString("###,###,##0.00");
+            }
+
+            double VarianceGrandTotal = Convert.ToDouble(GrandTotalPcountCost - GrandTotalEndingInvCost);
+            if (VarianceGrandTotal < 0)
+            {
+                VarianceGrandTotal = VarianceGrandTotal * -1;
+                lblVarianceGrandTotal.Text = "(" + VarianceGrandTotal.ToString("###,###,##0.00") + ")";
+            }
+            else
+            {
+                lblVarianceGrandTotal.Text = VarianceGrandTotal.ToString("###,###,##0.00");
+            }
+
+
+            double AvgGrandTotal = Convert.ToDouble(GrandTotalPcountCost / GrandTotalBookQty);
+            if (AvgGrandTotal < 0)
+            {
+                AvgGrandTotal = AvgGrandTotal * -1;
+                lblAvgGrandTotal.Text = "(" + AvgGrandTotal.ToString("###,###,##0.00") + ")";
+            }
+            else
+            {
+                lblAvgGrandTotal.Text = AvgGrandTotal.ToString("###,###,##0.00");
+            }
+
+            double PercentCostLkgGrandTotal = Convert.ToDouble(VarianceGrandTotal / GrandTotalEndingInvCost * 100);
+            if (PercentCostLkgGrandTotal < 0)
+            {
+                PercentCostLkgGrandTotal = PercentCostLkgGrandTotal * -1;
+                lblPercentCostLkgGrandTotal.Text = "(" + PercentCostLkgGrandTotal.ToString("###,###,##0.00") + ")";
+            }
+            else
+            {
+                lblPercentCostLkgGrandTotal.Text = PercentCostLkgGrandTotal.ToString("###,###,##0.00");
+            }
+          
+
+          
 
         }
 

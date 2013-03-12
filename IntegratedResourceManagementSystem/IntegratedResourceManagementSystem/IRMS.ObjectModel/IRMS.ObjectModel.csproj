@@ -83,6 +83,7 @@
     <Compile Include="UserRole.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="Views\ConsolidatedSoiPerArea.cs" />
+    <Compile Include="Views\PhysicalInventoryView.cs" />
     <Compile Include="Views\SummarySoiPerBrand.cs" />
     <Compile Include="Views\ViewSummaryOfMonthlyInventoryPerBrand.cs" />
     <Compile Include="Wholesaler.cs" />

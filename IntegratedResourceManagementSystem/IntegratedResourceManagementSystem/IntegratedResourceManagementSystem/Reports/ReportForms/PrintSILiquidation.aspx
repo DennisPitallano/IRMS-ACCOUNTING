@@ -56,8 +56,7 @@
             </td>
             <td align="left">
             <label style="font-family: Verdana; font-size: 15px; font-weight: bold" 
-                    runat="server" id="lblSI_No">
-                2310708
+                    runat="server">
             </label>
             </td>
     </tr>
@@ -67,9 +66,16 @@
         </td>
     </tr>
     <tr>
-        <td>
-        
+        <td width="200px" >
         </td>
+            <td width="650px">
+            </td>
+            <td align="left">
+            <label style="font-family: Verdana; font-size: 15px; font-weight: bold" 
+                    runat="server" id="lblSI_No">
+                2310708
+            </label>
+            </td>
     </tr>
       <tr>
         <td>
@@ -141,7 +147,7 @@
         </td>
     </tr>
     <tr>
-        <td style="font-family: verdana; padding: 30px 0px 0px 0px" align="right">
+        <td style="font-family: verdana; padding: 40px 0px 0px 0px" align="right">
         <label id="lblChecked" runat="server">rubby</label>
         </td>
     </tr>

@@ -37,13 +37,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["IRMSConnectionString"].ConnectionString);
                 ReportDocument rpt;
 
-                
-
-                //long CustNo = long.Parse(Request.QueryString["custno"]);
-                //DateTime PrevDate = DateTime.Parse(Request.QueryString["datefrom"]).AddDays(-1);
-
-                //DateTime DateFrom = DateTime.Parse(Request.QueryString["datefrom"]);
-                //DateTime DateTo = DateTime.Parse(Request.QueryString["dateto"]);
+          
 
                 long CustNo = long.Parse(Session["CustomerNo"].ToString());
                 DateTime PrevDate = DateTime.Parse(Session["From"].ToString()).AddDays(-1);

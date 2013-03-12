@@ -49,7 +49,147 @@ namespace IRMS.BusinessLogic.Manager
 
         }
 
+        #region "Customer Group Report"
 
+        public void ExecuteGenCustGroupCustomer(string UserName, DateTime DateFrom, DateTime DateTo, string Customer, string Pos, int Categ)
+        {
+
+            using (DbManager db = new DbManager())
+            {
+                db
+                  .SetSpCommand("GenCustomerGroupPerCustomer",
+                      db.Connection.ConnectionTimeout == 90000,
+                      db.Parameter("@UserName", UserName),
+                      db.Parameter("@DateFROM", DateFrom),
+                      db.Parameter("@DateTo", DateTo),
+                      db.Parameter("@Customer", Customer),
+                      db.Parameter("@Posted", Pos),
+                      db.Parameter("@Category", Categ))
+                  .ExecuteNonQuery();
+            }
+
+        }
+
+        public void ExecuteGenCustGroupCustomerWithPrev(string UserName, DateTime DateFrom, DateTime DateTo, string Customer, string Pos, int Categ)
+        {
+
+            using (DbManager db = new DbManager())
+            {
+                db
+                  .SetSpCommand("GenCustomerGroupPerCustomerWithPrevious",
+                      db.Connection.ConnectionTimeout == 90000,
+                      db.Parameter("@UserName", UserName),
+                      db.Parameter("@DateFROM", DateFrom),
+                      db.Parameter("@DateTo", DateTo),
+                      db.Parameter("@Customer", Customer),
+                      db.Parameter("@Posted", Pos),
+                      db.Parameter("@Category", Categ))
+                  .ExecuteNonQuery();
+            }
+
+        }
+
+        public void ExecuteGenCustGroupBrand(string UserName, DateTime DateFrom, DateTime DateTo, string BrandName, string Pos, int Categ)
+        {
+            try
+            {
+
+                using (DbManager db = new DbManager())
+                {
+                    db
+                      .SetSpCommand("GenCustomerGroupPerBrand",
+                          db.Connection.ConnectionTimeout == 90000,
+                          db.Parameter("@UserName", UserName),
+                          db.Parameter("@DateFROM", DateFrom),
+                          db.Parameter("@DateTo", DateTo),
+                          db.Parameter("@BrAND", BrandName),
+                          db.Parameter("@Posted", Pos),
+                          db.Parameter("@Category", Categ))
+                      .ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
+        public void ExecuteGenCustGroupBrandWithPrev(string UserName, DateTime DateFrom, DateTime DateTo, string BrandName, string Pos, int Categ)
+        {
+            try
+            {
+
+                using (DbManager db = new DbManager())
+                {
+                    db
+                      .SetSpCommand("GenCustomerGroupPerBrandWithPrevious",
+                          db.Connection.ConnectionTimeout == 90000,
+                          db.Parameter("@UserName", UserName),
+                          db.Parameter("@DateFROM", DateFrom),
+                          db.Parameter("@DateTo", DateTo),
+                          db.Parameter("@BrAND", BrandName),
+                          db.Parameter("@Posted", Pos),
+                          db.Parameter("@Category", Categ))
+                      .ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
+        public void ExecuteGenCustGroupOverAll(string UserName, DateTime DateFrom, DateTime DateTo, string Pos, int Categ)
+        {
+            try
+            {
+                using (DbManager db = new DbManager())
+                {
+                    db
+                       .SetSpCommand("GenCustomerGroupOverAll",
+                           db.Connection.ConnectionTimeout == 90000,
+                           db.Parameter("@UserName", UserName),
+                           db.Parameter("@DateFROM", DateFrom),
+                           db.Parameter("@DateTo", DateTo),
+                           db.Parameter("@Post", Pos),
+                           db.Parameter("@Category", Categ))
+                       .ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
+        public void ExecuteGenCustGroupOverAllWithPrev(string UserName, DateTime DateFrom, DateTime DateTo, string Pos, int Categ)
+        {
+            try
+            {
+                using (DbManager db = new DbManager())
+                {
+                    db
+                       .SetSpCommand("GenCustomerGroupOverAllWithPrevious",
+                           db.Connection.ConnectionTimeout == 90000,
+                           db.Parameter("@UserName", UserName),
+                           db.Parameter("@DateFROM", DateFrom),
+                           db.Parameter("@DateTo", DateTo),
+                           db.Parameter("@Post", Pos),
+                           db.Parameter("@Category", Categ))
+                       .ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
+        #endregion
 
     }
 }

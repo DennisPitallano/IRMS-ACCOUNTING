@@ -438,6 +438,8 @@ namespace IRMS.BusinessLogic.Manager
                            where InvGrp.InventoryGroupId.Equals(CustType) && Soi.Brand.Equals(BrandName) && Cus.AGNumber.Equals(1)
                            && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
 
+                           orderby Soi.CustomerName ascending
+
                            select new SummarySoiPerBrand
                            {
                                CustomerNames = Soi.CustomerName,
@@ -448,7 +450,9 @@ namespace IRMS.BusinessLogic.Manager
                                LackingOver = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
                                PercentOfBookOverQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
                                    //Soi.ActualCountVolume == 0 ? 0 :
-                                               (Soi.ActualCountVolume - Soi.EndingInventoryVolume) / Soi.EndingInventoryVolume
+                                   (
+                                   (Soi.ActualCountVolume - Soi.EndingInventoryVolume) / Soi.EndingInventoryVolume
+                                   ) * 100
                                                ),
                                //EndingInventoryValue = Soi.EndingInventoryValue,
                                //ActualCountValue = Soi.ActualCountValue,
@@ -462,7 +466,9 @@ namespace IRMS.BusinessLogic.Manager
                                PercentOfCostLacking = ( // Soi.ActualCostTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryValue == 0 ? 0 :
-                                                       (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
+                                    (
+                                    (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
+                                    ) * 100
                            }).ToList();
 
             return Results;
@@ -485,6 +491,7 @@ namespace IRMS.BusinessLogic.Manager
                            join InvGrp in IGM.InventoryGroups()
                            on CusGrp.InventoryGroupId equals InvGrp.InventoryGroupId
 
+                           orderby Soi.CustomerName ascending
 
                            where InvGrp.InventoryGroupId.Equals(CustType) && Soi.Brand.Equals(BrandName) && (Cus.AGNumber.Equals(2) || Cus.AGNumber.Equals(3))
                             && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
@@ -499,7 +506,10 @@ namespace IRMS.BusinessLogic.Manager
                                LackingOver = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
                                PercentOfBookOverQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
                                    //Soi.ActualCountVolume == 0 ? 0 :
+                                               (
                                                (Soi.ActualCountVolume - Soi.EndingInventoryVolume) / Soi.EndingInventoryVolume
+                                             
+                                               ) * 100
                                                ),
                                //EndingInventoryValue = Soi.EndingInventoryValue,
                                //ActualCountValue = Soi.ActualCountValue,
@@ -513,7 +523,10 @@ namespace IRMS.BusinessLogic.Manager
                                PercentOfCostLacking = ( // Soi.ActualCostTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryValue == 0 ? 0 :
-                                                       (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
+                                    (
+                                    (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
+                                    ) * 100
+                           
                            }).ToList();
 
             return Results;
@@ -536,6 +549,7 @@ namespace IRMS.BusinessLogic.Manager
                            join InvGrp in IGM.InventoryGroups()
                            on CusGrp.InventoryGroupId equals InvGrp.InventoryGroupId
 
+                           orderby Soi.CustomerName ascending
 
                            where InvGrp.InventoryGroupId.Equals(CustType) && Soi.Brand.Equals(BrandName) && Cus.AGNumber.Equals(4)
                            && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
@@ -550,8 +564,10 @@ namespace IRMS.BusinessLogic.Manager
                                LackingOver = Soi.ActualCountVolume - Soi.EndingInventoryVolume,
                                PercentOfBookOverQty = (//Soi.EndingInventoryVolume == 0 ? 0 :
                                    //Soi.ActualCountVolume == 0 ? 0 :
-                                               (Soi.ActualCountVolume - Soi.EndingInventoryVolume) / Soi.EndingInventoryVolume
-                                               ),
+                                   (
+                                   (Soi.ActualCountVolume - Soi.EndingInventoryVolume) / Soi.EndingInventoryVolume
+                                   ) * 100
+                                   ),
                                //EndingInventoryValue = Soi.EndingInventoryValue,
                                //ActualCountValue = Soi.ActualCountValue,
                                //VarianceValue = Soi.ActualCountValue - Soi.EndingInventoryValue,
@@ -564,7 +580,9 @@ namespace IRMS.BusinessLogic.Manager
                                PercentOfCostLacking = ( // Soi.ActualCostTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryValue == 0 ? 0 :
+                                   (
                                                        (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
+                                   ) * 100
                            }).ToList();
 
             return Results;
@@ -587,6 +605,7 @@ namespace IRMS.BusinessLogic.Manager
                            join InvGrp in IGM.InventoryGroups()
                            on CusGrp.InventoryGroupId equals InvGrp.InventoryGroupId
 
+                           orderby Soi.CustomerName ascending
 
                            where InvGrp.InventoryGroupId.Equals(CustType) && Soi.Brand.Equals(BrandName) && Cus.AGNumber.Equals(5)
                            && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
@@ -615,7 +634,10 @@ namespace IRMS.BusinessLogic.Manager
                                PercentOfCostLacking = ( // Soi.ActualCostTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryTotalCost == 0 ? 0 :
                                    //Soi.EndingInventoryValue == 0 ? 0 :
-                                                       (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)
+                                   (
+
+                                    (Soi.ActualCostTotalCost - Soi.EndingInventoryTotalCost) / Soi.EndingInventoryTotalCost)                         
+                                   ) * 100
                            }).ToList();
 
             return Results;
@@ -635,6 +657,9 @@ namespace IRMS.BusinessLogic.Manager
 
                            join Cus in CI.AllCustomers()
                            on Soi.CustomerNumber equals Cus.CustomerNumber
+
+                          
+
                            where Cus.AGNumber.Equals(1)
                                  && Soi.PeriodTo >= From.Date && Soi.PeriodTo <= To.Date
                            select new
@@ -651,6 +676,7 @@ namespace IRMS.BusinessLogic.Manager
 
 
             List<ConsolidatedSoiPerArea> Results = (from X in BM.Brands()
+            orderby X.BrandDescription ascending
             select new ConsolidatedSoiPerArea
                            {
                               Brand = X.BrandDescription,
@@ -666,11 +692,13 @@ namespace IRMS.BusinessLogic.Manager
                                                 -
                                                (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
 
+                                               (
                                                (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
                                                 -
                                                Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
                                                /
-                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
+                                               (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)
+                                               ) * 100),
                                                
 
 
@@ -688,12 +716,15 @@ namespace IRMS.BusinessLogic.Manager
                               PercentOfCostLacking  = (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
                                                     -
                                                      Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
+
+                                                     (
                                                     
                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
                                                      -
                                                      Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
                                                      /
-                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                                     (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)
+                                                     )* 100)
 
                            }).ToList();
 
@@ -725,6 +756,8 @@ namespace IRMS.BusinessLogic.Manager
 
 
             List<ConsolidatedSoiPerArea> Results = (from X in BM.Brands()
+
+            orderby X.BrandDescription ascending
             select new ConsolidatedSoiPerArea
                                         {
                                             Brand = X.BrandDescription,
@@ -740,11 +773,15 @@ namespace IRMS.BusinessLogic.Manager
                                                               -
                                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
 
+
+                                                             (
                                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
                                                               -
                                                              Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
                                                              /
-                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)
+                                                             ) * 100
+                                                             ),
 
 
 
@@ -763,11 +800,14 @@ namespace IRMS.BusinessLogic.Manager
                                                                   -
                                                                    Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
 
+                                                                   (
                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
                                                                    -
                                                                    Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
                                                                    /
-                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)
+                                                                   ) * 100
+                                                                   )
 
                                         }).ToList();
             return Results;
@@ -799,6 +839,7 @@ namespace IRMS.BusinessLogic.Manager
 
 
             List<ConsolidatedSoiPerArea> Results = (from X in BM.Brands()
+             orderby X.BrandDescription ascending
             select new ConsolidatedSoiPerArea
                                         {
                                             Brand = X.BrandDescription,
@@ -813,12 +854,14 @@ namespace IRMS.BusinessLogic.Manager
                                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume))
                                                               -
                                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
-
+                                                             (
                                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
                                                               -
                                                              Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
                                                              /
-                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)
+                                                             ) * 100
+                                                             ),
 
 
 
@@ -837,11 +880,14 @@ namespace IRMS.BusinessLogic.Manager
                                                                   -
                                                                    Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
 
+                                                                   (
                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
                                                                    -
                                                                    Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
                                                                    /
-                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)
+                                                                   ) * 100
+                                                                   )
 
 
                                         }).ToList();
@@ -874,7 +920,8 @@ namespace IRMS.BusinessLogic.Manager
 
 
             List<ConsolidatedSoiPerArea> Results = (from X in BM.Brands()
-            select new ConsolidatedSoiPerArea
+                                                    orderby X.BrandDescription ascending
+                                                    select new ConsolidatedSoiPerArea
                                         {
                                             Brand = X.BrandDescription,
                                             BookQuantity = (long)Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume),
@@ -889,11 +936,14 @@ namespace IRMS.BusinessLogic.Manager
                                                               -
                                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)) == 0 ? 0 :
 
+                                                             (
                                                              (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountVolume)
                                                               -
                                                              Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume))
                                                              /
-                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)),
+                                                             (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryVolume)
+                                                             ) * 100
+                                                             ),
 
 
 
@@ -912,11 +962,14 @@ namespace IRMS.BusinessLogic.Manager
                                                                   -
                                                                    Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)) == 0 ? 0 :
 
+                                                                   (
                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.ActualCountCost)
                                                                    -
                                                                    Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
                                                                    /
-                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost))
+                                                                   (Queries.Where(Z => Z.Brand.Equals(X.BrandDescription)).Sum(Y => Y.EndingInventoryCost)
+                                                                   ) * 100
+                                                                   )
 
 
                                         }).ToList();
