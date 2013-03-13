@@ -61,21 +61,22 @@
             </td>
     </tr>
      <tr>
-        <td>
-        &nbsp;
-        </td>
-    </tr>
-    <tr>
-        <td width="200px" >
+      <td width="200px" >
         </td>
             <td width="650px">
             </td>
             <td align="left">
-            <label style="font-family: Verdana; font-size: 15px; font-weight: bold" 
+            <label style="font-family: Verdana; font-size: 13px; font-weight: bold" 
                     runat="server" id="lblSI_No">
                 2310708
             </label>
             </td>
+       
+    </tr>
+    <tr>
+        <td>
+        &nbsp;
+        </td>
     </tr>
       <tr>
         <td>
@@ -83,7 +84,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding: 15px 0px 0px 0px">
+        <td style="padding: 13px 0px 0px 0px">
         
         </td>
     </tr>
@@ -91,13 +92,13 @@
         <td width="250px" >
         </td>
             <td style="padding: 0px 0px 0px 50px" width="650px">
-            <label style="font-family: verdana; font-size: 15px; font-weight: bold" 
+            <label style="font-family: verdana; font-size: 13px; font-weight: bold" 
                     runat="server" id="lblCustomer">
              TCL MERCHANDISE BROKERAGE INC.
             </label>               
             </td>
             <td align="left">
-            <label style="font-family: verdana; font-size: 15px; font-weight: bold" 
+            <label style="font-family: verdana; font-size: 13px; font-weight: bold" 
                     runat="server" id="lblDate">
                 01/31/2013
             </label>
