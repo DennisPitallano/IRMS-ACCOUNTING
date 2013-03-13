@@ -26,11 +26,14 @@
                     <table>
                         <tr>
                             <td class="modalLabel">
-                                Transaction Date:
+                                Inventory Date:
                             </td>
                             <td>
                                 <asp:TextBox ID="txtTransactionDate" runat="server" Font-Names="Verdana" Font-Size="12px"
-                                    Height="18px" BackColor="#FFFFCC" ReadOnly="true"></asp:TextBox>
+                                    Height="18px" BackColor="#FFFFCC" ></asp:TextBox>
+                                <asp:CalendarExtender ID="txtTransactionDate_CalendarExtender" runat="server" 
+                                    Enabled="True" TargetControlID="txtTransactionDate" Format="MMMM dd, yyyy">
+                                </asp:CalendarExtender>
                             </td>
                             <td>
                             </td>
@@ -188,17 +191,9 @@
                             </tr>
                             <tr>
                                 <td>
-                                    &nbsp;&nbsp; &nbsp;&nbsp;<asp:Label ID="lblDelivery" runat="server" Text="Delivery"
-                                        CssClass="adjustment_label" ToolTip="View Delivery Receipts BreakDown"></asp:Label>
-                                    <asp:ModalPopupExtender ID="lblDelivery_ModalPopupExtender" runat="server" DynamicServicePath=""
-                                        Enabled="True" PopupControlID="pnlDeliveryReceiptsDetails" PopupDragHandleControlID="pnlDeliveryReceiptsDetailsDrag"
-                                        TargetControlID="lblDelivery" CancelControlID="ibtnClosepnlDeliveryReceiptsDetails">
-                                        <Animations>
-											<OnShown>
-												<FadeIn Duration=".2" />
-											</OnShown>
-                                        </Animations>
-                                    </asp:ModalPopupExtender>
+                                    &nbsp;&nbsp; &nbsp;&nbsp;
+                                    <asp:HyperLink ID="hpLinkDeliveryDetails" CssClass="adjustment_label" Target="_blank" ToolTip="View Delivery Receipts BreakDown" runat="server">Delivery</asp:HyperLink>
+                                   
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtDeliveryVolume" runat="server" class="modalText txt"
@@ -498,67 +493,6 @@
                         OnClick="btnSelectOutlet_Click" />
                 </div>
             </asp:Panel>
-            <%--Delivery Receipts Details By Period and Customer.--%>
-            <asp:Panel ID="pnlDeliveryReceiptsDetails" runat="server" CssClass="modal">
-                <asp:Panel ID="pnlDeliveryReceiptsDetailsDrag" runat="server" CssClass="modalDrag">
-                    <div class="close_btn">
-                        <asp:ImageButton ID="ibtnClosepnlDeliveryReceiptsDetails" runat="server" CssClass="btnClose"
-                            ImageUrl="~/Resources/cancel_gray.png" ToolTip="CLOSE" />
-                    </div>
-                    <div class="sizeLogo">
-                         <img src="../Resources/panels.png" alt="" align="left" height="16px" />
-                        DELIVERY RECEIPTS DETAILS
-                    </div>
-                </asp:Panel>
-                <div style="margin: 5px 5px;">
-                    <asp:Panel ID="pnlDeliveryReceiptsDetailsContainer" runat="server" Height="250px"
-                        ScrollBars="Auto">
-                        <div style="font-family: Verdana; font-size: 11px; text-align: center;
-                            padding: 2px 0px; font-weight: bold;">
-                            DR BREAKDOWN DETAILS
-                        </div>
-                        <asp:GridView ID="gvDeliveryReceiptDetails" CssClass="table_grid" runat="server" Font-Names="Verdana" Font-Size="10px"
-                            AutoGenerateColumns="False" DataSourceID="SqlDataSourceDRDetailsBreakDown" ForeColor="#FFFFCC"
-                            EnableViewState="False">
-                            <Columns>
-                                <asp:BoundField DataField="DR_NUMBER" HeaderText="DR NUMBER">
-                                    <HeaderStyle Wrap="False" />
-                                    <ItemStyle Wrap="False" />
-                                </asp:BoundField>
-                                <asp:BoundField DataField="CUSTOMER" HeaderText="CUSTOMER">
-                                    <HeaderStyle Wrap="False" />
-                                    <ItemStyle Wrap="False" />
-                                </asp:BoundField>
-                                <asp:BoundField DataField="DR_DATE" HeaderText="DR DATE" DataFormatString="{0:MMMM dd, yyyy}">
-                                    <HeaderStyle Wrap="False" />
-                                    <ItemStyle Wrap="False" />
-                                </asp:BoundField>
-                                <asp:BoundField DataField="TOTAL_AMOUNT" HeaderText="AMOUNT" DataFormatString="{0:###,###.00}">
-                                    <HeaderStyle Wrap="False" />
-                                    <ItemStyle Wrap="False" />
-                                </asp:BoundField>
-                                <asp:BoundField DataField="TOTAL_QUANTITY" HeaderText="QTY">
-                                    <HeaderStyle Wrap="False" />
-                                    <ItemStyle Wrap="False" />
-                                </asp:BoundField>
-                            </Columns>
-                        </asp:GridView>
-                        <asp:SqlDataSource ID="SqlDataSourceDRDetailsBreakDown" runat="server" ConnectionString="<%$ ConnectionStrings:IRMSConnectionString %>"
-                            SelectCommand="SELECT [ID], [DRNo] AS DR_NUMBER, [DeliveredTo] AS CUSTOMER, [DRDate] AS DR_DATE, [TotalAmt] AS TOTAL_AMOUNT,
-				 [TotalQty] AS TOTAL_QUANTITY FROM [DR] WHERE (([CustNo] = @CustNo) AND ([DRDate] BETWEEN @DRDate1 AND @DRDate2))"
-                            DataSourceMode="DataReader">
-                            <SelectParameters>
-                                <asp:ControlParameter ControlID="hfCustomerRecordNumber" Name="CustNo" PropertyName="Value"
-                                    Type="Int32" />
-                                <asp:ControlParameter ControlID="txtPeriodFrom" Name="DRDate1" PropertyName="Text"
-                                    Type="DateTime" />
-                                <asp:ControlParameter ControlID="txtPeriodTo" Name="DRDate2" PropertyName="Text"
-                                    Type="DateTime" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                    </asp:Panel>
-                </div>
-            </asp:Panel>
             <asp:HiddenField ID="hfAdjustmentRecordNumber" runat="server" />
             <asp:HiddenField ID="hfCustomerRecordNumber" runat="server" />
             <asp:Panel ID="pnlGrosssalesbreakDownModal" runat="server" CssClass="modal">
@@ -632,7 +566,7 @@
                     </div>
                     <div class="sizeLogo">
                            <img src="../Resources/panels.png" alt="" align="left" height="16px" />
-                        GROSS SALES BREAK DOWN
+                           INVENTORY BREAK DOWN
                     </div>
                 </asp:Panel>
                 <div style="text-align: center;">

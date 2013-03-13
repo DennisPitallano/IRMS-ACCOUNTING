@@ -12,6 +12,7 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
     public partial class PrintPCountSummary : System.Web.UI.Page
     {
         AdjustmentMemoManager AdjusmentMemoManager = new AdjustmentMemoManager();
+        AdjustmentManager AdjManager = new AdjustmentManager();
         protected void Page_Load(object sender, EventArgs e)
         {
             lblDateNow.Text = DateTime.Now.ToString("dddd, MMMM dd, yyyy");
@@ -23,6 +24,8 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             string AdjustmentCode = Request.QueryString["AdjustmentCode"];
             string Customer = Request.QueryString["Customer"];
             LoadTransactionSummary(AdjustmentCode,Customer);
+            Adjustment adjustment=AdjManager.GetAdjustmentByKey(long.Parse(Request.QueryString["RecordNumber"]));
+            lblTransactionSummaryOutlet.Text = HttpUtility.HtmlDecode(adjustment.OutletName);
         }
         private void LoadTransactionSummary(string AdjustmentCode, string Customer)
         {
@@ -50,7 +53,6 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
                     debit_current_price = debit_current_price + adjmemo.CurrentPrice;
                     debit_cost_price = debit_cost_price + adjmemo.CostPrice;
                 }
-                lblTransactionSummaryOutlet.Text = Customer;
                 lblTransactioSummaryPeriodFrom.Text = adjmemo.PeriodFrom.ToString("MMMM dd, yyyy");
                 lblTransactioSummaryPeriodTo.Text = adjmemo.PeriodTo.ToString("MMMM dd, yyyy");
                 lblTransactionDateSummary.Text = adjmemo.MemoDate.ToString("MMMM dd, yyyy");

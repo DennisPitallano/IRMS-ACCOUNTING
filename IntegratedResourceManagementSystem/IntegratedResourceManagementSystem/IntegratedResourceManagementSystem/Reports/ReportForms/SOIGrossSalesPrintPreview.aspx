@@ -17,7 +17,7 @@
         }
     </style>
     <style type="text/css" media="print">
-        #btnPrint
+        #btnPrint,#btnClose
         {
             visibility:hidden;
         }
@@ -25,18 +25,23 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="font-weight: bold;">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div style="font-weight: bold; margin-bottom:10px; text-align:center;">
         GROSS SALES BREAK DOWN
     </div>
     <div >
-        <asp:GridView ID="gvGrossSales" align="center" runat="server" AutoGenerateColumns="False">
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+             <asp:GridView ID="gvGrossSales" align="center" runat="server" AutoGenerateColumns="False">
             <Columns>
-                <asp:BoundField DataField="GROSS_QUANTITY" HeaderText="QUANTITY">
+                <asp:BoundField DataField="GROSS_QUANTITY" HeaderText="QUANTITY" 
+                    DataFormatString="{0:###,###}">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="GROSS_AMOUNT" HeaderText="AMOUNT" 
                     DataFormatString="{0:###,###.00}">
-                    <ItemStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="GROSS_MONTH" HeaderText="MONTH" />
                 <asp:BoundField DataField="GROSS_YEAR" HeaderText="YEAR">
@@ -44,10 +49,14 @@
                 </asp:BoundField>
             </Columns>
         </asp:GridView>
+        <asp:HiddenField ID="hfCheck" Value="false" runat="server" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+       
     </div>
     <div style="text-align: center; margin: 5px;">
             <input id="btnPrint" type="button" class="btnPrint" onclick="window.print()" value="PRINT" />
-             <input id="Button1" type="button" class="btnDelete" onclick="window.close()" value="CLOSE" />
+             <input id="btnClose" type="button" class="btnDelete" onclick="window.close()" value="CLOSE" />
     </div>
     </form>
 </body>

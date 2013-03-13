@@ -23,8 +23,10 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
             string AdjustmentCode = Request.QueryString["AdjustmentCode"];
             string Customer = Request.QueryString["Customer"];
             long record_number = long.Parse(Request.QueryString["Id"]);
-            lblCompanyName.Text = "OUTLET NAME: "+Customer;
+            Adjustment adjustment = AdjustmentManager.GetAdjustmentByKey(long.Parse(Request.QueryString["RecordNumber"]));
+            lblCompanyName.Text = "OUTLET NAME: "+adjustment.OutletName;
             lblDateNow.Text = DateTime.Now.ToString("dddd, MMMM dd, yyyy");
+
             PreviewAdjustmentMemo(AdjustmentCode,record_number);
         }
         private void PreviewAdjustmentMemo(string adjustment_code, long record_number)

@@ -676,5 +676,18 @@ namespace IntegratedResourceManagementSystem.Accounting
         {
             Redirector.Redirect("~/Accounting/Debit-CreditMemoPanel.aspx");
         }
+
+        protected void btnSelectInventory_Click(object sender, EventArgs e)
+        {
+            txtActualPhysicalCountQuantity.Text = gvInventories.SelectedRow.Cells[1].Text;
+            txtActualPhysicalCountCurrentPrice.Text = gvInventories.SelectedRow.Cells[2].Text;
+            txtActualPhysicalPriceCostPrice.Text = gvInventories.SelectedRow.Cells[3].Text;
+            ComputeSummary();
+        }
+
+        protected void gvInventories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblPCountModalHandler_ModalPopupExtender.Show();
+        }
     }
 }
