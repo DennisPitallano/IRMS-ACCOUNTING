@@ -16,13 +16,13 @@ namespace IntegratedResourceManagementSystem.Reports.ReportForms
         {
             if (Session.IsNewSession == false)
             {
-                if (Session["USER_ID"] == null)
+                if (Session["USER_NAME"] == null)
                 {
                     lblPreparedBy.Text ="Admin";
                 }
                 else
                 {
-                    lblPreparedBy.Text = Session["USER_ID"].ToString();
+                    lblPreparedBy.Text = Session["USER_NAME"].ToString();
                 }
             }
             if (!this.IsPostBack)

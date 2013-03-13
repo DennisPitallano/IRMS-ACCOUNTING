@@ -24,7 +24,7 @@
             Manage Store Outstanding Inventory Panel
         </div>
         <%--toolbar menu--%>
-        <asp:UpdatePanel runat="server">
+        <asp:UpdatePanel ID="upnlSOI" runat="server">
             <ContentTemplate>
                 <asp:HiddenField ID="HF_BRAND" runat="server" />
                 <div style="height: 26px; margin-bottom: 1px;" class="modalDrag">
@@ -130,11 +130,7 @@
                         </asp:Panel>
                     </div>
                 </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-        <asp:UpdatePanel ID="upnlSOI" runat="server" UpdateMode="Conditional">
-            <ContentTemplate>
-                <div class="table_grid" style="float: left; margin-bottom: 10px; border-radius: 5px 5px 0px 0px;">
+                   <div class="table_grid" style="float: left; margin-bottom: 10px; border-radius: 5px 5px 0px 0px;">
                     <div style="width: 380px; margin-right: 1px;">
                         <div class="titleList">
                             <img src="../Resources/usermode.png" height="18px" alt="LIST" align="top" />
@@ -186,7 +182,8 @@
                                 </EmptyDataTemplate>
                                 <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
                                 <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Left" />
+                                <PagerSettings Mode="NumericFirstLast" />
+                                <PagerStyle CssClass="pager" />
                                 <RowStyle BackColor="#E3EAEB" />
                                 <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="False" ForeColor="#333333" Font-Italic="True" />
                                 <SortedAscendingCellStyle CssClass="asc_cell_style" />
@@ -196,7 +193,7 @@
                             </asp:GridView>
                             <asp:SqlDataSource ID="SqlDataSourceSOI" runat="server" ConnectionString="<%$ ConnectionStrings:IRMSConnectionString %>"
                                 SelectCommand="SELECT [RECORD_NO],[CUSTOMER],[PERIOD_FROM],[PERIOD_TO],[DATE_RECORDED] FROM [STORE_OUTSTANDING_INVENTORIES] 
-                                    ORDER BY DATE_RECORDED DESC" CacheDuration="10" EnableCaching="True"></asp:SqlDataSource>
+                                    ORDER BY DATE_RECORDED DESC" ></asp:SqlDataSource>
                         </asp:Panel>
                     </div>
                 </div>
@@ -531,13 +528,7 @@
                     </asp:Panel>
                 </asp:Panel>
             </ContentTemplate>
-            <Triggers>
-                <%--   <asp:AsyncPostBackTrigger ControlID="imgBtnSearch" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
-            <asp:AsyncPostBackTrigger ControlID="gvSOI" EventName="SelectedIndexChanged" />
-            <asp:AsyncPostBackTrigger ControlID="gvSOI" EventName="PageIndexChanging" />
-            <asp:AsyncPostBackTrigger ControlID="gvSOI" EventName="Sorting" />--%>
-            </Triggers>
         </asp:UpdatePanel>
+             
     </div>
 </asp:Content>

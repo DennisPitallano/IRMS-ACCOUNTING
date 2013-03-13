@@ -439,6 +439,21 @@ namespace IntegratedResourceManagementSystem.Accounting
                         DateTime.Parse(txtPeriodFrom.Text).Year, DateTime.Parse(txtPeriodTo.Text).Year);
                 gvGrossSalesBreakDown.DataSource = gross_sales_breakdown;
                 gvGrossSalesBreakDown.DataBind();
+                DataRow summaryRow = gross_sales_breakdown.NewRow();
+                int grossSum = 0;
+                double grossAmt = 0.00;
+
+                foreach (DataRow row in gross_sales_breakdown.Rows)
+                {
+                    grossSum += int.Parse(row["GROSS_QUANTITY"].ToString());
+                    grossAmt += float.Parse(row["GROSS_AMOUNT"].ToString());
+                }
+
+                summaryRow["GROSS_QUANTITY"] = grossSum;
+                summaryRow["GROSS_AMOUNT"] = grossAmt.ToString("###,###.00");
+                summaryRow["GROSS_MONTH"] = "";
+
+                gross_sales_breakdown.Rows.Add(summaryRow);
                 Session["GROSS_SALES_BREAKDOWN"] = gross_sales_breakdown;
             }
             catch (Exception)

@@ -22,6 +22,15 @@ namespace IntegratedResourceManagementSystem.Accounting {
         protected global::IntegratedResourceManagementSystem.Accounting.controls.MainMenu main_menu;
         
         /// <summary>
+        /// upnlSOI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upnlSOI;
+        
+        /// <summary>
         /// HF_BRAND control.
         /// </summary>
         /// <remarks>
@@ -245,15 +254,6 @@ namespace IntegratedResourceManagementSystem.Accounting {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNo;
-        
-        /// <summary>
-        /// upnlSOI control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upnlSOI;
         
         /// <summary>
         /// pnlSizesList control.

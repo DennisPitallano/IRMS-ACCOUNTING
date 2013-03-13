@@ -26,11 +26,14 @@
                     <table>
                         <tr>
                             <td class="modalLabel">
-                                Transaction Date:
+                                Inventory Date:
                             </td>
                             <td>
                                 <asp:TextBox ID="txtTransactionDate" runat="server" Font-Names="Verdana" Font-Size="12px"
-                                    Height="18px" BackColor="#FFFFCC" ReadOnly="true"></asp:TextBox>
+                                    Height="18px" BackColor="#FFFFCC" ></asp:TextBox>
+                                <asp:CalendarExtender ID="txtTransactionDate_CalendarExtender" runat="server" 
+                                    Enabled="True" TargetControlID="txtTransactionDate" Format="MMMM dd, yyyy">
+                                </asp:CalendarExtender>
                             </td>
                             <td>
                             </td>
