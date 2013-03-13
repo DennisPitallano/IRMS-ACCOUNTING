@@ -40,9 +40,10 @@ namespace IntegratedResourceManagementSystem.Accounting
                 txtPreparedBy.Text = (string)Session["USER_NAME"];
                 txtCustNo.Text = gvOutlets.SelectedRow.Cells[2].Text;
                 txtSoldTo.Text = gvOutlets.SelectedRow.Cells[3].Text;
-                txtAddress.Text = gvOutlets.SelectedRow.Cells[5].Text;
+                txtAddress.Text = Server.HtmlDecode(gvOutlets.SelectedRow.Cells[5].Text);
                 txtTIN.Text = HttpUtility.HtmlDecode(gvOutlets.SelectedRow.Cells[6].Text.Trim());
                 txtCompany.Text = gvOutlets.SelectedRow.Cells[7].Text;
+                gvOutlets.SelectedIndex = -1;
                 }
             
             }
